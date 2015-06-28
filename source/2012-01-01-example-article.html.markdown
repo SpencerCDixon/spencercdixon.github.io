@@ -1,7 +1,7 @@
 ---
 title: Example Article
-date: 2012-01-01
-tags: example
+date: 2015-06-28
+tags: sinatra
 ---
 
-This is an example article. You probably want to delete it and write your own articles!
+Using RSpec with a Sinatra application.
