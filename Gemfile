@@ -8,3 +8,10 @@ gem 'middleman-deploy', '~> 1.0'
 
 # For feed.xml.builder
 gem "builder", "~> 3.0"
+
+# Assets
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
+gem 'redcarpet'
+gem 'middleman-syntax'

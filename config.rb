@@ -31,6 +31,11 @@ end
 
 page "/feed.xml", layout: false
 
+# github flavored markdown
+activate :syntax, line_numbers: true
+set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
+set :markdown_engine, :redcarpet
+
 
 ###
 # Compass
