@@ -1,16 +1,17 @@
-nav {
-  border-bottom: 1px solid $base-border-color;
-  margin: em(30) 0;
-
-  ul {
-    display: inline-block;
-    margin-bottom: em(10);
+nav.main-nav {
+  height: 80px;
+}
+nav ul li a {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.5em;
+  color: black;
+  &:hover {
+    border-bottom: 2px solid black;
+    color: black;
   }
 }
 
-.blog-title {
-  font-size: 1.4em;
-  font-weight: 700;
-  letterspacing: 4px;
-  text-transform: uppercase;
+nav ul li {
+  float: right;
+  margin: 1em 1em;
 }
