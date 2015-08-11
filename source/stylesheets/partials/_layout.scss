@@ -1,4 +1,4 @@
-$max-width: 100%;
+$max-width: 4000px;
 
 ol {
   font-size: 1em;
@@ -19,16 +19,23 @@ ol {
 }
 
 body {
-  @include outer-container;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  @include outer-container();
   aside { @include span-columns(4); }
   article {
     @include span-columns(8);
     @include omega();
+    overflow-y: scroll;
   }
 }
 
 article {
-  margin-top: 3em;
+  padding-top: 3em;
+  height: 100vh;
 }
 
 aside {

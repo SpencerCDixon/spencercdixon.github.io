@@ -9,13 +9,15 @@
 
   </head>
   <body>
-    <aside>
-      <%= partial "partials/nav" %>
-    </aside>
+    <div class="wrapper">
+      <aside>
+        <%= partial "partials/nav" %>
+      </aside>
 
-    <article>
-      <%= yield %>
-    </article>
+      <article>
+        <%= yield %>
+      </article>
+    </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"> </script>
   </body>
