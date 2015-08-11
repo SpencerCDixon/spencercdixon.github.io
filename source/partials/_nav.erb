@@ -1,8 +1,35 @@
 <nav class="main-nav">
-  <ul>
-    <li><%= link_to 'BOOKS', '/book_list.html' %></li>
-    <li><%= link_to 'ABOUT', '/about.html' %></li>
-    <li><%= link_to 'HOME', '/index.html' %></li>
-  </ul>
-</nav>
+  <% link_to('/index.html') do %>
+    <%= image_tag 'spencer.jpeg', class: 'round-image' %>
+  <% end %>
+  <%# <h4 class="text-center tagline"> %>
+    <%# Patiently persistent.  My journey to programming mastery. %>
+  <%# </h4> %>
 
+  <ul class="nav-links">
+    <li class="text-center"><%= link_to 'ABOUT', '/about.html' %></li>
+    <li class="text-center"><%= link_to 'BLOG', '/index.html' %></li>
+    <li class="text-center"><%= link_to 'BOOKS', '/book_list.html' %></li>
+  </ul>
+
+
+  <section class="social-media">
+    <ul>
+      <li class="social-icon">
+        <% link_to('https://github.com/spencercdixon') do %>
+          <i class="fa fa-github-square fa-2x"></i>
+        <% end %>
+      </li>
+      <li class="social-icon">
+        <% link_to('https://twitter.com/SpencerCDixon') do %>
+          <i class="fa fa-twitter-square fa-2x"></i>
+        <% end %>
+      </li>
+      <li class="social-icon">
+        <% link_to('https://www.linkedin.com/in/spencercdixon') do %>
+          <i class="fa fa-linkedin-square fa-2x"></i>
+        <% end %>
+      </li>
+    </ul>
+  </section>
+</nav>

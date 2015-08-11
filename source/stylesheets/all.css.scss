@@ -3,6 +3,7 @@
 @import "bourbon";
 @import "base/base";
 @import "neat";
+@import "font-awesome";
 
 @import "partials/layout";
 @import "partials/home";
@@ -15,3 +16,6 @@ body {
   margin: 0;
 }
 
+.text-center {
+  text-align: center;
+}
