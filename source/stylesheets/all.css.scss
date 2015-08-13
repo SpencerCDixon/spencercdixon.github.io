@@ -5,12 +5,14 @@
 @import "neat";
 @import "font-awesome";
 
+@import "colors";
 @import "partials/layout";
 @import "partials/home";
 @import "partials/nav";
-@import "partials/footer";
+@import "partials/article";
 
 @import url(http://fonts.googleapis.com/css?family=Oxygen:700,400,300|Raleway);
+@import url(http://fonts.googleapis.com/css?family=Kameron:400,700);
 
 body {
   margin: 0;
@@ -19,3 +21,4 @@ body {
 .text-center {
   text-align: center;
 }
+

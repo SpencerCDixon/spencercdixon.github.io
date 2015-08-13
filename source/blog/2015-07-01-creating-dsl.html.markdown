@@ -1,10 +1,8 @@
 ---
 title: Creating a DSL in Ruby
 date: 2015-07-01
-tags: ruby
+tags: ruby, rails
 ---
-
-# Creating a DSL in Ruby
 
 Recently I built a small DSL for work that allows users to sync data to MongoDB
 from any external API.  It was my first time making a DSL so I decided to
@@ -78,7 +76,8 @@ module DslClassMethods
     Object.const_get(const)
     @_primary_connection ||= conn.to_sym
   rescue NameError
-    raise UndefinedConnectionClass, "#{self.class} wants to use #{const} as its primary connection but #{const} has not yet been defined"
+    raise UndefinedConnectionClass, 
+      "#{self.class} wants to use #{const} as its primary connection but #{const} has not yet been defined"
   end
 end
 ```

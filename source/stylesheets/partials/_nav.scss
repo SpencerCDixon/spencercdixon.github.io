@@ -5,7 +5,7 @@ nav ul li a {
   display: block;
   margin: 0 auto;
   &:hover {
-    color: #bdc3c7;
+    color: $button-blue;
   }
 }
 
@@ -30,9 +30,10 @@ nav ul li a {
 .social-media ul li {
   padding: .5em;
   display: inline-block;
+  transition: $color-trans-ease;
   a {
     &:hover {
-      color: #2980b9;
+      color: $button-blue;
     }
   }
 }

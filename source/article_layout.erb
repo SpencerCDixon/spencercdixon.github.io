@@ -1,0 +1,15 @@
+<% wrap_layout :layout do %>
+  <% if current_article %>
+    <h1 id="article-title"><%= current_article.title %></h1>
+    <hr>
+    <div class="tags">
+      <ul>
+      <% current_article.tags.each do |tag| %>
+        <li class="tag"></a><%= link_to(tag, tag_path(tag)) %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= yield %>
+<% end %>

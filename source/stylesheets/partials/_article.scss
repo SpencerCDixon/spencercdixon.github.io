@@ -1,0 +1,31 @@
+h1#article-title {
+  font-size: 2.5em !important;
+  margin-bottom: 10px;
+}
+
+.tags {
+  float:left;
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+ul li.tag {
+  display: block;
+  float: left;
+  padding: 5px 10px 5px 10px;
+  background: $nav-color;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  transition: background-color 0.5s ease;
+  &:hover {
+    background: $button-blue;
+  }
+  a {
+    color: white;
+  }
+}
+
+hr {
+  width: 95%;
+}

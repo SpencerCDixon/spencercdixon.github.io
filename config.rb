@@ -6,12 +6,12 @@
 
 activate :blog do |blog|
   # This will add a prefix to all links, template references and source paths
-  # blog.prefix = "blog"
+  blog.prefix = "blog"
+  blog.permalink = "/{title}.html"
 
-  # blog.permalink = "{year}/{month}/{day}/{title}.html"
   # Matcher for blog source files
   # blog.sources = "{year}-{month}-{day}-{title}.html"
-  # blog.taglink = "tags/{tag}.html"
+  blog.taglink = "/tags/{tag}.html"
   # blog.layout = "layout"
   blog.summary_separator = /(READMORE)/
   blog.summary_length = 250
@@ -23,6 +23,7 @@ activate :blog do |blog|
   blog.tag_template = "tag.html"
   blog.calendar_template = "calendar.html"
 
+
   # Enable pagination
   blog.paginate = true
   blog.per_page = 10
@@ -30,9 +31,10 @@ activate :blog do |blog|
 end
 
 page "/feed.xml", layout: false
+page "blog/*", layout: :article_layout
 
 # github flavored markdown
-activate :syntax, line_numbers: true
+activate :syntax
 set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
 set :markdown_engine, :redcarpet
 
