@@ -1,6 +1,7 @@
 h1#article-title {
   font-size: 2.5em !important;
   margin-bottom: 10px;
+  margin-top: 0;
 }
 
 .tags {
@@ -8,24 +9,35 @@ h1#article-title {
   width: 100%;
   overflow: auto;
   white-space: nowrap;
+  ul {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 ul li.tag {
   display: block;
   float: left;
-  padding: 5px 10px 5px 10px;
-  background: $nav-color;
+  background: $button-blue;
   margin-right: 10px;
   margin-bottom: 10px;
   transition: background-color 0.5s ease;
   &:hover {
-    background: $button-blue;
+    background: $nav-color;
   }
   a {
     color: white;
+    padding: 5px 10px 5px 10px;
   }
 }
 
 hr {
   width: 95%;
+}
+
+.blog-post {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 1em 0;
+    font-weight: bold;
+  }
 }
