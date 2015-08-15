@@ -16,6 +16,7 @@
 
 body {
   margin: 0;
+  background: $secondary; 
 }
 
 .text-center {
@@ -28,5 +29,5 @@ body {
 }
 
 a {
-  color: $button-blue;
+  color: $background;
 }

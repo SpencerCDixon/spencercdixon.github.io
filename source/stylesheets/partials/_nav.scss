@@ -5,7 +5,7 @@ nav ul li a {
   display: block;
   margin: 0 auto;
   &:hover {
-    color: $button-blue;
+    color: $highlight;
   }
 }
 
@@ -43,7 +43,7 @@ nav ul {
   transition: $color-trans-ease;
   a {
     &:hover {
-      color: $button-blue;
+      color: $highlight;
     }
   }
 }

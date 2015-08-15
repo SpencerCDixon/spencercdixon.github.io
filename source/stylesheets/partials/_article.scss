@@ -18,16 +18,19 @@ h1#article-title {
 ul li.tag {
   display: block;
   float: left;
-  background: $button-blue;
+  background: $highlight;
   margin-right: 10px;
   margin-bottom: 10px;
   transition: background-color 0.5s ease;
   &:hover {
-    background: $nav-color;
+    background: $primary;
   }
   a {
     color: white;
     padding: 5px 10px 5px 10px;
+    &:hover {
+      border: none;
+    }
   }
 }
 
@@ -40,4 +43,10 @@ hr {
     margin: 1em 0;
     font-weight: bold;
   }
+}
+
+article a:hover {
+  color: $background;
+  border-bottom: 2px solid $background;
+  font-weight: 600;
 }
