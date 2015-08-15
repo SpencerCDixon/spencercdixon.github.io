@@ -124,3 +124,7 @@ end
 activate :google_analytics do |ga|
   ga.tracking_id = 'UA-51806130-1'
 end
+
+activate :disqus do |d|
+  d.shortname = 'spencerdixon' 
+end

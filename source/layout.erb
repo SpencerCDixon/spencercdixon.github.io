@@ -6,7 +6,6 @@
     <title>Spencer Dixon<%= ' - ' + current_article.title unless current_article.nil? %></title>
     <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
     <%= stylesheet_link_tag "all" %>
-
   </head>
   <body>
     <div class="wrapper">
@@ -20,6 +19,6 @@
     </div>
 
     <%= google_analytics_universal_tag %>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"> </script>
+    <%= javascript_include_tag "all" %>
   </body>
 </html>

@@ -21,7 +21,7 @@ ul li.tag {
   background: $highlight;
   margin-right: 10px;
   margin-bottom: 10px;
-  transition: background-color 0.5s ease;
+  transition: $color-trans-ease;
   &:hover {
     background: $primary;
   }
@@ -50,4 +50,20 @@ article a:hover {
   color: $background;
   border-bottom: 2px solid $background;
   font-weight: 600;
+}
+
+#view_comments {
+  background: $highlight;
+  padding: 20px;
+  color: white;
+  display: block;
+  width: 40%;
+  text-align: center;
+  margin: 30px auto;
+  transition: $color-trans-ease;
+  &:hover {
+    border: none;
+    font-weight: 300;
+    background: $primary;
+  }
 }
