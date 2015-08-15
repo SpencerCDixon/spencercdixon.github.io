@@ -41,9 +41,10 @@ programmer.
 
 ###<a name="install"></a> Installation 
 
-The first step is to install the Gosu Gem:
-```ruby
-gem install gosu
+The first step is to install the Gosu Gem:  
+
+```ruby  
+gem install gosu  
 ```
 
 For more help getting Gosu Installed you can visit the
@@ -59,10 +60,11 @@ still works fine on my computer when running ruby 2.0.
 
 The first step is to make a new directory to store our new Gosu game in.  Then
 we will change into the directory and start making some more directories and
-files we're going to be using.
-```
-mkdir rps
-cd rps 
+files we're going to be using.  
+
+```  
+mkdir rps  
+cd rps  
 ```
 
 Now inside of our rps directory we will create a few more subdirectories
@@ -93,14 +95,12 @@ each section.
 require 'gosu'
 
 class Game < Gosu::Window
-
   SCREEN_HEIGHT = 1000
   SCREEN_WIDTH = 1000
 
   def initialize
     super(SCREEN_WIDTH, SCREEN_HEIGHT, false)
   end
-
 end
 
 Game.new.show
@@ -136,10 +136,11 @@ is an instance method that gets inherited from Gosu::Window.  If you're not
 familiar with the #method_name notation it just means that the methods is an
 instance method.  
 
-Another way to write that last line would be:
-```ruby
-my_game = Game.new
-my_game.show
+Another way to write that last line would be:  
+
+```ruby  
+my_game = Game.new  
+my_game.show  
 ```
 
 Run your main.rb file so you can see the game screen be displayed to the
