@@ -9,6 +9,8 @@ tags: ruby, gosu, tutorials
 This is a basic tutorial to help Rubyists interested in Gosu/Game Development to
 get started.  The game we will be making is Rock, Paper, Scissors.  
 
+READMORE
+
 When I was first introduced to Gosu it was an intimidating experience which is why I
 wanted to create this tutorial.  After getting an understanding of the basics I
 realized how simple Gosu really is.  
@@ -370,13 +372,13 @@ end
 In game development state is an extremely useful tool for setting up events.
 Lets say you have a character in a game that can move around when you press
 certain keys on the keyboard.  The initial state for the character could be
-something like :not_moving (notice how I use a symbol to save memory) and when
-the user presses the up arrow key the state changes to :moving_up, etc. 
+something like `:not_moving` (notice how I use a symbol to save memory) and when
+the user presses the up arrow key the state changes to `:moving_up`, etc. 
 
 One example of state I often use is the state of the actual Game class.  For
 example, when the user first starts the game the state of the game is most
-likely going to be :menu.  Once the user starts the game it might be :running,
-and finally when the user loses the state might change to :lost.
+likely going to be `:menu`.  Once the user starts the game it might be
+`:running`, and finally when the user loses the state might change to `:lost`.
 
 Based on all these different states you can have conditional if statements to
 determine what is being drawn to the screen and what is being updated.
@@ -424,7 +426,7 @@ self.top > box.bottom
   end
 end
 ```
-I'll require the BoundingBox class in my Game class and then any of my elements
+I'll require the `BoundingBox` class in my Game class and then any of my elements
 that I end up using will have a bounding box surrounding them so I can test for
 intersections.
 
@@ -513,7 +515,7 @@ end
 ###<a name="keys"></a> Keys & Mouse Interaction
 
 In order to use keys in your Gosu game there are two major concepts to understand: button down and button up.
-Gosu will call the methods #button_down and #button_up 60 frames per second.
+Gosu will call the methods `#button_down` and `#button_up` 60 frames per second.
 These methods need to be included in our Game class in order for them to be
 called.  Both methods take an id as the parameter.  You can then test what that
 id is against different keys/mouse strokes.
@@ -562,7 +564,7 @@ class Game < Gosu::Window
 end
 ```
 
-To use the mouse Gosu has: Gosu::MsLeft and Gosu::MsRight.
+To use the mouse Gosu has: `Gosu::MsLeft` and `Gosu::MsRight`.
 
 ###<a name="keys_bounding"></a> Combining Keys & Bounding Boxes
 
@@ -589,7 +591,7 @@ end
 
 We include this module into the Game class so that the button_down method gets
 called 60 times a second.  Now every time the user clicks it will be saved into
-our array called @mouse_locations.
+our array called `@mouse_locations`.
 
 Next we need to create a method that checks for the intersections like this:
 
@@ -610,7 +612,7 @@ end
 The `@player_choices` contains an instance of Rock, Paper, and Scissors.  Each of
 those have their own respective bounding box.  If any of the users mouse clicks
 collide with one of the bounding boxes the state of that class will change to
-:selected.  When the state is :selected we change the x and y co-ordinates to
+`:selected.`  When the state is `:selected` we change the x and y co-ordinates to
 put that image in the center of the screen.
 
 Here is a brief overview of what our entire Game class looks like now:  
