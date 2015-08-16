@@ -1,5 +1,54 @@
-ul.post-list {
+ul.blog-posts {
   list-style: none;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0;
+  padding: 0;
+}
+
+small.publish-date {
+  size: .8em;
+  color: $primary;
+}
+
+h2.post-title {
+  margin-top: .3em !important;
+  margin-bottom: .3em !important;
+}
+
+div.post-tags {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+a.post-tag {
+  color: $highlight;
+  &:hover {
+    font-weight: bold;
+    color: $highlight;
+    border-bottom: none;
+  }
+}
+
+.fa-tags {
+  color: $highlight;
+}
+
+.post-separator {
+  border-bottom: 2px solid rgba(25, 25, 25, .2)
+}
+
+.keep-reading {
+  background: $highlight;
+  color: $secondary;
+  padding: .8em;
+  text-align: right;
+  margin: 0.5% 5% 2% 0;
+  float: right;
+  transition: $color-trans-ease;
+  &:hover {
+    background: $primary;
+    color: $secondary;
+    border-bottom: none;
+    font-weight: 300;
+  }
 }

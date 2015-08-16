@@ -4,10 +4,23 @@ per_page: 10
 ---
 <h1 class="page-title">Articles</h1>
 <hr />
-<ul class="post-list">
-  <% page_articles.each_with_index do |article, i| %>
+<ul class="blog-posts">
+  <% page_articles.each do |article| %>
     <li>
-      <h3><%= link_to article.title, article %> - <code> <%= article.date.strftime("%B %d, %Y") %></code></h3>
+      <small class="publish-date"> <%= article.date.strftime("%B %d, %Y") %></small>
+      <h2 class="post-title"><%= link_to article.title, article %></h3>
+      <div class="post-tags">
+        <i class="fa fa-tags"></i>
+        <% article.tags.each do |tag| %>
+          <%= link_to(tag, tag_path(tag), class: "post-tag")%>
+        <% end %>
+      </div>
+      <p class="post-summary"><%= article.summary %></p>
+      <% link_to(article, class: "keep-reading") do %>
+        Keep Reading
+        <i class="fa fa-long-arrow-right"></i>
+      <% end %>
+    <hr class="post-separator" />
     </li>
   <% end %>
 </ul>

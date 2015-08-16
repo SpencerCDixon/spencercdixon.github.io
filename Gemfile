@@ -7,6 +7,7 @@ gem "middleman-blog", "~> 3.5.3"
 gem 'middleman-deploy', '~> 1.0'
 gem "middleman-google-analytics"
 gem "middleman-disqus"
+gem 'nokogiri' # required for summary of blog posts
 gem 'pry'
 
 # For feed.xml.builder
