@@ -88,3 +88,18 @@ input[type="email"]:focus {
   box-shadow: none;
   border-bottom: 3px solid $background;
 }
+
+/* Footer Credits */
+
+footer {
+  color: $secondary;
+  display: block;
+  margin: 0 auto;
+  margin-top: 3em;
+  text-align: center;
+  font-size: .85em;
+}
+
+.fa-diamond {
+  color: $highlight;
+}
