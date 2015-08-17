@@ -85,3 +85,64 @@ hr {
     text-align: center;
   }
 }
+
+@media only screen
+    and (min-device-width : 375px) // or 213.4375em
+    and (max-device-width : 667px) // or 41.6875em
+    and (width : 375px) // or 23.4375em
+    and (height : 559px) // or 34.9375em
+    and (orientation : portrait)
+    and (color : 8)
+    and (device-aspect-ratio : 375/667)
+    and (aspect-ratio : 375/559)
+    and (device-pixel-ratio : 2)
+    and (-webkit-min-device-pixel-ratio : 2)
+{
+  /* Layout */
+  .wrapper {
+    @include outer-container();
+    aside { @include span-columns(12); }
+    article {
+      @include span-columns(12);
+    }
+  }
+
+  aside {
+    padding-top: 1em;
+    height: 40vh;
+  }
+
+  footer {
+    display: none;
+  }
+
+  /* Nav */
+  img.round-image {
+    display: none;
+  }
+
+  .nav-links {
+    text-align: center;
+  }
+  .nav-links li {
+    display: inline;
+  }
+  .nav-links li a {
+    display: inline-block;
+    padding: 10px;
+  }
+
+  /* Articles */
+  #view_comments {
+    width: 100%;
+  }
+
+  p {
+    font-size: 1.3em;
+  }
+
+  .keep-reading {
+    width: 95%;
+    text-align: center;
+  }
+}
