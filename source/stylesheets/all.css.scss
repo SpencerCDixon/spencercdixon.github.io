@@ -12,7 +12,6 @@
 @import "partials/article";
 
 @import url(http://fonts.googleapis.com/css?family=Oxygen:700,400,300|Raleway);
-@import url(http://fonts.googleapis.com/css?family=Kameron:400,700);
 
 body {
   margin: 0;
@@ -35,4 +34,54 @@ a {
 
 hr {
   border-bottom: 2px solid $primary;
+}
+
+@media only screen and (max-width: 780px) {
+  /* Layout */
+  .wrapper {
+    @include outer-container();
+    aside { @include span-columns(12); }
+    article {
+      @include span-columns(12);
+    }
+  }
+
+  aside {
+    padding-top: 1em;
+    height: 40vh;
+  }
+
+  footer {
+    display: none;
+  }
+
+  /* Nav */
+  img.round-image {
+    display: none;
+  }
+
+  .nav-links {
+    text-align: center;
+  }
+  .nav-links li {
+    display: inline;
+  }
+  .nav-links li a {
+    display: inline-block;
+    padding: 10px;
+  }
+
+  /* Articles */
+  #view_comments {
+    width: 100%;
+  }
+
+  p {
+    font-size: 1.3em;
+  }
+
+  .keep-reading {
+    width: 95%;
+    text-align: center;
+  }
 }

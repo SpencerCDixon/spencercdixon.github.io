@@ -32,7 +32,6 @@ body {
 article {
   padding-top: 3em;
   height: 100vh;
-  overflow: scroll;
   padding-right: 3.5em;
   padding-left: 3.5em;
 }
@@ -43,3 +42,8 @@ aside {
   height: 100vh;
 }
 
+@media only screen and (min-width: 780px) {
+  article {
+    overflow: scroll;
+  }
+}
