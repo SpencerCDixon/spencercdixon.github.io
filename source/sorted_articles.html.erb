@@ -1,0 +1,13 @@
+<h1 class="page-title">Articles By Tag</h1>
+<hr />
+<ul class="sorted-tags">
+  <% blog.tags.each do |tag, articles| %>
+    <li>
+      <h1><%= tag %></h5>
+      <ul>
+        <% articles.each do |article| %>
+          <li><a href="<%= article.url %>"><%= article.title %></a></li>
+        <% end %>
+      </ul>
+  <% end %>
+</ul>

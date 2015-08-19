@@ -24,7 +24,7 @@ eco-system to grow plants and fish at the same time.  Pure harmony.
 As a salesperson, sustainability meant building strong
 relationships with my clients.  Not just doing a demonstration to make a sale
 but to make a friend and hopefully a client for life.  My hunger for personal
-growth made me more self aware of the importance of sustainable choices; one thing I 
+growth made me more realize the importance of sustainable choices; one thing I 
 quickly started to learn was that sustainable choices aren't always easy.
 
 ## The hard truth is: sustainability is fucking hard.
