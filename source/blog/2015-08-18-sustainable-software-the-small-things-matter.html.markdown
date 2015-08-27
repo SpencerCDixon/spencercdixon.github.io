@@ -100,7 +100,7 @@ Every time you let something small slide in your code base a seed is planted for
 the next developer.  A seed that grows into more neglect, into more
 miscommunication, and results in 1000 line long controller actions or `Classes`.
 It results in unsustainable software that makes the next developer want to pull
-their hair out when you working on it.
+their hair out when working on it.
 
 Find the broken windows in your code base.  Be a good citizen and start fixing
 them up one line at a time.
