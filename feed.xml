@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Spencer Dixon</title>
+  <subtitle>A blog about code</subtitle>
+  <id>http://blog.url.com/blog</id>
+  <link href="http://blog.url.com/blog"/>
+  <link href="http://blog.url.com/feed.xml" rel="self"/>
+  <updated>2015-08-27T00:29:00-04:00</updated>
+  <author>
+    <name>Blog Author</name>
+  </author>
+  <entry>
+    <title>Object Oriented Twitter</title>
+    <link rel="alternate" href="http://blog.url.com/blog/object-oriented-twitter.html"/>
+    <id>http://blog.url.com/blog/object-oriented-twitter.html</id>
+    <published>2015-08-27T00:29:00-04:00</published>
+    <updated>2015-09-08T19:40:25-04:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Slide deck from my talk at Launch Academy.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;iframe src="https://www.slideshare.net/slideshow/embed_code/key/NKw2NSUfBlPqMx" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen&gt; &lt;/iframe&gt; &lt;div style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a href="https://www.slideshare.net/secret/NKw2NSUfBlPqMx" title="Object Oriented Twitter Slidedeck" target="_blank"&gt;Object Oriented Twitter Slidedeck&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href="http://www.slideshare.net/SpencerDixon2" target="_blank"&gt;Spencer Dixon&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Sustainable Software: The Small Things Matter</title>
+    <link rel="alternate" href="http://blog.url.com/blog/sustainable-software-the-small-things-matter.html"/>
+    <id>http://blog.url.com/blog/sustainable-software-the-small-things-matter.html</id>
+    <published>2015-08-18T16:45:00-04:00</published>
+    <updated>2015-09-08T19:40:25-04:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Sustainable software is the difference between happy productive developers and
+disheartened developers with less hair and a LinkedIn thread with a recruiter.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;The idea of sustainability has been an omnipresent theme throughout my life.  It
+really started to take root in high school when I started my first
+company &lt;a href="http://www.greatlakesaquaponics.com"&gt;Great Lakes Aquaponics&lt;/a&gt; with my
+father.  The idea of aquaponics is to create a mini sustainable
+eco-system to grow plants and fish at the same time.  Pure harmony.  &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Aquaponics refers to any system that combines conventional aquaculture 
+(raising aquatic animals such as snails, fish, 
+crayfish or prawns in tanks) with hydroponics (cultivating plants in water) 
+in a symbiotic environment.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;As a salesperson, sustainability meant building strong
+relationships with my clients.  Not just doing a demonstration to make a sale
+but to make a friend and hopefully a client for life.  It was about going the
+extra mile and doing what was unexpected of me.  Spending the time to prep and
+do the little things that would allow me to connect with people on a deeper
+level.&lt;/p&gt;
+
+&lt;p&gt;My sales career got me super into personal growth.  Devouring books for a few
+years straight made me realize the importance of sustainable choices.  One thing I 
+quickly started to learn was that sustainable choices are difficult to maintain.&lt;/p&gt;
+
+&lt;h2&gt;The hard truth is: sustainability can be hard.&lt;/h2&gt;
+
+&lt;p&gt;It requires patience.&lt;br&gt;
+It requires discipline.&lt;br&gt;
+It requires long-term thinking.&lt;br&gt;
+It requires creative thinking.&lt;br&gt;
+It requires &lt;strong&gt;purpose&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Sustainable choices often require us to go against traditional thinking.  They
+force us to divorce the idea of short term gratification for the less
+destructive alternative.  They drain resources from our finite tank of daily
+willpower.  &lt;/p&gt;
+
+&lt;h2&gt;So what does all this have to do with software?&lt;/h2&gt;
+
+&lt;p&gt;Six months teaching software development to beginners at &lt;a href="https://www.launchacademy.com/"&gt;Launch
+Academy&lt;/a&gt; and one thing I noticed is how
+difficult it is for beginners to make sustainable choices.  It makes perfect
+sense.  Their growth feeds off that instant gratification of results.  When I
+was in their shoes I was just as guilty.  I had that hacker mentality of 
+&lt;strong&gt;get it done as quickly as possible&lt;/strong&gt; instead of &lt;strong&gt;do it right&lt;/strong&gt;
+to prevent headaches in the future.  I was missing context.  Context that is
+almost impossible to comprehend until it happens to you.  I was unable to see
+the bigger picture and therefore approached coding with an unsustainable mindset.&lt;/p&gt;
+
+&lt;h2&gt;What is sustainable software?&lt;/h2&gt;
+
+&lt;p&gt;Sustainable software comes from a mindset in how you approach software
+development.  It&amp;#39;s comprised of many small idioms and practices.  Some of which
+include:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; taking time to name variables and classes well&lt;br&gt;&lt;/li&gt;
+&lt;li&gt; properly formatting your code using the community style guide&lt;br&gt;&lt;/li&gt;
+&lt;li&gt; avoiding comments where more expressive code is required&lt;br&gt;&lt;/li&gt;
+&lt;li&gt; writing unit/acceptance tests&lt;br&gt;&lt;/li&gt;
+&lt;li&gt; refactoring when your classes get too big&lt;br&gt;&lt;/li&gt;
+&lt;li&gt; following Single Responsibility Principle&lt;br&gt;&lt;/li&gt;
+&lt;li&gt; not violating Law of Demeter&lt;br&gt;&lt;/li&gt;
+&lt;li&gt; staying DRY&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The list could go on and on.  For more ways in which to write sustainable
+software just read &lt;a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882"&gt;Clean Code&lt;/a&gt;
+by Robert Martin (AKA Uncle Bob).  &lt;/p&gt;
+
+&lt;p&gt;These small practices make up the whole of your code base.  Most of them are easy to
+do but also easy not to do.  The mindset required to write sustainable software
+requires that you do these things; always.  Let one method slide and soon it cascades
+throughout the system.  &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Neglect is like an infection. Left 
+unchecked it will spread throughout our 
+entire system of disciplines and eventually lead to a complete breakdown...
+ - Jim Rohn&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;How you do anything is how you do everything.  When you start to care about the
+extra white space in a file or the missing tabs, your software organically starts
+to become more sustainable.  It&amp;#39;s a complete paradigm shift.  From just doing the
+minimum required in order to finish your current story to writing beautiful
+code you can be proud of.&lt;/p&gt;
+
+&lt;h2&gt;Find the broken windows&lt;/h2&gt;
+
+&lt;p&gt;Malcom Gladwell in &lt;em&gt;The Tipping Point&lt;/em&gt; talks about the broken window theory.
+During the 90&amp;#39;s in NYC there was a flux of crime.  In order to reduce crime
+police officers started becoming way stricter with little things like broken
+windows, boarded up doors, and vandalism.  As the small crimes were reduced the
+bigger crimes also saw a drastic reduction.  &lt;/p&gt;
+
+&lt;p&gt;Every time you let something small slide in your code base a seed is planted for
+the next developer.  A seed that grows into more neglect, into more
+miscommunication, and results in 1000 line long controller actions or &lt;code&gt;Classes&lt;/code&gt;.
+It results in unsustainable software that makes the next developer want to pull
+their hair out when working on it.&lt;/p&gt;
+
+&lt;p&gt;Find the broken windows in your code base.  Be a good citizen and start fixing
+them up one line at a time.&lt;/p&gt;
+
+&lt;h2&gt;Create a more sustainable future&lt;/h2&gt;
+
+&lt;p&gt;We&amp;#39;re all human and nobodies perfect.  There is no such thing as a perfect code
+base.  However, a sustainable mindset is about taking pride in your work.  Care
+about the small things and commit to approaching software development with a sustainable mindset from here on out.&lt;/p&gt;
+
+&lt;p&gt;Software developers are artists of the 21st century.  Painters take care of
+their brushes, musicians take care of their instruments, it only makes sense
+that we should take just as good care of our code bases.  &lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Converting Octopress To Middleman With Vim Macros</title>
+    <link rel="alternate" href="http://blog.url.com/blog/converting-octopress-to-middleman-with-vim-macros.html"/>
+    <id>http://blog.url.com/blog/converting-octopress-to-middleman-with-vim-macros.html</id>
+    <published>2015-08-16T16:41:00-04:00</published>
+    <updated>2015-09-08T19:40:25-04:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Converting from Octopress to Middleman was one of the best decisions I&amp;#39;ve ever
+made.  I finally found a blogging platform that integrates seamlessly into my
+everyday workflow as a Rails developer.  One thing I wasn&amp;#39;t looking forward to
+though was converting all my old Octopress posts into the proper Middleman format.
+Thank god for Vim macros.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;A Vim macro defined by &lt;a href="http://vim.wikia.com/wiki/Macros"&gt;their wiki&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Recording a macro is a great way to perform a one-time task, 
+ or to get things done quickly when you don&amp;#39;t want to mess with Vim script or 
+ mappings, or if you do not yet know how to do it more elegantly.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Essentially, a macro is just a sequence of vim commands you record and then 
+reapply somewhere else.  If you&amp;#39;re familiar with the &lt;code&gt;.&lt;/code&gt; vim command, it&amp;#39;s just
+the period command on steroids.&lt;/p&gt;
+
+&lt;h2&gt;Front Matter Before And After&lt;/h2&gt;
+
+&lt;p&gt;Here is an example of what the original Octopress YAML front matter looked like:  &lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="o"&gt;---&lt;/span&gt;
+&lt;span class="ss"&gt;layout: &lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;
+&lt;span class="ss"&gt;title: &lt;/span&gt;&lt;span class="s2"&gt;"Gosu Tutorial"&lt;/span&gt;
+&lt;span class="ss"&gt;date: &lt;/span&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;28&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;0800&lt;/span&gt;
+&lt;span class="ss"&gt;comments: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;
+&lt;span class="ss"&gt;categories: &lt;/span&gt;&lt;span class="n"&gt;ruby&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;gosu&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tutorials&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is what I needed the front matter to look like for Middleman:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="o"&gt;---&lt;/span&gt;
+&lt;span class="ss"&gt;title: &lt;/span&gt;&lt;span class="no"&gt;Gosu&lt;/span&gt; &lt;span class="no"&gt;Tutorial&lt;/span&gt;
+&lt;span class="ss"&gt;date: &lt;/span&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt; 
+&lt;span class="ss"&gt;tags: &lt;/span&gt;&lt;span class="n"&gt;ruby&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;gosu&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tutorials&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see they&amp;#39;re very similar.  After removing a few lines, getting rid of
+some quotes, and re-naming categories to tags it should be good to go for
+Middleman.&lt;/p&gt;
+
+&lt;h2&gt;Creating The Macro&lt;/h2&gt;
+
+&lt;p&gt;To start recording a macro you press &lt;code&gt;q&lt;/code&gt; and then any other letter you want to
+bind that macro to.  For this example I&amp;#39;m going to use &lt;code&gt;r&lt;/code&gt; for replace.&lt;/p&gt;
+
+&lt;p&gt;Here are all the steps of the macro annotated for clarity:  &lt;/p&gt;
+&lt;pre class="highlight viml"&gt;&lt;code&gt;qr   # &lt;span class="k"&gt;start&lt;/span&gt; recording macro with cursor &lt;span class="k"&gt;on&lt;/span&gt; line one  
+&lt;span class="k"&gt;j&lt;/span&gt;    # move down &lt;span class="k"&gt;a&lt;/span&gt; line &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="s1"&gt;'layout: post'&lt;/span&gt;  
+dd   # delete that line since I don'&lt;span class="k"&gt;t&lt;/span&gt; need it   
+&lt;span class="k"&gt;f&lt;/span&gt;"   # &lt;span class="k"&gt;go&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; the &lt;span class="k"&gt;first&lt;/span&gt; double&lt;span class="p"&gt;-&lt;/span&gt;quotes  
+&lt;span class="k"&gt;x&lt;/span&gt;    # delete the double quote  
+&lt;span class="k"&gt;f&lt;/span&gt;"   # &lt;span class="k"&gt;go&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; the next double quote  
+&lt;span class="k"&gt;x&lt;/span&gt;    # delete it  
+&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="k"&gt;j&lt;/span&gt;   # move down &lt;span class="k"&gt;to&lt;/span&gt; the &lt;span class="s1"&gt;'comments: true'&lt;/span&gt; line  
+dd   # delete it  
+&lt;span class="k"&gt;j&lt;/span&gt;    # move down &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="s1"&gt;'categories'&lt;/span&gt; line  
+&lt;span class="k"&gt;cw&lt;/span&gt;   # change word &lt;span class="s1"&gt;'categories'&lt;/span&gt;  
+&lt;span class="k"&gt;tags&lt;/span&gt; # type out &lt;span class="k"&gt;tags&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; be used by Middleman  
+esc  # &lt;span class="k"&gt;exit&lt;/span&gt; insert &lt;span class="k"&gt;mode&lt;/span&gt;  
+&lt;span class="k"&gt;q&lt;/span&gt;    # stop the recording  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now that we have our macro built we can apply it to any files that need to be
+converted by typing &lt;code&gt;@r&lt;/code&gt;.  Two letters to change 5-6 lines of text into the
+exact format we need.  That is strategic laziness at its finest! &lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Creating a DSL in Ruby</title>
+    <link rel="alternate" href="http://blog.url.com/blog/creating-dsl.html"/>
+    <id>http://blog.url.com/blog/creating-dsl.html</id>
+    <published>2015-06-30T20:00:00-04:00</published>
+    <updated>2015-09-08T19:40:25-04:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Recently I built a small DSL for work that allows users to sync data to MongoDB
+from any external API.  It was my first time making a DSL so I decided to
+document a few things that helped me get started:&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h4&gt;Using Ruby&amp;#39;s &lt;code&gt;included&lt;/code&gt; hook to extend class methods&lt;/h4&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;CustomDsl&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;included&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_class&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;base_class&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;DslClassMethods&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;instance_method_here&lt;/span&gt;
+    &lt;span class="nb"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;class&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get_class_method&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;DslClassMethods&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;class_method_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="vi"&gt;@_class_method_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_class_method&lt;/span&gt;
+    &lt;span class="vi"&gt;@_class_method_name&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So now when the &lt;code&gt;CustomDsl&lt;/code&gt; gets included in one of my classes that uses the Dsl
+it will also extend the &lt;code&gt;DslClassMethods&lt;/code&gt;.  Extending that module will make all
+methods defined in it class methods instead of instance methods.&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Example&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;CustomDsl&lt;/span&gt;
+
+  &lt;span class="n"&gt;class_method_name&lt;/span&gt; &lt;span class="ss"&gt;:apple&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="n"&gt;foo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;
+
+&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;instance_method_here&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; :apple&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;One thing to note is that the instance variable &lt;code&gt;@_class_method_name&lt;/code&gt; is
+somewhat deceiving.  Since DslClassMethods is being extended it&amp;#39;s actually an instance
+variable on the Class &lt;code&gt;Example&lt;/code&gt;, not a normal instance variable.&lt;/p&gt;
+
+&lt;h4&gt;Usings macros for configuration&lt;/h4&gt;
+
+&lt;p&gt;I ended up using class macros for a lot of configuration.  It was important to
+me that end users of the DSL be informed of error messages if they had a typo or
+were missing key components to make the DSL work.  For example, if a class was suppose to use a
+specific Connection class to hit an API, I wanted to confirm that 
+Connection class actually existed.  The implementation I choose to use involves
+some simple metaprogramming and &lt;code&gt;Object.const_get&lt;/code&gt;. &lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;CustomDsl&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;included&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_class&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;base_class&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;DslClassMethods&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="c1"&gt;# ... emitted ...&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;DslClassMethods&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;primary_connection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;confirm_symbol_or_string!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;const&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;to_s&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'_'&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="ss"&gt;:capitalize&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;join&lt;/span&gt;
+    &lt;span class="no"&gt;Object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;const_get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;const&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="vi"&gt;@_primary_connection&lt;/span&gt; &lt;span class="o"&gt;||=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;to_sym&lt;/span&gt;
+  &lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="no"&gt;NameError&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="no"&gt;UndefinedConnectionClass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+      &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="nb"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;class&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; wants to use &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;const&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; as its primary connection but &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;const&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; has not yet been defined"&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;primary_connection&lt;/code&gt; is now able to take symbols or strings but it makes sure to
+always save the connection as a symbol.  If &lt;code&gt;Object.const_get&lt;/code&gt; is unable to find
+the connection class then I rescue the &lt;code&gt;NameError&lt;/code&gt; and provide a more
+descriptive error message.  The final implementation for this macro might look
+something like:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SlackDataSource&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;CustomDsl&lt;/span&gt;
+  &lt;span class="n"&gt;primary_connection&lt;/span&gt; &lt;span class="ss"&gt;:slack_connection&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is really just the start but hopefully there is enough context for someone
+interested in making their own DSL to have some direction.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>The Stages of Vim</title>
+    <link rel="alternate" href="http://blog.url.com/blog/the-stages-of-vim.html"/>
+    <id>http://blog.url.com/blog/the-stages-of-vim.html</id>
+    <published>2015-01-24T19:00:00-05:00</published>
+    <updated>2015-09-08T19:40:25-04:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;So you&amp;#39;re finally fed up with alerts asking you to buy Sublime text or random errors with Atom?  Time to transition to the editor that has been around for over 30 years Vi Improved, also known as VIM. Getting started with VIM can be difficult so I decided to write a post on how I approached it.  The first thing to understand is learning VIM is NOT easy but once you do it you will never regret it.  Here are the stages of VIM:&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3&gt;Optimistic Hatred&lt;/h3&gt;
+
+&lt;p&gt;At this point you see the value in learning VIM but the learning curve is making you hate it.  Every time you start to use it you get frustrated and just open a text editor your comfortable with.  The idea of using hjkl to move around makes you crazy.  Why would they do that!?  The best way to overcome this stage is to just go cold turkey.  Declare to the world that you will no longer ever use your old text editor.  It&amp;#39;s VIM or no programming.  The only way you are going to climb the wall is if you completely dedicate yourself and stop trying to learn it here and there when you have time. &lt;/p&gt;
+
+&lt;h4&gt;Resources For Stage 1:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt; Vimtutor.  Enter your terminal and type &lt;code&gt;vimtutor&lt;/code&gt; + enter.  Follow that tutorial. Do it twice.&lt;/li&gt;
+&lt;li&gt; &lt;a href="http://derekwyatt.org/vim/tutorials/novice/"&gt;Vim Novice Tutorials&lt;/a&gt; - Watch all these videos.  Take notes, pause the videos and try to do what is being taught.&lt;/li&gt;
+&lt;li&gt; Get your VIM set up properly: &lt;a href="https://github.com/SpencerCDixon/dotfiles"&gt;Here are my dotfiles&lt;/a&gt;  Clone this repo down to your home directory (~) and then run ./install.sh to execute the script that will get you set up.&lt;/li&gt;
+&lt;li&gt; &lt;a href="http://vim-adventures.com/"&gt;Vim Adventures&lt;/a&gt; - more practice with hjkl, fun when you&amp;#39;re bored of learning from other materials.&lt;/li&gt;
+&lt;li&gt; Remap your capslock to be something useful: control. You will be hitting ctrl + c constantly in vim to switch modes.  Having caps lock as control can help with keyboard shortcuts outside of VIM as well. Ctrl + tab will cycle your tabs in chrome.&lt;/li&gt;
+&lt;li&gt; The hardest thing to overcome in the beginning is just getting VIM set up properly.  Here are some of the MUST have plugins that I use: NerdTree, ctrlP, and vim-ruby&lt;/li&gt;
+&lt;li&gt; Install the vimium plugin on chrome.  Now you can practice your vim everytime you search the internet! &lt;a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en"&gt;Vimium download&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are many more plugins you will want.  For now what&amp;#39;s important is you can access your file tree using NerdTree, you have a way to search through directories using ctrlP, and you have some ruby helpers.  Focus your attention on overcoming hjkl and learning basic commands like d, y, c, w, p, etc.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Integrating Flowdock Push API Into Rails</title>
+    <link rel="alternate" href="http://blog.url.com/blog/integrating-flowdock-push-api-into-rails.html"/>
+    <id>http://blog.url.com/blog/integrating-flowdock-push-api-into-rails.html</id>
+    <published>2015-01-04T19:00:00-05:00</published>
+    <updated>2015-09-08T19:40:25-04:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Integrating the Flowdock Push API is a lot easier than I thought it would be.  I decided to document how to get it set up.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3&gt;Step 1 - Add Gems&lt;/h3&gt;
+
+&lt;p&gt;Add these gems to your Gemfile:   &lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="s1"&gt;'flowdock'&lt;/span&gt;  
+&lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="s1"&gt;'dotenv-rails'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:groups&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:development&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:test&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then run &lt;code&gt;bundle&lt;/code&gt;.  &lt;/p&gt;
+
+&lt;h3&gt;Step 2 - Find Specific Flow Token&lt;/h3&gt;
+
+&lt;p&gt;Next we need to configure our &lt;code&gt;.env&lt;/code&gt; file to have the correct token for the Flow we are trying to send messages to.  To find a specific Flow&amp;#39;s token you:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; Go to flowdock and find the correct flow.&lt;/li&gt;
+&lt;li&gt; Click on the gear next to the Flow&amp;#39;s name&lt;/li&gt;
+&lt;li&gt; Click on &amp;#39;Flow Settings&amp;#39;&lt;/li&gt;
+&lt;li&gt; Go to &amp;#39;Inbox Sources&amp;#39;&lt;/li&gt;
+&lt;li&gt; There will be a Flow Email and Flow API token.  Copy the Flow API token so it can be put in your &lt;code&gt;.env&lt;/code&gt; file.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you havn&amp;#39;t already, create a .env file in the main directory of your Rails app.  &lt;strong&gt;IMPORTANT&lt;/strong&gt;: make sure to put .env in your .gitignore file so you don&amp;#39;t leak API tokens onto your github.&lt;/p&gt;
+
+&lt;p&gt;Copy the flow token into your &lt;code&gt;.env&lt;/code&gt; file:  &lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# .env file&lt;/span&gt;
+&lt;span class="no"&gt;FLOW_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;paste&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;flow&lt;/span&gt; &lt;span class="n"&gt;token&lt;/span&gt; &lt;span class="n"&gt;here&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Step 3- Set Up Routes&lt;/h3&gt;
+
+&lt;p&gt;Restart the server so the token will be available to you.  Now we need to set up a route that will handle the POST request for sending the message to the flow.  &lt;/p&gt;
+
+&lt;p&gt;The form for sending a message is in the Dashboard of my app so this is the route I created:  &lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# config/routes.rb&lt;/span&gt;
+&lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="s1"&gt;'/dashboard/send_flow'&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"dashboards#send_flow"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is configured to hit my DashboardsController and execute the #send_flow action.&lt;/p&gt;
+
+&lt;h3&gt;Step 4 - Set Up Controller&lt;/h3&gt;
+
+&lt;p&gt;Here is what the #send_flow action looks like:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;send_flow&lt;/span&gt;
+  &lt;span class="n"&gt;flow&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Flowdock&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Flow&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:api_token&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'FLOW_TOKEN'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+      &lt;span class="ss"&gt;:source&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"LaunchPairs"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:from&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="ss"&gt;:name&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;current_user&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;first_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:address&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;current_user&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;email&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+
+  &lt;span class="n"&gt;flow&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;push_to_chat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:content&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:flow&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:question&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="ss"&gt;:external_user_name&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;current_user&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;first_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;gsub!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/\s/&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+  &lt;span class="n"&gt;flash&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:success&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"Your question was sent! Check the flow for any answers"&lt;/span&gt;
+  &lt;span class="n"&gt;redirect_to&lt;/span&gt; &lt;span class="n"&gt;dashboard_path&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First we are creating a new flow using the proper Flow Token which we set up earlier in the &lt;code&gt;.env&lt;/code&gt; file. The dotenv-rails gem loads that environment variable so it&amp;#39;s available to call in the action.  &lt;/p&gt;
+
+&lt;p&gt;Next we call the &lt;code&gt;push_to_chat&lt;/code&gt; method on the flow and provide the content for the message.  The params[:flow][:question] is coming from my form that hit&amp;#39;s this action.  The final step, is to set up the form to hit this route.&lt;/p&gt;
+
+&lt;h3&gt;Step 5 - Build Form For Sending Questions&lt;/h3&gt;
+
+&lt;p&gt;How you build the form is up to you as long as it hits the correct controller and action.  Here is what mine looks like:  &lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="sx"&gt;%= form_for 'flow', url: { controller: :dashboards, action: :send_flow } do |f|  %&amp;gt;
+  &amp;lt;%=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;text_area&lt;/span&gt;  &lt;span class="ss"&gt;:question&lt;/span&gt; &lt;span class="o"&gt;%&amp;gt;&lt;/span&gt;
+  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="sx"&gt;%= f.submit "Ask Your Question", class: "button alert" %&amp;gt;
+&amp;lt;% end -%&amp;gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+</feed>

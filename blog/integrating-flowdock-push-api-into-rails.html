@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <title>Spencer Dixon - Integrating Flowdock Push API Into Rails</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/feed.xml" />
+    <link href="../stylesheets/all.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <aside>
+        <nav class="main-nav">
+<a href="../">    <img class="round-image" src="../images/spencer.jpeg" />
+</a>
+  <ul class="nav-links">
+    <li class="text-center"><a href="../about.html">ABOUT</a></li>
+    <li class="text-center"><a href="../">BLOG</a></li>
+    <li class="text-center"><a href="../book_list.html">BOOKS</a></li>
+  </ul>
+
+  <!-- Begin MailChimp Signup Form -->
+  <div id="mc_embed_signup">
+    <form action="//spencerdixon.us11.list-manage.com/subscribe/post?u=019dc2164dbdc16d844cf6dc2&amp;id=666e212a4d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+
+        <div class="mc-field-group">
+          <label for="mce-EMAIL" style="display: none;">Email Address </label>
+          <input type="email" placeholder="Email To Subscribe" name="EMAIL" class="required email" id="mce-EMAIL">
+        </div>
+        <div id="mce-responses" class="clear">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
+        </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;"><input type="text" name="b_019dc2164dbdc16d844cf6dc2_666e212a4d" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" style="display: none;" class="button"></div>
+      </div>
+    </form>
+  </div>
+  <!--End mc_embed_signup-->
+
+  <section class="social-media">
+    <ul>
+      <li class="social-icon">
+<a target="_blank" href="https://github.com/spencercdixon">          <i class="fa fa-github-square fa-2x"></i>
+</a>      </li>
+      <li class="social-icon">
+<a target="_blank" href="https://twitter.com/SpencerCDixon">          <i class="fa fa-twitter-square fa-2x"></i>
+</a>      </li>
+      <li class="social-icon">
+<a target="_blank" href="https://www.linkedin.com/in/spencercdixon">          <i class="fa fa-linkedin-square fa-2x"></i>
+</a>      </li>
+    </ul>
+  </section>
+</nav>
+
+<footer>
+  Handcrafted Bytes<br />
+  Made With <i class="fa fa-diamond"></i> <br />
+  By Spencer Dixon
+</footer>
+
+
+      </aside>
+
+      <article class="blog-post">
+            <h1 id="article-title">Integrating Flowdock Push API Into Rails</h1>
+    <hr>
+    <div class="tags">
+      <ul>
+        <li class="tag"><a href="tags/rails.html">rails</a></li>
+        <li class="tag"><a href="tags/ruby.html">ruby</a></li>
+        <li class="tag"><a href="tags/api.html">API</a></li>
+        <li class="tag"><a href="tags/flowdock.html">flowdock</a></li>
+      </ul>
+    </div>
+
+  <p>Integrating the Flowdock Push API is a lot easier than I thought it would be.  I decided to document how to get it set up.</p>
+
+<p></p>
+
+<h3>Step 1 - Add Gems</h3>
+
+<p>Add these gems to your Gemfile:   </p>
+<pre class="highlight ruby"><code><span class="n">gem</span> <span class="s1">'flowdock'</span>  
+<span class="n">gem</span> <span class="s1">'dotenv-rails'</span><span class="p">,</span> <span class="ss">:groups</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span><span class="p">]</span>
+</code></pre>
+
+<p>Then run <code>bundle</code>.  </p>
+
+<h3>Step 2 - Find Specific Flow Token</h3>
+
+<p>Next we need to configure our <code>.env</code> file to have the correct token for the Flow we are trying to send messages to.  To find a specific Flow&#39;s token you:</p>
+
+<ul>
+<li> Go to flowdock and find the correct flow.</li>
+<li> Click on the gear next to the Flow&#39;s name</li>
+<li> Click on &#39;Flow Settings&#39;</li>
+<li> Go to &#39;Inbox Sources&#39;</li>
+<li> There will be a Flow Email and Flow API token.  Copy the Flow API token so it can be put in your <code>.env</code> file.</li>
+</ul>
+
+<p>If you havn&#39;t already, create a .env file in the main directory of your Rails app.  <strong>IMPORTANT</strong>: make sure to put .env in your .gitignore file so you don&#39;t leak API tokens onto your github.</p>
+
+<p>Copy the flow token into your <code>.env</code> file:  </p>
+<pre class="highlight ruby"><code><span class="c1"># .env file</span>
+<span class="no">FLOW_TOKEN</span><span class="o">=&lt;</span><span class="n">paste</span> <span class="n">your</span> <span class="n">flow</span> <span class="n">token</span> <span class="n">here</span><span class="o">&gt;</span>
+</code></pre>
+
+<h3>Step 3- Set Up Routes</h3>
+
+<p>Restart the server so the token will be available to you.  Now we need to set up a route that will handle the POST request for sending the message to the flow.  </p>
+
+<p>The form for sending a message is in the Dashboard of my app so this is the route I created:  </p>
+<pre class="highlight ruby"><code><span class="c1"># config/routes.rb</span>
+<span class="n">post</span> <span class="s1">'/dashboard/send_flow'</span> <span class="o">=&gt;</span> <span class="s2">"dashboards#send_flow"</span>
+</code></pre>
+
+<p>It is configured to hit my DashboardsController and execute the #send_flow action.</p>
+
+<h3>Step 4 - Set Up Controller</h3>
+
+<p>Here is what the #send_flow action looks like:</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">send_flow</span>
+  <span class="n">flow</span> <span class="o">=</span> <span class="no">Flowdock</span><span class="o">::</span><span class="no">Flow</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:api_token</span> <span class="o">=&gt;</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'FLOW_TOKEN'</span><span class="p">],</span>
+      <span class="ss">:source</span> <span class="o">=&gt;</span> <span class="s2">"LaunchPairs"</span><span class="p">,</span> <span class="ss">:from</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">first_name</span><span class="p">,</span> <span class="ss">:address</span> <span class="o">=&gt;</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">email</span><span class="p">})</span>
+
+  <span class="n">flow</span><span class="p">.</span><span class="nf">push_to_chat</span><span class="p">(</span><span class="ss">:content</span> <span class="o">=&gt;</span> <span class="n">params</span><span class="p">[</span><span class="ss">:flow</span><span class="p">][</span><span class="ss">:question</span><span class="p">],</span> <span class="ss">:external_user_name</span> <span class="o">=&gt;</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">first_name</span><span class="p">.</span><span class="nf">gsub!</span><span class="p">(</span><span class="sr">/\s/</span><span class="p">,</span> <span class="s2">""</span><span class="p">))</span>
+
+  <span class="n">flash</span><span class="p">[</span><span class="ss">:success</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Your question was sent! Check the flow for any answers"</span>
+  <span class="n">redirect_to</span> <span class="n">dashboard_path</span>
+<span class="k">end</span> 
+</code></pre>
+
+<p>First we are creating a new flow using the proper Flow Token which we set up earlier in the <code>.env</code> file. The dotenv-rails gem loads that environment variable so it&#39;s available to call in the action.  </p>
+
+<p>Next we call the <code>push_to_chat</code> method on the flow and provide the content for the message.  The params[:flow][:question] is coming from my form that hit&#39;s this action.  The final step, is to set up the form to hit this route.</p>
+
+<h3>Step 5 - Build Form For Sending Questions</h3>
+
+<p>How you build the form is up to you as long as it hits the correct controller and action.  Here is what mine looks like:  </p>
+<pre class="highlight ruby"><code><span class="o">&lt;</span><span class="sx">%= form_for 'flow', url: { controller: :dashboards, action: :send_flow } do |f|  %&gt;
+  &lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_area</span>  <span class="ss">:question</span> <span class="o">%&gt;</span>
+  <span class="o">&lt;</span><span class="sx">%= f.submit "Ask Your Question", class: "button alert" %&gt;
+&lt;% end -%&gt;
+</span></code></pre>
+
+
+  <a href="#" id="hide_comments">Hide Comments<a>
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+//<![CDATA[
+                  var disqus_shortname = 'spencerdixon';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </article>
+    </div>
+
+    <script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-51806130-1', 'auto');
+  ga('send', 'pageview');
+</script>
+    <script src="../javascripts/all.js" type="text/javascript"></script>
+  </body>
+</html>
