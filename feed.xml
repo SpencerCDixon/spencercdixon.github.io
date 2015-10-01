@@ -5,10 +5,64 @@
   <id>http://blog.url.com/blog</id>
   <link href="http://blog.url.com/blog"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2015-08-27T00:29:00-04:00</updated>
+  <updated>2015-10-01T14:07:00-04:00</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Image Preview With Carrierwave And Rails</title>
+    <link rel="alternate" href="http://blog.url.com/blog/image-preview-with-carrierwave-and-rails.html"/>
+    <id>http://blog.url.com/blog/image-preview-with-carrierwave-and-rails.html</id>
+    <published>2015-10-01T14:07:00-04:00</published>
+    <updated>2015-10-01T14:16:26-04:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; this assumes you already have carrierwave up and running.  For help
+with that see the documentation on the
+&lt;a href="https://github.com/carrierwaveuploader/carrierwave"&gt;carrierwave&lt;/a&gt; repo.&lt;/p&gt;
+
+&lt;p&gt;The other day I implemented image preview using Carrierwave and I couldn&amp;#39;t seem
+to find any great tutorials/blog posts on how to do it.  Wanted to post how to
+do it in case someone else was interesting in doing image preview with
+carrierwave.&lt;/p&gt;
+&lt;pre class="highlight erb"&gt;&lt;code&gt;# ... rest of the form ...
+
+# Your carrierwave image uploader
+&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;"form-group"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;img&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;"img_prev"&lt;/span&gt; &lt;span class="na"&gt;width=&lt;/span&gt;&lt;span class="s"&gt;300&lt;/span&gt; &lt;span class="na"&gt;height=&lt;/span&gt;&lt;span class="s"&gt;300&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;"#"&lt;/span&gt; &lt;span class="na"&gt;alt=&lt;/span&gt;&lt;span class="s"&gt;"your image"&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;"img-thumbnail hidden"&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt; &lt;span class="nt"&gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;"btn btn-default btn-file"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    Upload Avatar Image&lt;span class="cp"&gt;&amp;lt;%=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;file_field&lt;/span&gt; &lt;span class="ss"&gt;:avatar&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;id: &lt;/span&gt;&lt;span class="s2"&gt;"avatar-upload"&lt;/span&gt; &lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+  &lt;span class="cp"&gt;&amp;lt;%=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;hidden_field&lt;/span&gt; &lt;span class="ss"&gt;:avatar_cache&lt;/span&gt; &lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is the javascript that will create an event handler on change for the file
+uploading input tag and display the image on the screen.  I applied some basic
+bootstrap classes to the previewed image to make it look nicer.&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;readURL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;input&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;input&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;files&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;input&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;files&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;reader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;FileReader&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+      &lt;span class="nx"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'#img_prev'&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'src'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;target&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;result&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+      &lt;span class="nx"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;readAsDataURL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;input&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;files&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"#avatar-upload"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;change&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'#img_prev'&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;removeClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'hidden'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;readURL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more neat Rails Tips &amp;amp; Tricks &lt;a href="https://github.com/SpencerCDixon/Rails-tricks"&gt;check out my repo on github.&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Object Oriented Twitter</title>
     <link rel="alternate" href="http://blog.url.com/blog/object-oriented-twitter.html"/>
@@ -363,86 +417,6 @@ interested in making their own DSL to have some direction.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;There are many more plugins you will want.  For now what&amp;#39;s important is you can access your file tree using NerdTree, you have a way to search through directories using ctrlP, and you have some ruby helpers.  Focus your attention on overcoming hjkl and learning basic commands like d, y, c, w, p, etc.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Integrating Flowdock Push API Into Rails</title>
-    <link rel="alternate" href="http://blog.url.com/blog/integrating-flowdock-push-api-into-rails.html"/>
-    <id>http://blog.url.com/blog/integrating-flowdock-push-api-into-rails.html</id>
-    <published>2015-01-04T19:00:00-05:00</published>
-    <updated>2015-09-08T19:40:25-04:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;Integrating the Flowdock Push API is a lot easier than I thought it would be.  I decided to document how to get it set up.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
-
-&lt;h3&gt;Step 1 - Add Gems&lt;/h3&gt;
-
-&lt;p&gt;Add these gems to your Gemfile:   &lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="s1"&gt;'flowdock'&lt;/span&gt;  
-&lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="s1"&gt;'dotenv-rails'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:groups&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:development&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:test&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then run &lt;code&gt;bundle&lt;/code&gt;.  &lt;/p&gt;
-
-&lt;h3&gt;Step 2 - Find Specific Flow Token&lt;/h3&gt;
-
-&lt;p&gt;Next we need to configure our &lt;code&gt;.env&lt;/code&gt; file to have the correct token for the Flow we are trying to send messages to.  To find a specific Flow&amp;#39;s token you:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt; Go to flowdock and find the correct flow.&lt;/li&gt;
-&lt;li&gt; Click on the gear next to the Flow&amp;#39;s name&lt;/li&gt;
-&lt;li&gt; Click on &amp;#39;Flow Settings&amp;#39;&lt;/li&gt;
-&lt;li&gt; Go to &amp;#39;Inbox Sources&amp;#39;&lt;/li&gt;
-&lt;li&gt; There will be a Flow Email and Flow API token.  Copy the Flow API token so it can be put in your &lt;code&gt;.env&lt;/code&gt; file.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you havn&amp;#39;t already, create a .env file in the main directory of your Rails app.  &lt;strong&gt;IMPORTANT&lt;/strong&gt;: make sure to put .env in your .gitignore file so you don&amp;#39;t leak API tokens onto your github.&lt;/p&gt;
-
-&lt;p&gt;Copy the flow token into your &lt;code&gt;.env&lt;/code&gt; file:  &lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# .env file&lt;/span&gt;
-&lt;span class="no"&gt;FLOW_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;paste&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;flow&lt;/span&gt; &lt;span class="n"&gt;token&lt;/span&gt; &lt;span class="n"&gt;here&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Step 3- Set Up Routes&lt;/h3&gt;
-
-&lt;p&gt;Restart the server so the token will be available to you.  Now we need to set up a route that will handle the POST request for sending the message to the flow.  &lt;/p&gt;
-
-&lt;p&gt;The form for sending a message is in the Dashboard of my app so this is the route I created:  &lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# config/routes.rb&lt;/span&gt;
-&lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="s1"&gt;'/dashboard/send_flow'&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"dashboards#send_flow"&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;It is configured to hit my DashboardsController and execute the #send_flow action.&lt;/p&gt;
-
-&lt;h3&gt;Step 4 - Set Up Controller&lt;/h3&gt;
-
-&lt;p&gt;Here is what the #send_flow action looks like:&lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;send_flow&lt;/span&gt;
-  &lt;span class="n"&gt;flow&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Flowdock&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Flow&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:api_token&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'FLOW_TOKEN'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-      &lt;span class="ss"&gt;:source&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"LaunchPairs"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:from&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="ss"&gt;:name&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;current_user&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;first_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:address&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;current_user&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;email&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
-
-  &lt;span class="n"&gt;flow&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;push_to_chat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:content&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:flow&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:question&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="ss"&gt;:external_user_name&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;current_user&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;first_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;gsub!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/\s/&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-  &lt;span class="n"&gt;flash&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:success&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"Your question was sent! Check the flow for any answers"&lt;/span&gt;
-  &lt;span class="n"&gt;redirect_to&lt;/span&gt; &lt;span class="n"&gt;dashboard_path&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;First we are creating a new flow using the proper Flow Token which we set up earlier in the &lt;code&gt;.env&lt;/code&gt; file. The dotenv-rails gem loads that environment variable so it&amp;#39;s available to call in the action.  &lt;/p&gt;
-
-&lt;p&gt;Next we call the &lt;code&gt;push_to_chat&lt;/code&gt; method on the flow and provide the content for the message.  The params[:flow][:question] is coming from my form that hit&amp;#39;s this action.  The final step, is to set up the form to hit this route.&lt;/p&gt;
-
-&lt;h3&gt;Step 5 - Build Form For Sending Questions&lt;/h3&gt;
-
-&lt;p&gt;How you build the form is up to you as long as it hits the correct controller and action.  Here is what mine looks like:  &lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="sx"&gt;%= form_for 'flow', url: { controller: :dashboards, action: :send_flow } do |f|  %&amp;gt;
-  &amp;lt;%=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;text_area&lt;/span&gt;  &lt;span class="ss"&gt;:question&lt;/span&gt; &lt;span class="o"&gt;%&amp;gt;&lt;/span&gt;
-  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="sx"&gt;%= f.submit "Ask Your Question", class: "button alert" %&amp;gt;
-&amp;lt;% end -%&amp;gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
 </feed>
