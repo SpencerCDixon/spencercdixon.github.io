@@ -3227,32 +3227,38 @@ blockquote {
 /* line 17, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
 body {
   margin: 0;
-  background: #dee5e5; }
+  background: #dee5e5;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
 
-/* line 22, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+/* line 28, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
 .text-center {
   text-align: center; }
 
-/* line 26, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+/* line 32, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
 .page-title {
   margin-top: 0 !important;
   margin-bottom: 3% !important;
   font-size: 2.5em; }
 
-/* line 32, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+/* line 38, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
 a {
   color: #084887; }
 
-/* line 36, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+/* line 42, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
 hr {
   border-bottom: 2px solid #191919; }
 
-/* line 39, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+/* line 45, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
 .hidden {
   display: none; }
 
 @media only screen and (min-width: 1500px) {
-  /* line 44, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 50, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .wrapper {
     max-width: 4000px;
     margin-left: auto;
@@ -3262,7 +3268,7 @@ hr {
       clear: both;
       content: "";
       display: table; }
-    /* line 46, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+    /* line 52, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
     .wrapper aside {
       float: left;
       display: block;
@@ -3271,7 +3277,7 @@ hr {
       /* line 89, /Users/spencerdixon/.gem/ruby/2.1.5/gems/neat-1.7.2/app/assets/stylesheets/grid/_span-columns.scss */
       .wrapper aside:last-child {
         margin-right: 0; }
-    /* line 47, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+    /* line 53, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
     .wrapper article {
       float: left;
       display: block;
@@ -3282,7 +3288,7 @@ hr {
         margin-right: 0; } }
 @media only screen and (max-width: 780px) {
   /* Layout */
-  /* line 55, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 61, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .wrapper {
     max-width: 4000px;
     margin-left: auto;
@@ -3292,7 +3298,7 @@ hr {
       clear: both;
       content: "";
       display: table; }
-    /* line 57, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+    /* line 63, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
     .wrapper aside {
       float: left;
       display: block;
@@ -3301,7 +3307,7 @@ hr {
       /* line 89, /Users/spencerdixon/.gem/ruby/2.1.5/gems/neat-1.7.2/app/assets/stylesheets/grid/_span-columns.scss */
       .wrapper aside:last-child {
         margin-right: 0; }
-    /* line 58, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+    /* line 64, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
     .wrapper article {
       float: left;
       display: block;
@@ -3311,49 +3317,49 @@ hr {
       .wrapper article:last-child {
         margin-right: 0; }
 
-  /* line 63, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 69, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   aside {
     padding-top: 1em;
     height: 40vh; }
 
-  /* line 68, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 74, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   footer {
     display: none; }
 
   /* Nav */
-  /* line 73, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 79, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   img.round-image {
     display: none; }
 
-  /* line 77, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 83, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .nav-links {
     text-align: center; }
 
-  /* line 80, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 86, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .nav-links li {
     display: inline; }
 
-  /* line 83, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 89, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .nav-links li a {
     display: inline-block;
     padding: 10px; }
 
   /* Articles */
-  /* line 89, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
-  #view_comments {
+  /* line 95, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  #hide_comments {
     width: 100%; }
 
-  /* line 93, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 99, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   p {
     font-size: 1.3em; }
 
-  /* line 97, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 103, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .keep-reading {
     width: 95%;
     text-align: center; } }
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (width: 375px) and (height: 559px) and (orientation: portrait) and (color: 8) and (device-aspect-ratio: 375 / 667) and (aspect-ratio: 375 / 559) and (device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 2) {
   /* Layout */
-  /* line 116, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 122, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .wrapper {
     max-width: 4000px;
     margin-left: auto;
@@ -3363,7 +3369,7 @@ hr {
       clear: both;
       content: "";
       display: table; }
-    /* line 118, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+    /* line 124, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
     .wrapper aside {
       float: left;
       display: block;
@@ -3372,7 +3378,7 @@ hr {
       /* line 89, /Users/spencerdixon/.gem/ruby/2.1.5/gems/neat-1.7.2/app/assets/stylesheets/grid/_span-columns.scss */
       .wrapper aside:last-child {
         margin-right: 0; }
-    /* line 119, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+    /* line 125, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
     .wrapper article {
       float: left;
       display: block;
@@ -3382,43 +3388,43 @@ hr {
       .wrapper article:last-child {
         margin-right: 0; }
 
-  /* line 124, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 130, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   aside {
     padding-top: 1em;
     height: 40vh; }
 
-  /* line 129, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 135, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   footer {
     display: none; }
 
   /* Nav */
-  /* line 134, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 140, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   img.round-image {
     display: none; }
 
-  /* line 138, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 144, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .nav-links {
     text-align: center; }
 
-  /* line 141, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 147, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .nav-links li {
     display: inline; }
 
-  /* line 144, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 150, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .nav-links li a {
     display: inline-block;
     padding: 10px; }
 
   /* Articles */
-  /* line 150, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 156, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   #hide_comments {
     width: 100%; }
 
-  /* line 154, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 160, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   p {
     font-size: 1.3em; }
 
-  /* line 158, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
+  /* line 164, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/all.css.scss */
   .keep-reading {
     width: 95%;
     text-align: center; } }
