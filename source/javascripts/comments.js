@@ -1,7 +1,5 @@
 $(function() {
-  $('#disqus_thread').hide();
-
-  var $commentButton = $('#view_comments');
+  var $commentButton = $('#hide_comments');
 
   $commentButton.on('click', function() {
     $('#disqus_thread').slideToggle();

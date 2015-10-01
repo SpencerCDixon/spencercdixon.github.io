@@ -36,6 +36,10 @@ a {
 hr {
   border-bottom: 2px solid $primary;
 }
+.hidden {
+  display: none;
+}
+
 @media only screen and (min-width: 1500px) {
   .wrapper {
     @include outer-container();
@@ -143,7 +147,7 @@ hr {
   }
 
   /* Articles */
-  #view_comments {
+  #hide_comments {
     width: 100%;
   }
 
