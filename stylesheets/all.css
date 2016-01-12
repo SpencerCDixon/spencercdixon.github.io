@@ -222,29 +222,28 @@ picture {
   margin: 0;
   max-width: 100%; }
 
-/* line 18, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 1, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 table {
   width: 100%; }
 
-/* line 22, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 5, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 dl {
   width: 100%;
   overflow: hidden; }
 
-/* line 27, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 10, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 code {
   background: #2b303b;
-  border: 1px solid #ddd;
   padding: 2px 4px;
   color: white;
   font-family: "Source Code Pro", monospace; }
 
-/* line 35, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 17, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 pre code {
   padding: 0;
   border: 0px; }
 
-/* line 40, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 22, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 pre {
   background: #2b303b;
   color: #fff;
@@ -254,329 +253,329 @@ pre {
   overflow: auto;
   padding: 16px; }
 
-/* line 50, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 32, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .hll {
   background-color: #4f5b66; }
 
-/* line 51, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 33, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight {
   background: #2b303b;
   color: #eff1f5; }
 
-/* line 52, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 34, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .c {
   color: #65737e; }
 
 /* Comment */
-/* line 53, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 35, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .err {
   color: #bf616a; }
 
 /* Error */
-/* line 54, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 36, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .k {
   color: #b48ead; }
 
 /* Keyword */
-/* line 55, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 37, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .l {
   color: #d08770; }
 
 /* Literal */
-/* line 56, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 38, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .n {
   color: #eff1f5; }
 
 /* Name */
-/* line 57, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 39, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .o {
   color: #96b5b4; }
 
 /* Operator */
-/* line 58, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 40, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .p {
   color: #eff1f5; }
 
 /* Punctuation */
-/* line 59, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 41, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .cm {
   color: #65737e; }
 
 /* Comment.Multiline */
-/* line 60, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 42, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .cp {
   color: #65737e; }
 
 /* Comment.Preproc */
-/* line 61, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 43, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .c1 {
   color: #65737e; }
 
 /* Comment.Single */
-/* line 62, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 44, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .cs {
   color: #65737e; }
 
 /* Comment.Special */
-/* line 63, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 45, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .gd {
   color: #bf616a; }
 
 /* Generic.Deleted */
-/* line 64, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 46, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .ge {
   font-style: italic; }
 
 /* Generic.Emph */
-/* line 65, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 47, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .gh {
   color: #eff1f5;
   font-weight: bold; }
 
 /* Generic.Heading */
-/* line 66, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 48, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .gi {
   color: #a3be8c; }
 
 /* Generic.Inserted */
-/* line 67, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 49, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .gp {
   color: #65737e;
   font-weight: bold; }
 
 /* Generic.Prompt */
-/* line 68, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 50, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .gs {
   font-weight: bold; }
 
 /* Generic.Strong */
-/* line 69, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 51, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .gu {
   color: #96b5b4;
   font-weight: bold; }
 
 /* Generic.Subheading */
-/* line 70, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 52, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .kc {
   color: #b48ead; }
 
 /* Keyword.Constant */
-/* line 71, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 53, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .kd {
   color: #b48ead; }
 
 /* Keyword.Declaration */
-/* line 72, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 54, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .kn {
   color: #96b5b4; }
 
 /* Keyword.Namespace */
-/* line 73, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 55, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .kp {
   color: #b48ead; }
 
 /* Keyword.Pseudo */
-/* line 74, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 56, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .kr {
   color: #b48ead; }
 
 /* Keyword.Reserved */
-/* line 75, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 57, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .kt {
   color: #ebcb8b; }
 
 /* Keyword.Type */
-/* line 76, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 58, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .ld {
   color: #a3be8c; }
 
 /* Literal.Date */
-/* line 77, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 59, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .m {
   color: #d08770; }
 
 /* Literal.Number */
-/* line 78, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 60, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .s {
   color: #a3be8c; }
 
 /* Literal.String */
-/* line 79, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 61, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .na {
   color: #8fa1b3; }
 
 /* Name.Attribute */
-/* line 80, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 62, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .nb {
   color: #eff1f5; }
 
 /* Name.Builtin */
-/* line 81, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 63, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .nc {
   color: #ebcb8b; }
 
 /* Name.Class */
-/* line 82, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 64, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .no {
   color: #bf616a; }
 
 /* Name.Constant */
-/* line 83, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 65, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .nd {
   color: #96b5b4; }
 
 /* Name.Decorator */
-/* line 84, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 66, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .ni {
   color: #eff1f5; }
 
 /* Name.Entity */
-/* line 85, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 67, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .ne {
   color: #bf616a; }
 
 /* Name.Exception */
-/* line 86, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 68, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .nf {
   color: #8fa1b3; }
 
 /* Name.Function */
-/* line 87, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 69, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .nl {
   color: #eff1f5; }
 
 /* Name.Label */
-/* line 88, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 70, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .nn {
   color: #ebcb8b; }
 
 /* Name.Namespace */
-/* line 89, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 71, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .nx {
   color: #fff; }
 
 /* Name.Other */
-/* line 90, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 72, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .py {
   color: #eff1f5; }
 
 /* Name.Property */
-/* line 91, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 73, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .nt {
   color: #96b5b4; }
 
 /* Name.Tag */
-/* line 92, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 74, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .nv {
   color: #bf616a; }
 
 /* Name.Variable */
-/* line 93, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 75, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .ow {
   color: #96b5b4; }
 
 /* Operator.Word */
-/* line 94, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 76, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .w {
   color: #eff1f5; }
 
 /* Text.Whitespace */
-/* line 95, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 77, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .mf {
   color: #d08770; }
 
 /* Literal.Number.Float */
-/* line 96, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 78, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .mh {
   color: #d08770; }
 
 /* Literal.Number.Hex */
-/* line 97, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 79, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .mi {
   color: #d08770; }
 
 /* Literal.Number.Integer */
-/* line 98, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 80, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .mo {
   color: #d08770; }
 
 /* Literal.Number.Oct */
-/* line 99, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 81, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .sb {
   color: #a3be8c; }
 
 /* Literal.String.Backtick */
-/* line 100, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 82, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .sc {
   color: #eff1f5; }
 
 /* Literal.String.Char */
-/* line 101, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 83, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .sd {
   color: #65737e; }
 
 /* Literal.String.Doc */
-/* line 102, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 84, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .s2 {
   color: #a3be8c; }
 
 /* Literal.String.Double */
-/* line 103, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 85, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .se {
   color: #d08770; }
 
 /* Literal.String.Escape */
-/* line 104, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 86, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .sh {
   color: #a3be8c; }
 
 /* Literal.String.Heredoc */
-/* line 105, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 87, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .si {
   color: #d08770; }
 
 /* Literal.String.Interpol */
-/* line 106, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 88, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .sx {
   color: #a3be8c; }
 
 /* Literal.String.Other */
-/* line 107, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 89, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .sr {
   color: #a3be8c; }
 
 /* Literal.String.Regex */
-/* line 108, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 90, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .s1 {
   color: #a3be8c; }
 
 /* Literal.String.Single */
-/* line 109, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 91, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .ss {
   color: #a3be8c; }
 
 /* Literal.String.Symbol */
-/* line 110, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 92, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .bp {
   color: #eff1f5; }
 
 /* Name.Builtin.Pseudo */
-/* line 111, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 93, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .vc {
   color: #bf616a; }
 
 /* Name.Variable.Class */
-/* line 112, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 94, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .vg {
   color: #bf616a; }
 
 /* Name.Variable.Global */
-/* line 113, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 95, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .vi {
   color: #bf616a; }
 
 /* Name.Variable.Instance */
-/* line 114, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
+/* line 96, /Users/spencerdixon/Dropbox/CurrentProjects/Middleman/spencercdixon.github.io/source/stylesheets/base/_syntax_highlighting.css.erb */
 .highlight .il {
   color: #d08770; }
 

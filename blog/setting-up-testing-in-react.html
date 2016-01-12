@@ -1,0 +1,673 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <title>Spencer Dixon - Setting Up Testing In React</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/feed.xml" />
+    <link href="../stylesheets/all.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <aside>
+        <nav class="main-nav">
+<a href="../">    <img class="round-image" src="../images/spencer.jpeg" />
+</a>
+  <ul class="nav-links">
+    <li class="text-center"><a href="../about.html">ABOUT</a></li>
+    <li class="text-center"><a href="../">BLOG</a></li>
+    <li class="text-center"><a href="../book_list.html">BOOKS</a></li>
+  </ul>
+
+  <!-- Begin MailChimp Signup Form -->
+  <div id="mc_embed_signup">
+    <form action="//spencerdixon.us11.list-manage.com/subscribe/post?u=019dc2164dbdc16d844cf6dc2&amp;id=666e212a4d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+
+        <div class="mc-field-group">
+          <label for="mce-EMAIL" style="display: none;">Email Address </label>
+          <input type="email" placeholder="Email To Subscribe" name="EMAIL" class="required email" id="mce-EMAIL">
+        </div>
+        <div id="mce-responses" class="clear">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
+        </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;"><input type="text" name="b_019dc2164dbdc16d844cf6dc2_666e212a4d" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" style="display: none;" class="button"></div>
+      </div>
+    </form>
+  </div>
+  <!--End mc_embed_signup-->
+
+  <section class="social-media">
+    <ul>
+      <li class="social-icon">
+<a target="_blank" href="https://github.com/spencercdixon">          <i class="fa fa-github-square fa-2x"></i>
+</a>      </li>
+      <li class="social-icon">
+<a target="_blank" href="https://twitter.com/SpencerCDixon">          <i class="fa fa-twitter-square fa-2x"></i>
+</a>      </li>
+      <li class="social-icon">
+<a target="_blank" href="https://www.linkedin.com/in/spencercdixon">          <i class="fa fa-linkedin-square fa-2x"></i>
+</a>      </li>
+    </ul>
+  </section>
+</nav>
+
+<footer>
+  Handcrafted Bytes<br />
+  Made With <i class="fa fa-diamond"></i> <br />
+  By Spencer Dixon
+</footer>
+
+
+      </aside>
+
+      <article class="blog-post">
+            <h1 id="article-title">Setting Up Testing In React</h1>
+    <hr>
+    <div class="tags">
+      <ul>
+        <li class="tag"><a href="tags/tutorial.html">tutorial</a></li>
+        <li class="tag"><a href="tags/testing.html">testing</a></li>
+        <li class="tag"><a href="tags/react.html">react</a></li>
+        <li class="tag"><a href="tags/javascript.html">javascript</a></li>
+      </ul>
+    </div>
+
+  <p>Coming from the Rails world testing is extremely important to me.  I had a hard
+time figuring out how to get everything set up when I first started out in
+react.  Here is a guide to help newcomers:</p>
+
+<h2>Setting Up Webpack</h2>
+
+<p>This isn&#39;t a tutorial on how to use webpack so I won&#39;t go into great detail but
+it&#39;s important to understand the basics.  Webpack is a lot like Rails Asset
+pipeline on crack.  On a basic level it lets you pre/post process all your code
+and serve just one <code>bundle.js</code> to the client which will run your react app.</p>
+
+<p>It&#39;s an extremely powerful tool which is why we&#39;ll be using it.  Here are some
+more resources to learn more:</p>
+
+<ol>
+<li> <a href="https://christianalfoni.github.io/react-webpack-cookbook/Getting-started.html">Webpack Cookbook</a><br></li>
+<li> <a href="http://blog.madewithlove.be/post/webpack-your-bags/">Webpack Beginner Blog Post</a><br></li>
+<li> <a href="https://github.com/petehunt/webpack-howto">Pete Hunts Infamous Webpack How-to</a><br></li>
+</ol>
+
+<blockquote>
+<p><strong>NOTE</strong>: I recommend using node <code>v5.1.0</code> if you&#39;re going to follow along with
+this tutorial.  Anything &gt;4 should be fine though.</p>
+</blockquote>
+
+<p>First, lets install all webpack and babel dependencies.  Babel is a JavaScript
+transpiler which allows us to write ES6 (es2015) and ES7 code and make sure it all gets
+compiled down to ES5 which the browser can use.</p>
+<pre class="highlight plaintext"><code>npm init # follow along with normal npm init to set up project
+
+npm i babel-loader babel-core webpack --save-dev
+</code></pre>
+
+<p><code>npm i</code> is an alias for npm install</p>
+
+<p>Next lets set up our project directory and create a <code>webpack.config.js</code> file:</p>
+<pre class="highlight plaintext"><code>mkdir src                  # where all our source code will live
+touch src/main.js          # this will be the entry point for our webpack bundling
+mkdir test                 # place to store all our tests
+mkdir dist                 # this is where the bundled javascript from webpack will go
+touch webpack.config.js    # our webpack configuration file
+</code></pre>
+
+<p>Our initial webpack config will be super minimal.  Read through comments to
+understand what&#39;s going on:
+```javascript
+var webpack = require(&#39;webpack&#39;); 
+var path = require(&#39;path&#39;); // a useful node path helper library</p>
+
+<p>var config = {
+  entry: [&#39;./src/main.js&#39;],                // the entry point for our app
+  output: {
+    path: path.resolve(_<em>dirname, &#39;dist&#39;), // store the bundled output in dist/bundle.js
+    filename: &#39;bundle.js&#39;                  // specifying file name for our compiled assets
+  },
+  module: {
+    loaders: [
+      // telling webpack which loaders we want to use.  For now just run the
+      // code through the babel-loader.  &#39;babel&#39; is an alias for babel-loader
+      { test: /.js$/, loaders: [&#39;babel&#39;], exclude: /node</em>modules/ }<br>
+    ]
+  }
+}</p>
+
+<p>module.exports = config;
+```</p>
+
+<p>In order for babel to do its job properly we need to tell it what <code>presets</code> we
+want to use.  Let&#39;s go ahead and install the React and ES6 presets since we&#39;re
+going to need those:</p>
+<pre class="highlight plaintext"><code>npm i babel-preset-react babel-preset-es2015 --save-dev
+</code></pre>
+
+<p>Now we have a couple options.  Some people will tell babel to use the presets in
+the loader file like this:<br>
+<code>javascript
+loaders: [
+  { 
+    test: /\.js$/, 
+    loaders: [&#39;babel&#39;], 
+    exclude: /node_modules/,
+    query: {
+      presets: [&#39;react&#39;, &#39;es2015&#39;] 
+    }
+  }   
+]
+</code></p>
+
+<p>Another approach is to store them in a <code>.babelrc</code> which is what I&#39;m going to do
+for this project.  </p>
+<pre class="highlight plaintext"><code>touch .babelrc
+</code></pre>
+
+<p>Paste in the presets:  </p>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="p">.</span><span class="nx">babelrc</span>
+<span class="p">{</span>
+  <span class="s2">"presets"</span><span class="err">:</span> <span class="p">[</span><span class="s2">"react"</span><span class="p">,</span> <span class="s2">"es2015"</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>To confirm it works lets put some react code in <code>main.js</code> and see if it bundles
+everything properly.  First we need to install react:  </p>
+<pre class="highlight javascript"><code><span class="nx">npm</span> <span class="nx">i</span> <span class="nx">react</span> <span class="nx">react</span><span class="o">-</span><span class="nx">dom</span> <span class="o">-</span><span class="nx">S</span>
+</code></pre>
+
+<p>Using the <code>-S</code> flag is an alias for <code>--save</code>.  Now for creating our first React
+component:  </p>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="nx">src</span><span class="o">/</span><span class="nx">main</span><span class="p">.</span><span class="nx">js</span>
+<span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-dom'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">Root</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span> <span class="nx">Hello</span> <span class="nx">World</span> <span class="o">&lt;</span><span class="sr">/h1&gt;</span><span class="err">;
+</span>  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Root</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">));</span>
+</code></pre>
+
+<p>The astute reader will have noticed we have not yet created an <code>index.html</code> file
+with our root.  Lets do that next and put it in our <code>/dist</code> folder since that is
+where our <code>bundle.js</code> will get compiled to:  </p>
+<pre class="highlight html"><code># /dist/index.html
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">'root'</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"bundle.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+
+<p>Awesome.  Making progress.  Finally we can run webpack and see if everything
+worked properly.  If you don&#39;t have webpack installed globally (<code>npm i webpack
+-g</code>) then you can run it from your node modules like so:  </p>
+<pre class="highlight javascript"><code><span class="p">.</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="p">.</span><span class="nx">bin</span><span class="o">/</span><span class="nx">webpack</span>
+</code></pre>
+
+<p>Webpack will by default look for your <code>webpack.config.js</code>.</p>
+
+<p>Let&#39;s create an alias for doing the build inside our package.json:  </p>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
+<span class="p">...</span> <span class="nx">other</span> <span class="nx">stuff</span>
+<span class="nl">scripts</span><span class="p">:</span> <span class="p">{</span>
+  <span class="s2">"build"</span><span class="err">:</span> <span class="s2">"webpack"</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Next lets wire up <code>webpack-dev-server</code> for a more enjoyable dev experience:  </p>
+<pre class="highlight javascript"><code><span class="nx">npm</span> <span class="nx">i</span> <span class="nx">webpack</span><span class="o">-</span><span class="nx">dev</span><span class="o">-</span><span class="nx">server</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span>
+</code></pre>
+
+<p>Add a script to our <code>index.html</code> inside the dist folder:  </p>
+<pre class="highlight html"><code># /dist/index.html
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">'root'</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://localhost:3000/webpack-dev-server.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"bundle.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+
+<p>Add webpack dev server entry points to our <code>webpack.config.js</code>  </p>
+<pre class="highlight javascript"><code><span class="p">...</span> <span class="nx">rest</span> <span class="nx">of</span> <span class="nx">config</span>
+  <span class="nl">entry</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s1">'webpack/hot/dev-server'</span><span class="p">,</span>
+    <span class="s1">'webpack-dev-server/client?http://localhost:3000'</span><span class="p">,</span>
+    <span class="s1">'./src/main.js'</span>
+  <span class="p">],</span>
+<span class="p">...</span> <span class="nx">rest</span> <span class="nx">of</span> <span class="nx">config</span>
+</code></pre>
+
+<p>Make script for running the dev server:  </p>
+<pre class="highlight plaintext"><code># package.json
+... other stuff
+scripts: {
+  "dev": "webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist",
+  "build": "webpack"
+}
+</code></pre>
+
+<p>The script uses the <code>--content-base</code> flag to tell webpack we want to serve our
+<code>/dist</code> folder.  We&#39;re also explicitly using port 3000 to provide a more
+familiar rails dev experience.</p>
+
+<p>Finally, lets add a resolve flag to webpack to make development life a little
+bit more enjoyable... here is the final config with comments explaining:  </p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s1">'webpack/hot/dev-server'</span><span class="p">,</span>
+    <span class="s1">'webpack-dev-server/client?http://localhost:3000'</span><span class="p">,</span>
+    <span class="s1">'./src/main.js'</span>
+  <span class="p">],</span>
+  <span class="na">resolve</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">root</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// allows us to import modules as if /src was the root.</span>
+      <span class="c1">// so I can do: import Comment from 'components/Comment'</span>
+      <span class="c1">// instead of:  import Comment from '../components/Comment' or whatever relative path would be</span>
+      <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'./src'</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="c1">// allows you to require without the .js at end of filenames</span>
+    <span class="c1">// import Component from 'component' vs. import Component from 'component.js'</span>
+    <span class="na">extensions</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'.js'</span><span class="p">,</span> <span class="s1">'.json'</span><span class="p">,</span> <span class="s1">'.jsx'</span><span class="p">]</span>
+  <span class="p">},</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'dist'</span><span class="p">),</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="s1">'bundle.js'</span>
+  <span class="p">},</span>
+  <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">loaders</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">js</span><span class="se">?</span><span class="sr">$/</span><span class="p">,</span>
+        <span class="c1">// dont run node_modules or bower_components through babel loader</span>
+        <span class="na">exclude</span><span class="p">:</span> <span class="sr">/</span><span class="se">(</span><span class="sr">node_modules|bower_components</span><span class="se">)</span><span class="sr">/</span><span class="p">,</span>
+        <span class="c1">// babel is alias for babel-loader</span>
+        <span class="c1">// npm i babel-core babel-loader --save-dev</span>
+        <span class="na">loader</span><span class="p">:</span> <span class="s1">'babel'</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">config</span><span class="p">;</span>
+</code></pre>
+
+<h2>Setting Up Mocha, Chai, Sinon, and Enzyme</h2>
+
+<p><strong>Mocha</strong>: will be used for running our tests.<br>
+<strong>Chai</strong>: will be used as our expectation library.  Very versatile and lets us
+use RSpec like syntax.<br>
+<strong>Sinon</strong>: will be used for mocks/stubs/spys.<br>
+<strong>Enzyme</strong>: will be used for testing our React components.  It&#39;s a beautiful
+testing library written by AirBnB.  </p>
+
+<p>Install deps:  </p>
+<pre class="highlight plaintext"><code>npm i mocha chai sinon --save-dev
+</code></pre>
+
+<p>If we want to be able to write tests in ES6 we will need to compile the tests
+before running.  To do that we can use babel-register:  </p>
+<pre class="highlight plaintext"><code>npm i babel-register --save-dev
+</code></pre>
+
+<p>Some npm scripts to make testing life easier:  </p>
+<pre class="highlight plaintext"><code># inside package.json script section
+  "test": "mocha --compilers js:babel-register --recursive",
+  "test:watch": "npm test -- --watch",
+</code></pre>
+
+<p>Our test script says to run mocha using the <code>babel-register</code> compiler and look
+recursively through our <code>/test</code> directory.</p>
+
+<p>Eventually we&#39;re going to set up Karma so these npm scripts will be useless but
+if Karma isn&#39;t your thing then those should work fine.  <code>test:watch</code> will watch
+for file changes and re-run your suite.  Hooray productivity!</p>
+
+<p>To confirm it works lets create a hello world test in <code>/tests/helloWorld.spec.js</code>  </p>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="o">/</span><span class="nx">tests</span><span class="o">/</span><span class="nx">helloWorld</span><span class="p">.</span><span class="nx">spec</span><span class="p">.</span><span class="nx">js</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">expect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'chai'</span><span class="p">;</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">'hello world'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'works!'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="kc">true</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>Pretty chill... almost looks like RSpec!</p>
+
+<p>Importing <code>expect</code> for every test is kind of a bummer though so lets create a
+<code>test_helper</code> file to save keystrokes.</p>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="o">/</span><span class="nx">tests</span><span class="o">/</span><span class="nx">test_helper</span><span class="p">.</span><span class="nx">js</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">expect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'chai'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">sinon</span> <span class="nx">from</span> <span class="s1">'sinon'</span><span class="p">;</span>
+
+<span class="nx">global</span><span class="p">.</span><span class="nx">expect</span> <span class="o">=</span> <span class="nx">expect</span><span class="p">;</span>
+<span class="nx">global</span><span class="p">.</span><span class="nx">sinon</span> <span class="o">=</span> <span class="nx">sinon</span><span class="p">;</span>
+</code></pre>
+
+<p>Then include it in the npm script that runs the suite:  </p>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span> <span class="nx">script</span> <span class="nx">section</span>
+  <span class="s2">"test"</span><span class="err">:</span> <span class="s2">"mocha --compilers js:babel-register --require ./test/test_helper.js --recursive"</span><span class="p">,</span>
+</code></pre>
+
+<p>I also added sinon so it would be available globally.</p>
+
+<h3>Enzyme</h3>
+
+<p>Now that our more &#39;universal&#39; testing tools are set up (mocha, chai, sinon)
+let&#39;s install Enzyme and start testing some React components!</p>
+
+<p>Install deps:
+<code>
+npm i enzyme react-addons-test-utils --save-dev
+</code></p>
+
+<p>Enzyme has great documentation which can be <a href="http://airbnb.io/enzyme/">found here</a>.  I recommend reading
+through the Shallow Rendering section when you have the time.</p>
+
+<p>What is Shallow Rendering you ask?</p>
+
+<p>Well, it&#39;s a way for us to call the <code>render</code> method of our components and get
+back React elements which we can make assertions on without having to actually
+mount our component to the DOM.  For more on React Elements <a href="https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html">see here</a>.</p>
+
+<p>Enzyme will wrap the shallow rendered component in a special <code>wrapper</code> which we
+can then test.  Think of it like the <code>page</code> object in Capybara if you come from
+Rails.</p>
+
+<p>Lets do some TDD to drive the development of a proper <code>&lt;Root /&gt;</code> component.</p>
+
+<p>This Root component will be a <code>container</code> meaning that it will be in charge of
+handling the state of our application.  Learning the difference between smart
+and dumb components in React is very important for good application
+architecture.  <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.8cnl19w8l">Here is a great blog post explaining what they are.</a></p>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="o">/</span><span class="nx">tests</span><span class="o">/</span><span class="nx">containers</span><span class="o">/</span><span class="nx">Root</span><span class="p">.</span><span class="nx">spec</span><span class="p">.</span><span class="nx">js</span>
+
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>                     <span class="c1">// required to get test to work.  we can get around this later with more configuration</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">shallow</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'enzyme'</span><span class="p">;</span>              <span class="c1">// method from enzyme which allows us to do shallow render</span>
+<span class="kr">import</span> <span class="nx">Root</span> <span class="nx">from</span> <span class="s1">'../../src/containers/Root'</span><span class="p">;</span>  <span class="c1">// import our soon to be component</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">'(Container) Root'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'renders as a &lt;div&gt;'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Root</span> <span class="o">/&gt;</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">type</span><span class="p">()).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="s1">'div'</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'has style with height 100%'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Root</span> <span class="o">/&gt;</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">expectedStyles</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">height</span><span class="p">:</span> <span class="s1">'100%'</span><span class="p">,</span>
+      <span class="na">background</span><span class="p">:</span> <span class="s1">'#333'</span>
+    <span class="p">}</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'style'</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="nx">expectedStyles</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'contains a header explaining the app'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Root</span> <span class="o">/&gt;</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.welcome-header'</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">length</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>If we run the tests with <code>npm test</code> they should fail.  It makes sense since we
+havn&#39;t actually created a Root component in the proper location.  So lets do
+that:  </p>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="o">/</span><span class="nx">src</span><span class="o">/</span><span class="nx">containers</span><span class="o">/</span><span class="nx">Root</span><span class="p">.</span><span class="nx">js</span>
+<span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">height</span><span class="p">:</span> <span class="s1">'100%'</span><span class="p">,</span>
+  <span class="na">background</span><span class="p">:</span> <span class="s1">'#333'</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Root</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">className</span><span class="o">=</span><span class="s1">'welcome-header'</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">testing</span> <span class="nx">React</span><span class="o">!&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Root</span><span class="p">;</span>
+</code></pre>
+
+<p>If you re-run the tests they should all pass now.  Stick to using <code>shallow</code> as
+much as you possibly can in your tests.  Occasionally it&#39;s not possible
+though.  For example, if you need to test the React lifecycle methods then you
+need the component to actually mount.  </p>
+
+<p>There was a lot of duplication in our tests so lets go back and do some
+refactoring.  Since we&#39;re never passing any props to the <code>Root</code> and therefore
+have no tests that are dependant on them we can just shallow render the
+component once and then make all our assertions.  Often times I find myself
+wrapping a section of tests in sub describe blocks that pass in a certain set of
+props and then make a bunch of assertions.  </p>
+<pre class="highlight javascript"><code><span class="nx">describe</span><span class="p">(</span><span class="s1">'(Container) Root'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Root</span> <span class="o">/&gt;</span><span class="p">);</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'renders as a &lt;div&gt;'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">type</span><span class="p">()).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="s1">'div'</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'has style with height 100%'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">expectedStyles</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">height</span><span class="p">:</span> <span class="s1">'100%'</span><span class="p">,</span>
+      <span class="na">background</span><span class="p">:</span> <span class="s1">'#333'</span>
+    <span class="p">}</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'style'</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="nx">expectedStyles</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'contains a header explaining the app'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.welcome-header'</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">length</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>Next lets test a component mounting and calling a function when it mounts so we can
+get some exposure to <code>sinon</code> and using spys.</p>
+
+<p>We can pretend that the <code>Root</code> component has a child called <code>CommentList</code> which
+will call some arbitrary callback when it mounts given via props.  Let&#39;s also
+conditionally render some styles on the comment list so we can see how to deal
+with props in shallow renders:</p>
+<pre class="highlight javascript"><code><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+
+<span class="c1">// Once we set up Karma to run our tests through webpack</span>
+<span class="c1">// we will no longer need to have these long relative paths</span>
+<span class="kr">import</span> <span class="nx">CommentList</span> <span class="nx">from</span> <span class="s1">'../../src/components/CommentList'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span>
+  <span class="nx">describeWithDOM</span><span class="p">,</span>
+  <span class="nx">mount</span><span class="p">,</span>
+  <span class="nx">shallow</span><span class="p">,</span>
+  <span class="nx">spyLifecycle</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">'enzyme'</span><span class="p">;</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">'(Component) CommentList'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+  <span class="c1">// using special describeWithDOM helper that enzyme</span>
+  <span class="c1">// provides so if other devs on my team don't have JSDom set up</span>
+  <span class="c1">// properly or are using old version of node it won't bork their test suite</span>
+  <span class="c1">//</span>
+  <span class="c1">// All of our tests that depend on mounting should go inside one of these</span>
+  <span class="c1">// special describe blocks</span>
+  <span class="nx">describeWithDOM</span><span class="p">(</span><span class="s1">'Lifecycle methods'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'calls componentDidMount'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">spyLifecyle</span><span class="p">(</span><span class="nx">CommentList</span><span class="p">);</span>
+
+      <span class="kr">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">onMount</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{},</span>
+        <span class="na">isActive</span><span class="p">:</span> <span class="kc">false</span>
+      <span class="p">}</span>
+
+      <span class="c1">// using destructuring to pass props down</span>
+      <span class="c1">// easily and then mounting the component</span>
+      <span class="nx">mount</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">CommentList</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
+</span>
+      <span class="c1">// CommentList's componentDidMount should have been</span>
+      <span class="c1">// called once.  spyLifecyle attaches sinon spys so we can</span>
+      <span class="c1">// make this assertion</span>
+      <span class="nx">expect</span><span class="p">(</span>
+        <span class="nx">CommentList</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">componentDidMount</span><span class="p">.</span><span class="nx">calledOnce</span>
+      <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="kc">true</span><span class="p">;</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'calls onMount prop once it mounts'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// create a spy for the onMount function</span>
+      <span class="kr">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="p">{</span> <span class="na">onMount</span><span class="p">:</span> <span class="nx">sinon</span><span class="p">.</span><span class="nx">spy</span><span class="p">()</span> <span class="p">};</span>
+
+      <span class="c1">// mount our component</span>
+      <span class="nx">mount</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">CommentList</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
+</span>
+      <span class="c1">// expect that onMount was called</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">onMount</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="kc">true</span><span class="p">;</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>There is a lot going on there.  Read through the comments to get a better
+understand.  Look at the implementation that makes the tests pass then go back
+and look at the tests again to confirm you understand.</p>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="o">/</span><span class="nx">src</span><span class="o">/</span><span class="nx">components</span><span class="o">/</span><span class="nx">CommentList</span><span class="p">.</span><span class="nx">js</span>
+<span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">PropTypes</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">onMount</span><span class="p">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">func</span><span class="p">.</span><span class="nx">isRequired</span><span class="p">,</span>
+  <span class="na">isActive</span><span class="p">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">bool</span>
+<span class="p">};</span>
+
+<span class="kr">class</span> <span class="nx">CommentList</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">onMount</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span> <span class="nx">Comment</span> <span class="nx">One</span> <span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/ul</span><span class="err">&gt;
+</span>    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">CommentList</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="nx">propTypes</span><span class="p">;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">CommentList</span><span class="p">;</span>
+</code></pre>
+
+<p>Tests should now pass.  Next lets add some shallow rendered tests to make sure
+our component is applying the proper CSS classes given its prop.</p>
+<pre class="highlight javascript"><code><span class="p">...</span> <span class="nx">previous</span> <span class="nx">tests</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'should render as a &lt;ul&gt;'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="p">{</span> <span class="na">onMount</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{}</span> <span class="p">};</span>
+    <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">CommentList</span>  <span class="p">{...</span><span class="nx">props</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
+</span>    <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">type</span><span class="p">()).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="s1">'ul'</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">'when active...'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(</span>
+      <span class="c1">// just passing isActive is an alias for true</span>
+      <span class="o">&lt;</span><span class="nx">CommentList</span> <span class="nx">onMount</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{}}</span> <span class="nx">isActive</span> <span class="o">/&gt;</span>
+    <span class="p">)</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'should render with className active-list'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'className'</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="s1">'active-list'</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">'when inactive...'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(</span>
+      <span class="c1">// just passing isActive is an alias for true</span>
+      <span class="o">&lt;</span><span class="nx">CommentList</span> <span class="nx">onMount</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{}}</span> <span class="nx">isActive</span><span class="o">=</span><span class="p">{</span><span class="kc">false</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>    <span class="p">)</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'should render with className inactive-list'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'className'</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="s1">'inactive-list'</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>To make them pass:</p>
+<pre class="highlight javascript"><code><span class="kr">class</span> <span class="nx">CommentList</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">onMount</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">{</span> <span class="nx">isActive</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">classes</span> <span class="o">=</span> <span class="nx">isActive</span> <span class="p">?</span> <span class="s1">'active-list'</span> <span class="p">:</span> <span class="s1">'inactive-list'</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span> <span class="nx">Comment</span> <span class="nx">One</span> <span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/ul</span><span class="err">&gt;
+</span>    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>At this point you should have a good understanding on how to go about testing
+your react components.  Remember to read through the amazing Enzyme
+documentation to get inspiration and ideas on how to test your Components.</p>
+
+<h2>Setting Up Karma</h2>
+
+<p>TODO:</p>
+
+
+  <a href="#" id="hide_comments">Hide Comments<a>
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+//<![CDATA[
+                  var disqus_shortname = 'spencerdixon';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </article>
+    </div>
+
+    <script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-51806130-1', 'auto');
+  ga('send', 'pageview');
+</script>
+    <script src="../javascripts/all.js" type="text/javascript"></script>
+  </body>
+</html>
