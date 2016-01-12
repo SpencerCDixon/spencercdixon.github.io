@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/blog/setting-up-testing-in-react.html"/>
     <id>http://blog.url.com/blog/setting-up-testing-in-react.html</id>
     <published>2016-01-12T16:55:00-05:00</published>
-    <updated>2016-01-12T18:35:57-05:00</updated>
+    <updated>2016-01-12T18:39:13-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -62,28 +62,27 @@ touch webpack.config.js    # our webpack configuration file
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Our initial webpack config will be super minimal.  Read through comments to
-understand what&amp;#39;s going on:
-```javascript
-var webpack = require(&amp;#39;webpack&amp;#39;); 
-var path = require(&amp;#39;path&amp;#39;); // a useful node path helper library&lt;/p&gt;
+understand what&amp;#39;s going on:  &lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;webpack&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'webpack'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'path'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// a useful node path helper library&lt;/span&gt;
 
-&lt;p&gt;var config = {
-  entry: [&amp;#39;./src/main.js&amp;#39;],                // the entry point for our app
-  output: {
-    path: path.resolve(_&lt;em&gt;dirname, &amp;#39;dist&amp;#39;), // store the bundled output in dist/bundle.js
-    filename: &amp;#39;bundle.js&amp;#39;                  // specifying file name for our compiled assets
-  },
-  module: {
-    loaders: [
-      // telling webpack which loaders we want to use.  For now just run the
-      // code through the babel-loader.  &amp;#39;babel&amp;#39; is an alias for babel-loader
-      { test: /.js$/, loaders: [&amp;#39;babel&amp;#39;], exclude: /node&lt;/em&gt;modules/ }&lt;br&gt;
-    ]
-  }
-}&lt;/p&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="na"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'./src/main.js'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;                &lt;span class="c1"&gt;// the entry point for our app&lt;/span&gt;
+  &lt;span class="na"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;path&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;__dirname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'dist'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="c1"&gt;// store the bundled output in dist/bundle.js&lt;/span&gt;
+    &lt;span class="na"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'bundle.js'&lt;/span&gt;                  &lt;span class="c1"&gt;// specifying file name for our compiled assets&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="na"&gt;module&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;loaders&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+      &lt;span class="c1"&gt;// telling webpack which loaders we want to use.  For now just run the&lt;/span&gt;
+      &lt;span class="c1"&gt;// code through the babel-loader.  'babel' is an alias for babel-loader&lt;/span&gt;
+      &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;test&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sr"&gt;/&lt;/span&gt;&lt;span class="se"&gt;\.&lt;/span&gt;&lt;span class="sr"&gt;js$/&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;loaders&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'babel'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="na"&gt;exclude&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sr"&gt;/node_modules/&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;   
+    &lt;span class="p"&gt;]&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;p&gt;module.exports = config;
-```&lt;/p&gt;
+&lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;exports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;config&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In order for babel to do its job properly we need to tell it what &lt;code&gt;presets&lt;/code&gt; we
 want to use.  Let&amp;#39;s go ahead and install the React and ES6 presets since we&amp;#39;re

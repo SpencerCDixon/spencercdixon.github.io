@@ -119,28 +119,27 @@ touch webpack.config.js    # our webpack configuration file
 </code></pre>
 
 <p>Our initial webpack config will be super minimal.  Read through comments to
-understand what&#39;s going on:
-```javascript
-var webpack = require(&#39;webpack&#39;); 
-var path = require(&#39;path&#39;); // a useful node path helper library</p>
+understand what&#39;s going on:  </p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack'</span><span class="p">);</span> 
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span> <span class="c1">// a useful node path helper library</span>
 
-<p>var config = {
-  entry: [&#39;./src/main.js&#39;],                // the entry point for our app
-  output: {
-    path: path.resolve(_<em>dirname, &#39;dist&#39;), // store the bundled output in dist/bundle.js
-    filename: &#39;bundle.js&#39;                  // specifying file name for our compiled assets
-  },
-  module: {
-    loaders: [
-      // telling webpack which loaders we want to use.  For now just run the
-      // code through the babel-loader.  &#39;babel&#39; is an alias for babel-loader
-      { test: /.js$/, loaders: [&#39;babel&#39;], exclude: /node</em>modules/ }<br>
-    ]
-  }
-}</p>
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="p">[</span><span class="s1">'./src/main.js'</span><span class="p">],</span>                <span class="c1">// the entry point for our app</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'dist'</span><span class="p">),</span> <span class="c1">// store the bundled output in dist/bundle.js</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="s1">'bundle.js'</span>                  <span class="c1">// specifying file name for our compiled assets</span>
+  <span class="p">},</span>
+  <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">loaders</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// telling webpack which loaders we want to use.  For now just run the</span>
+      <span class="c1">// code through the babel-loader.  'babel' is an alias for babel-loader</span>
+      <span class="p">{</span> <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">js$/</span><span class="p">,</span> <span class="na">loaders</span><span class="p">:</span> <span class="p">[</span><span class="s1">'babel'</span><span class="p">],</span> <span class="na">exclude</span><span class="p">:</span> <span class="sr">/node_modules/</span> <span class="p">}</span>   
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<p>module.exports = config;
-```</p>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">config</span><span class="p">;</span>
+</code></pre>
 
 <p>In order for babel to do its job properly we need to tell it what <code>presets</code> we
 want to use.  Let&#39;s go ahead and install the React and ES6 presets since we&#39;re
