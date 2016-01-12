@@ -584,22 +584,6 @@ documentation to get inspiration and ideas on how to test your Components.&lt;/p
 </content>
   </entry>
   <entry>
-    <title>Rails Developer's Guide To React</title>
-    <link rel="alternate" href="http://blog.url.com/blog/rails-developers-guide-to-react.html"/>
-    <id>http://blog.url.com/blog/rails-developers-guide-to-react.html</id>
-    <published>2015-12-30T21:18:00-05:00</published>
-    <updated>2015-12-30T21:23:44-05:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;React is a fantastic library to use in order to level up your JavaScript skills.
-One of the main reasons I chose React over Ember was because it offered new
-ideas that I thought would challenge me and force me to grow.  A lot of past
-Rails contributors now work on Ember and they brought a lot of the same
-philosophies to the framework.  &lt;/p&gt;
-</content>
-  </entry>
-  <entry>
     <title>Image Preview With Carrierwave And Rails</title>
     <link rel="alternate" href="http://blog.url.com/blog/image-preview-with-carrierwave-and-rails.html"/>
     <id>http://blog.url.com/blog/image-preview-with-carrierwave-and-rails.html</id>
@@ -877,6 +861,104 @@ esc  # &lt;span class="k"&gt;exit&lt;/span&gt; insert &lt;span class="k"&gt;mode
 &lt;p&gt;Now that we have our macro built we can apply it to any files that need to be
 converted by typing &lt;code&gt;@r&lt;/code&gt;.  Two letters to change 5-6 lines of text into the
 exact format we need.  That is strategic laziness at its finest! &lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Creating a DSL in Ruby</title>
+    <link rel="alternate" href="http://blog.url.com/blog/creating-dsl.html"/>
+    <id>http://blog.url.com/blog/creating-dsl.html</id>
+    <published>2015-06-30T20:00:00-04:00</published>
+    <updated>2015-09-08T19:40:25-04:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Recently I built a small DSL for work that allows users to sync data to MongoDB
+from any external API.  It was my first time making a DSL so I decided to
+document a few things that helped me get started:&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h4&gt;Using Ruby&amp;#39;s &lt;code&gt;included&lt;/code&gt; hook to extend class methods&lt;/h4&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;CustomDsl&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;included&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_class&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;base_class&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;DslClassMethods&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;instance_method_here&lt;/span&gt;
+    &lt;span class="nb"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;class&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get_class_method&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;DslClassMethods&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;class_method_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="vi"&gt;@_class_method_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_class_method&lt;/span&gt;
+    &lt;span class="vi"&gt;@_class_method_name&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So now when the &lt;code&gt;CustomDsl&lt;/code&gt; gets included in one of my classes that uses the Dsl
+it will also extend the &lt;code&gt;DslClassMethods&lt;/code&gt;.  Extending that module will make all
+methods defined in it class methods instead of instance methods.&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Example&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;CustomDsl&lt;/span&gt;
+
+  &lt;span class="n"&gt;class_method_name&lt;/span&gt; &lt;span class="ss"&gt;:apple&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="n"&gt;foo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;
+
+&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;instance_method_here&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; :apple&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;One thing to note is that the instance variable &lt;code&gt;@_class_method_name&lt;/code&gt; is
+somewhat deceiving.  Since DslClassMethods is being extended it&amp;#39;s actually an instance
+variable on the Class &lt;code&gt;Example&lt;/code&gt;, not a normal instance variable.&lt;/p&gt;
+
+&lt;h4&gt;Usings macros for configuration&lt;/h4&gt;
+
+&lt;p&gt;I ended up using class macros for a lot of configuration.  It was important to
+me that end users of the DSL be informed of error messages if they had a typo or
+were missing key components to make the DSL work.  For example, if a class was suppose to use a
+specific Connection class to hit an API, I wanted to confirm that 
+Connection class actually existed.  The implementation I choose to use involves
+some simple metaprogramming and &lt;code&gt;Object.const_get&lt;/code&gt;. &lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;CustomDsl&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;included&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_class&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;base_class&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;DslClassMethods&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="c1"&gt;# ... emitted ...&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;DslClassMethods&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;primary_connection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;confirm_symbol_or_string!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;const&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;to_s&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'_'&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="ss"&gt;:capitalize&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;join&lt;/span&gt;
+    &lt;span class="no"&gt;Object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;const_get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;const&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="vi"&gt;@_primary_connection&lt;/span&gt; &lt;span class="o"&gt;||=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;to_sym&lt;/span&gt;
+  &lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="no"&gt;NameError&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="no"&gt;UndefinedConnectionClass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+      &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="nb"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;class&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; wants to use &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;const&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; as its primary connection but &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;const&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; has not yet been defined"&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;primary_connection&lt;/code&gt; is now able to take symbols or strings but it makes sure to
+always save the connection as a symbol.  If &lt;code&gt;Object.const_get&lt;/code&gt; is unable to find
+the connection class then I rescue the &lt;code&gt;NameError&lt;/code&gt; and provide a more
+descriptive error message.  The final implementation for this macro might look
+something like:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SlackDataSource&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;CustomDsl&lt;/span&gt;
+  &lt;span class="n"&gt;primary_connection&lt;/span&gt; &lt;span class="ss"&gt;:slack_connection&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is really just the start but hopefully there is enough context for someone
+interested in making their own DSL to have some direction.&lt;/p&gt;
 </content>
   </entry>
 </feed>
