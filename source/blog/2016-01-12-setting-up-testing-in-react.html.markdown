@@ -37,7 +37,7 @@ npm i babel-loader babel-core webpack --save-dev
 
 Next lets set up our project directory and create a `webpack.config.js` file:
 
-```
+```unix  
 mkdir src                  # where all our source code will live
 touch src/main.js          # this will be the entry point for our webpack bundling
 mkdir test                 # place to store all our tests
@@ -46,7 +46,8 @@ touch webpack.config.js    # our webpack configuration file
 ```
 
 Our initial webpack config will be super minimal.  Read through comments to
-understand what's going on:
+understand what's going on:  
+
 ```javascript
 var webpack = require('webpack'); 
 var path = require('path'); // a useful node path helper library
