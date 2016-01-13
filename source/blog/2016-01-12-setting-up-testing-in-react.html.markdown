@@ -793,3 +793,18 @@ new scripts to run the tests:
 ```
 
 I renamed the old test scripts to have a prefix of 'old_'.
+
+To use this starter kit in development now all you need to do is run:  
+
+```javascript
+npm run dev
+npm run test:dev
+```
+
+[Make sure to check out the original source code on github if anything was unclear.](https://github.com/SpencerCDixon/react-testing-starter-kit)
+
+### Conclusion
+I've only been programming in React for a few months but I'm already in love.  I
+hope this tutorial has helped you to get a deeper understanding of some React
+Testing best practices.  Feel free to reach out to me with any
+questions/comments.  Test on my friends!
