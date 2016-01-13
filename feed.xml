@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/blog/test-driven-react-tutorial.html"/>
     <id>http://blog.url.com/blog/test-driven-react-tutorial.html</id>
     <published>2016-01-12T16:55:00-05:00</published>
-    <updated>2016-01-13T08:06:16-05:00</updated>
+    <updated>2016-01-13T08:09:04-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -886,9 +886,10 @@ those annoying relative path declarations inside our tests:&lt;/p&gt;
 
 &lt;h3&gt;Conclusion&lt;/h3&gt;
 
-&lt;p&gt;We have no set up a solid testing environment that can grow and evolve to your
-project specific needs.  In the next blog post I will spend more time going
-over specific testing scenarios and how to test Redux.  &lt;/p&gt;
+&lt;p&gt;We have now set up a solid testing environment that can grow and evolve to your
+projects specific needs.  In the next blog post I will spend more time going
+over specific testing scenarios and how to test Redux, my preferred flux
+implementation.  &lt;/p&gt;
 
 &lt;p&gt;I&amp;#39;ve only been programming in React for a few months but I&amp;#39;m already in love.  I
 hope this tutorial has helped you to get a deeper understanding of some React
