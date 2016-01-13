@@ -126,8 +126,8 @@ loaders: [
 
 Another approach is to store them in a `.babelrc` which is what I'm going to do
 for this project.  By storing our babel presets in the `.babelrc` it makes it
-easier for future developers to find what kind of babel presets are enabled for
-this project.  Additionally, when we set up Karma to use webpack later in the tutorial we won't need to 
+easier for future developers to find what kind of babel presets are enabled.
+Additionally, when we set up Karma to use webpack later in the tutorial we won't need to 
 do any preset configuration since it will already be present in the `.babelrc` file.
 
 ```  
@@ -315,7 +315,8 @@ npm run dev
 open http://localhost:3000
 ```
 
-You should see something that looks like this:
+You should see something that looks like this:  
+
 ![Hello World Image](http://i.imgur.com/rYTjH77.png?1)
 
 ## Setting Up Mocha, Chai, Sinon, and Enzyme
@@ -358,7 +359,7 @@ Our test script says to run mocha using the `babel-register` compiler and look
 recursively through our `/test` directory.
 
 Eventually we're going to set up Karma so these npm scripts will be useless but
-if Karma isn't your thing then those should work fine.  `test:watch` will watch
+if Karma isn't your thing then those should work fine.  `npm run test:watch` will watch
 for file changes and re-run your suite.  Hooray productivity!
 
 To confirm it works lets create a hello world test in `/tests/helloWorld.spec.js`  
@@ -388,7 +389,7 @@ global.expect = expect;
 global.sinon = sinon;
 ```  
 
-Then include it in the npm script that runs the suite:  
+Then include it in the npm script that runs the suite via the `--require ./test/test_helper.js` statement:  
 
 ```javascript
 # package.json script section
@@ -889,7 +890,34 @@ The final `package.json` looks like this:
   "author": "Spencer Dixon",
   "license": "ISC"
 }
+```  
+With the addition of webpack preprocessing in our test suite we can now remove
+those annoying relative path declarations inside our tests:
+
+```javascript
+// test/containers/Root.spec.js
+import React from 'react';
+import { shallow } from 'enzyme';
+import Root from 'containers/Root';               // new import statement
+// import Root from '../../src/containers/Root';  // old import statement
+
+// test/components/CommentList.spec.js
+import React from 'react';
+
+// Once we set up Karma to run our tests through webpack
+// we will no longer need to have these long relative paths
+import CommentList from 'components/CommentList';               // new import statement
+// import CommentList from '../../src/components/CommentList';  // old import statement
+
+import {
+  describeWithDOM,
+  mount,
+  shallow,
+  spyLifecycle
+} from 'enzyme';
+
 ```
+
 
 To use this starter kit in development now all you need to do is run:  
 
@@ -901,7 +929,11 @@ npm run test:dev    # note the addition of run
 [Make sure to check out the original source code on github if anything was unclear.](https://github.com/SpencerCDixon/react-testing-starter-kit)
 
 ### Conclusion
+We have no set up a solid testing environment that can grow and evolve to your
+project specific needs.  In the next blog post I will spend more time going
+over specific testing scenarios and how to test Redux.  
+
 I've only been programming in React for a few months but I'm already in love.  I
 hope this tutorial has helped you to get a deeper understanding of some React
-Testing best practices.  Feel free to reach out to me with any
+testing best practices.  Feel free to reach out to me with any
 questions/comments.  Test on my friends!
