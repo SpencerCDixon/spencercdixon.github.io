@@ -495,9 +495,10 @@ that:  </p>
 
 <p>There was a lot of duplication in our tests so lets go back and do some
 refactoring.  Since we&#39;re never passing any props to the <code>Root</code>, we can just
-shallow render it once and then make all our assertions.  Often times I find myself
-wrapping a section of tests in sub describe blocks that pass in a certain set of
-props and then make a bunch of assertions given those props.  </p>
+shallow render it once and then make all our assertions off that one wrapper.  Often times I find myself
+wrapping a section of tests in &#39;sub&#39; describe blocks that pass in a certain set of
+props and then make a bunch of assertions given those props.  Similar to using
+&#39;context&#39; blocks if you&#39;ve used RSpec.  </p>
 <pre class="highlight javascript"><code><span class="nx">describe</span><span class="p">(</span><span class="s1">'(Container) Root'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Root</span> <span class="o">/&gt;</span><span class="p">);</span>
 

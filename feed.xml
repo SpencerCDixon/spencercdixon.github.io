@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/blog/setting-up-testing-in-react.html"/>
     <id>http://blog.url.com/blog/setting-up-testing-in-react.html</id>
     <published>2016-01-12T16:55:00-05:00</published>
-    <updated>2016-01-12T21:01:45-05:00</updated>
+    <updated>2016-01-12T21:03:46-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -438,9 +438,10 @@ that:  &lt;/p&gt;
 
 &lt;p&gt;There was a lot of duplication in our tests so lets go back and do some
 refactoring.  Since we&amp;#39;re never passing any props to the &lt;code&gt;Root&lt;/code&gt;, we can just
-shallow render it once and then make all our assertions.  Often times I find myself
-wrapping a section of tests in sub describe blocks that pass in a certain set of
-props and then make a bunch of assertions given those props.  &lt;/p&gt;
+shallow render it once and then make all our assertions off that one wrapper.  Often times I find myself
+wrapping a section of tests in &amp;#39;sub&amp;#39; describe blocks that pass in a certain set of
+props and then make a bunch of assertions given those props.  Similar to using
+&amp;#39;context&amp;#39; blocks if you&amp;#39;ve used RSpec.  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="nx"&gt;describe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'(Container) Root'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;wrapper&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;shallow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Root&lt;/span&gt; &lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
