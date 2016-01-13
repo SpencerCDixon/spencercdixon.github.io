@@ -725,8 +725,8 @@ module.exports = function(config) {
       ['./test/**/*.js']: ['webpack', 'sourcemap']
     },
     // A lot of people will reuse the same webpack config that they use
-    // in development for karma but remove any productive plugins like UglifyJS etc.
-    // I choose to just re-write the config so readers can see what it needs to have
+    // in development for karma but remove any production plugins like UglifyJS etc.
+    // I chose to just re-write the config so readers can see what it needs to have
     webpack: {
        devtool: 'inline-source-map',
        resolve: {
