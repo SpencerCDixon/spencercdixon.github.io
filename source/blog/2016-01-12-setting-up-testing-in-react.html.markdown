@@ -7,13 +7,13 @@ tags: tutorial, testing, react, javascript
 Testing is an important part of the development cycle.  There is a name for code
 without tests: legacy code.  When I first started learning React and JavaScript
 it was overwhelming to say the least.  If you're new to the JS/React community you're 
-probably feeling super overwhelmed as well.  Thinking things like: which build tool should I use?  
+probably feeling super overwhelmed as well.  Thinking things like: which build tool should I use?
 Which testing framework is right?  What flux pattern should I be learning?  Do I even need to
 use flux?
 
 That's why I decided to write this post.  After hours of reading blog posts,
-looking through source of good JS developers, and one JSConf in Florida I've
-finally found my testing 'groove'.  In the beginning I felt so naked and dirty for
+looking through source code of respected JS developers, and one JSConf in
+Florida, I've finally found my testing 'groove'.  In the beginning I felt so naked and dirty for
 programming React code without tests.  I want to live in a world where no
 developer ever needs to feel that way.  It's just not right.  
 
@@ -28,11 +28,16 @@ pipeline on crack.  On a basic level it lets you pre/post process all your code
 and serve just one `bundle.js` to the client which will run your react app.
 
 It's an extremely powerful tool which is why we'll be using it.  Webpack is one
-of those tools that scares the shit out of you at first, and that's okay, but
-once you start understanding how it works you feel like a God among men.  Stick
+of those tools that scares the shit out of you at first, which I recommend you
+embrace, but once you start understanding how it works you feel like a God.  Stick
 with it and give it a chance before you judge.  
 
-Here are some more resources to learn more:
+We often don't like things we're not good at or scared of.  However, once you overcome the initial discomfort and
+start understanding something it almost always becomes fun.  In fact, that's
+exactly how I felt about testing in general.  Hated it when I sucked at it, love
+it now that I don't suck at it :-) 
+
+Here are some more resources to learn more about webpack if interested:
 
 1.  [Webpack Cookbook](https://christianalfoni.github.io/react-webpack-cookbook/Getting-started.html)  
 2.  [Webpack Beginner Blog Post](http://blog.madewithlove.be/post/webpack-your-bags/)  
@@ -43,7 +48,7 @@ Here are some more resources to learn more:
 
 First, lets install all webpack and babel dependencies.  Babel is a JavaScript
 transpiler which allows us to write ES6 (es2015) and ES7 code and make sure it all gets
-compiled down to ES5 which the browser can use.
+compiled down to ES5 which the browser can use.  
 
 ```
 npm init # follow along with normal npm init to set up project
@@ -88,7 +93,7 @@ var config = {
 module.exports = config;
 ```
 
-In order for babel to do its job properly we need to tell it what `presets` we
+In order for babel to do its job properly we need to tell it which `presets` we
 want to use.  Let's go ahead and install the React and ES6 presets since we're
 going to need those:
 
@@ -97,7 +102,7 @@ npm i babel-preset-react babel-preset-es2015 --save-dev
 ```
 
 Now we have a couple options.  Some people will tell babel to use the presets in
-the loader file like this:  
+the loader in the webpack config file like this:  
 
 ```javascript
 loaders: [
@@ -137,7 +142,7 @@ npm i react react-dom -S
 
 > Using the `-S` flag is an alias for `--save`.  
 
-Now for creating our first React component:  
+Create the first React component:  
 
 ```javascript
 # src/main.js
@@ -181,7 +186,8 @@ worked properly.  If you don't have webpack installed globally (`npm i webpack
 ```
 
 Webpack will by default look for a config with the name `webpack.config.js`.
-You could also pass in a different webpack config as an argument.  
+You could also pass in a different webpack config as an argument if you so
+pleased.  
 
 Let's create an alias for doing the build inside our package.json:  
 
@@ -246,7 +252,7 @@ The script uses the `--content-base` flag to tell webpack we want to serve our
 familiar Rails experience.
 
 Finally, lets add a resolve flag to webpack to make importing files a little
-easier.  Here is the final config with comments, read through them:  
+more intuitive.  Here is the final config with comments, read through them:  
 
 ```javascript
 var webpack = require('webpack');
@@ -368,7 +374,7 @@ I also added sinon so it would be available globally.
 Now that our more 'universal' testing tools are set up (mocha, chai, sinon)
 let's install Enzyme and start testing some React components!
 
-Install deps:
+Install packages:
 ```
 npm i enzyme react-addons-test-utils --save-dev
 ```
