@@ -14,20 +14,20 @@
     <link rel="alternate" href="http://blog.url.com/blog/setting-up-testing-in-react.html"/>
     <id>http://blog.url.com/blog/setting-up-testing-in-react.html</id>
     <published>2016-01-12T16:55:00-05:00</published>
-    <updated>2016-01-12T20:42:21-05:00</updated>
+    <updated>2016-01-12T21:01:45-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
     <content type="html">&lt;p&gt;Testing is an important part of the development cycle.  There is a name for code
 without tests: legacy code.  When I first started learning React and JavaScript
 it was overwhelming to say the least.  If you&amp;#39;re new to the JS/React community you&amp;#39;re 
-probably feeling super overwhelmed as well.  Thinking things like: which build tool should I use?&lt;br&gt;
+probably feeling super overwhelmed as well.  Thinking things like: which build tool should I use?
 Which testing framework is right?  What flux pattern should I be learning?  Do I even need to
 use flux?&lt;/p&gt;
 
 &lt;p&gt;That&amp;#39;s why I decided to write this post.  After hours of reading blog posts,
-looking through source of good JS developers, and one JSConf in Florida I&amp;#39;ve
-finally found my testing &amp;#39;groove&amp;#39;.  In the beginning I felt so naked and dirty for
+looking through source code of respected JS developers, and one JSConf in
+Florida, I&amp;#39;ve finally found my testing &amp;#39;groove&amp;#39;.  In the beginning I felt so naked and dirty for
 programming React code without tests.  I want to live in a world where no
 developer ever needs to feel that way.  It&amp;#39;s just not right.  &lt;/p&gt;
 
@@ -43,11 +43,16 @@ pipeline on crack.  On a basic level it lets you pre/post process all your code
 and serve just one &lt;code&gt;bundle.js&lt;/code&gt; to the client which will run your react app.&lt;/p&gt;
 
 &lt;p&gt;It&amp;#39;s an extremely powerful tool which is why we&amp;#39;ll be using it.  Webpack is one
-of those tools that scares the shit out of you at first, and that&amp;#39;s okay, but
-once you start understanding how it works you feel like a God among men.  Stick
+of those tools that scares the shit out of you at first, which I recommend you
+embrace, but once you start understanding how it works you feel like a God.  Stick
 with it and give it a chance before you judge.  &lt;/p&gt;
 
-&lt;p&gt;Here are some more resources to learn more:&lt;/p&gt;
+&lt;p&gt;We often don&amp;#39;t like things we&amp;#39;re not good at or scared of.  However, once you overcome the initial discomfort and
+start understanding something it almost always becomes fun.  In fact, that&amp;#39;s
+exactly how I felt about testing in general.  Hated it when I sucked at it, love
+it now that I don&amp;#39;t suck at it :-) &lt;/p&gt;
+
+&lt;p&gt;Here are some more resources to learn more about webpack if interested:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt; &lt;a href="https://christianalfoni.github.io/react-webpack-cookbook/Getting-started.html"&gt;Webpack Cookbook&lt;/a&gt;&lt;br&gt;&lt;/li&gt;
@@ -62,7 +67,7 @@ this tutorial.  Anything &lt;code&gt;&amp;gt;4&lt;/code&gt; should be fine thoug
 
 &lt;p&gt;First, lets install all webpack and babel dependencies.  Babel is a JavaScript
 transpiler which allows us to write ES6 (es2015) and ES7 code and make sure it all gets
-compiled down to ES5 which the browser can use.&lt;/p&gt;
+compiled down to ES5 which the browser can use.  &lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;npm init # follow along with normal npm init to set up project
 
 npm i babel-loader babel-core webpack --save-dev
@@ -103,14 +108,14 @@ understand what&amp;#39;s going on:  &lt;/p&gt;
 &lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;exports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;config&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In order for babel to do its job properly we need to tell it what &lt;code&gt;presets&lt;/code&gt; we
+&lt;p&gt;In order for babel to do its job properly we need to tell it which &lt;code&gt;presets&lt;/code&gt; we
 want to use.  Let&amp;#39;s go ahead and install the React and ES6 presets since we&amp;#39;re
 going to need those:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;npm i babel-preset-react babel-preset-es2015 --save-dev
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now we have a couple options.  Some people will tell babel to use the presets in
-the loader file like this:  &lt;/p&gt;
+the loader in the webpack config file like this:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="nx"&gt;loaders&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
   &lt;span class="p"&gt;{&lt;/span&gt; 
     &lt;span class="na"&gt;test&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sr"&gt;/&lt;/span&gt;&lt;span class="se"&gt;\.&lt;/span&gt;&lt;span class="sr"&gt;js$/&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
@@ -144,7 +149,7 @@ everything properly.  Install React and React DOM:  &lt;/p&gt;
 &lt;p&gt;Using the &lt;code&gt;-S&lt;/code&gt; flag is an alias for &lt;code&gt;--save&lt;/code&gt;.  &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Now for creating our first React component:  &lt;/p&gt;
+&lt;p&gt;Create the first React component:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;js&lt;/span&gt;
 &lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;Component&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'react'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;render&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'react-dom'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -182,7 +187,8 @@ worked properly.  If you don&amp;#39;t have webpack installed globally (&lt;code
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Webpack will by default look for a config with the name &lt;code&gt;webpack.config.js&lt;/code&gt;.
-You could also pass in a different webpack config as an argument.  &lt;/p&gt;
+You could also pass in a different webpack config as an argument if you so
+pleased.  &lt;/p&gt;
 
 &lt;p&gt;Let&amp;#39;s create an alias for doing the build inside our package.json:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="kr"&gt;package&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;json&lt;/span&gt;
@@ -237,7 +243,7 @@ scripts: {
 familiar Rails experience.&lt;/p&gt;
 
 &lt;p&gt;Finally, lets add a resolve flag to webpack to make importing files a little
-easier.  Here is the final config with comments, read through them:  &lt;/p&gt;
+more intuitive.  Here is the final config with comments, read through them:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;webpack&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'webpack'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'path'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
@@ -345,7 +351,7 @@ for file changes and re-run your suite.  Hooray productivity!&lt;/p&gt;
 &lt;p&gt;Now that our more &amp;#39;universal&amp;#39; testing tools are set up (mocha, chai, sinon)
 let&amp;#39;s install Enzyme and start testing some React components!&lt;/p&gt;
 
-&lt;p&gt;Install deps:
+&lt;p&gt;Install packages:
 &lt;code&gt;
 npm i enzyme react-addons-test-utils --save-dev
 &lt;/code&gt;&lt;/p&gt;
