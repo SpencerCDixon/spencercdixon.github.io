@@ -42,7 +42,7 @@ it now that I don't suck at it :-)
 
 Here are some more resources to learn more about webpack if interested:
 
-1.  [Webpack Cookbook](https://christianalfoni.github.io/react-webpack-cookbook/Getting-started.html)  
+1.  [Webpack Cookbook](https://christianalfoni.github.io/react-webpack-cookbook/Getting-started.html) (uses Babel 5 but still useful resource for learning webpack fundamentals)
 2.  [Webpack Beginner Blog Post](http://blog.madewithlove.be/post/webpack-your-bags/)  
 3.  [Pete Hunts Infamous Webpack How-to](https://github.com/petehunt/webpack-howto)  
 
