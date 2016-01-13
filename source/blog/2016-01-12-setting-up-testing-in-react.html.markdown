@@ -599,7 +599,7 @@ our component is applying the proper CSS classes given its `isActive` prop.
       <CommentList onMount={() => {}} isActive />
     )
     it('should render with className active-list', () => {
-      expect(wrapper.prop('className').to.eql('active-list');
+      expect(wrapper.prop('className')).to.eql('active-list');
     });
   });
 
@@ -609,7 +609,7 @@ our component is applying the proper CSS classes given its `isActive` prop.
       <CommentList onMount={() => {}} isActive={false} />
     )
     it('should render with className inactive-list', () => {
-      expect(wrapper.prop('className').to.eql('inactive-list');
+      expect(wrapper.prop('className')).to.eql('inactive-list');
     });
   });
 });
@@ -624,11 +624,11 @@ class CommentList extends Component {
   }
 
   render() {
-    const { isActive } = this.props;  // uses ES6 destructuring to get the isActive value
-    const classes = isActive ? 'active-list' : 'inactive-list';
+    const { isActive } = this.props;
+    const className = isActive ? 'active-list' : 'inactive-list';
 
     return (
-      <ul>
+      <ul className={className}>
         <li> Comment One </li>
       </ul>
     )
@@ -641,4 +641,148 @@ your react components.  Remember to read through the amazing Enzyme
 documentation to get some inspiration.
 
 ## Setting Up Karma
+Setting up Karma can be somewhat difficult.  I'll openly admit it was a pain for
+me to get working.  Usually when I develop production React apps I use a
+pre-built starter kit that has all the bells and whistles I know and love.
+[This is the production ready starter kit I highly recommend](https://github.com/davezuko/react-redux-starter-kit). 
 
+The value in using Karma is fast test reloads, multiple browser testing, and
+most importantly webpack preprocessing.  Once we get Karma set up we will be
+able to run our tests through not just a `babel-loader` but ALSO our entire
+webpack config.  This will provide a ton of convenience and make our testing
+environment feel the same as our dev environment which is always a positive.
+
+Lets get down to business...
+
+```unix
+npm i karma karma-chai karma-mocha karma-webpack --save-dev
+npm i karma-sourcemap-loader karma-phantomjs-launcher --save-dev
+npm i phantomjs --save-dev
+
+# The polyfills arn't required but will help with browser support issues
+# and are easy enough to include in our karma config that I figured why not
+npm i babel-polyfill phantomjs-polyfill --save-dev 
+```  
+
+A lot of packages, I know.  Trust me getting this beast tuned in is SO worth it.
+
+For our example we are going to be using [PhantomJS](http://phantomjs.org/).  No
+real reason other than it's what I'm used to using in the starter kit.  Feel
+free to use a Chrome, Firefox, or Safari launcher instead or even on TOP of
+PhantomJS (one of the cool things about Karma ;-)
+
+
+Before going over the massive karma config install `yargs` to let you use
+command line arguments to customize the Karma config a bit.
+```
+npm i yargs -S
+```
+
+Now we will be able to pass in a flag to the Karma config to make it watch
+our files for changes and re-run the suite on save SUPER fast.  Hooray productivity!
+
+**Karma Config**:
+```
+touch karma.config.js
+```
+
+```javascript
+// ./karma.config.js
+
+var argv = require('yargs').argv;
+var path = require('path');
+
+module.exports = function(config) {
+  config.set({
+    // only use PhantomJS for our 'test' browser
+    browsers: ['PhantomJS'],
+
+    // just run once by default unless --watch flag is passed
+    singleRun: !argv.watch,      
+
+    // which karma frameworks do we want integrated
+    frameworks: ['mocha', 'chai'],
+
+    // displays tests in a nice readable format
+    reporters: ['spec'],
+
+    // include some polyfills for babel and phantomjs
+    files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
+      './node_modules/phantomjs-polyfill/bind-polyfill.js',
+      './test/**/*.js' // specify files to watch for tests
+    ],
+    preprocessors: {
+      // these files we want to be precompiled with webpack
+      // also run tests throug sourcemap for easier debugging
+      ['./test/**/*.js']: ['webpack', 'sourcemap']
+    },
+    // A lot of people will reuse the same webpack config that they use
+    // in development for karma but remove any productive plugins like UglifyJS etc.
+    // I choose to just re-write the config so readers can see what it needs to have
+    webpack: {
+       devtool: 'inline-source-map',
+       resolve: {
+        // allow us to import components in tests like:
+        // import Example from 'components/Example';
+        root: path.resolve(__dirname, './src'),
+
+        // allow us to avoid including extension name
+        extensions: ['', '.js', '.jsx'],
+
+        // required for enzyme to work properly
+        alias: {
+          'sinon': 'sinon/pkg/sinon'
+        }
+      },
+      module: {
+        // don't run babel-loader through the sinon module
+        noParse: [
+          /node_modules\/sinon\//
+        ],
+        // run babel loader for our tests
+        loaders: [
+          { test: /\.js?$/, exclude: /node_modules/, loader: 'babel' },
+        ],
+      },
+      // required for enzyme to work properly
+      externals: {
+        'jsdom': 'window',
+        'cheerio': 'window',
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': 'window'
+      },
+    },
+    webpackMiddleware: {
+      noInfo: true
+    },
+    // tell karma all the plugins we're going to be using to prevent warnings
+    plugins: [
+      'karma-mocha',
+      'karma-chai',
+      'karma-webpack',
+      'karma-phantomjs-launcher',
+      'karma-spec-reporter',
+      'karma-sourcemap-loader'
+    ]
+  });
+};
+```
+
+Read through all the comments once or twice to get a better idea of what this
+config is doing.  One of the beautiful things about Webpack is because it's all
+just normal JavaScript code we could 'refactor' our config files.  In fact,
+that's what most starter kits end up doing!  
+
+With Karma set up the last thing we have to do is update our package.json with
+new scripts to run the tests:
+
+```javascript
+# package.json
+  "test": "node_modules/.bin/karma start karma.config.js",
+  "test:dev": "npm run test -- --watch",
+  "old_test": "mocha --compilers js:babel-register --require ./test/test_helper.js --recursive",
+  "old_test:watch": "npm test -- --watch"
+```
+
+I renamed the old test scripts to have a prefix of 'old_'.
