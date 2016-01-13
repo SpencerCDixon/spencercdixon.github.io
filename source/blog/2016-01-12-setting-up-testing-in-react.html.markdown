@@ -1,28 +1,45 @@
 ---
-title: Setting Up Testing In React
+title: Test Driven React Tutorial
 date: 2016-01-12 21:55 UTC
 tags: tutorial, testing, react, javascript
 ---
 
-Coming from the Rails world testing is extremely important to me.  I had a hard
-time figuring out how to get everything set up when I first started out in
-react.  Here is a guide to help newcomers:
+Testing is an important part of the development cycle.  There is a name for code
+without tests: legacy code.  When I first started learning React and JavaScript
+it was overwhelming to say the least.  If you're new to the JS/React community you're 
+probably feeling super overwhelmed as well.  Thinking things like: which build tool should I use?  
+Which testing framework is right?  What flux pattern should I be learning?  Do I even need to
+use flux?
+
+That's why I decided to write this post.  After hours of reading blog posts,
+looking through source of good JS developers, and one JSConf in Florida I've
+finally found my testing 'groove'.  In the beginning I felt so naked and dirty for
+programming React code without tests.  I want to live in a world where no
+developer ever needs to feel that way.  It's just not right.  
+
+All the code for this tutorial is available on my [github located here.](https://github.com/SpencerCDixon/react-testing-starter-kit)
+
+Enjoy... 
 
 ## Setting Up Webpack
 This isn't a tutorial on how to use webpack so I won't go into great detail but
-it's important to understand the basics.  Webpack is a lot like Rails Asset
+it's important to understand the basics.  Webpack is like the Rails Asset
 pipeline on crack.  On a basic level it lets you pre/post process all your code
 and serve just one `bundle.js` to the client which will run your react app.
 
-It's an extremely powerful tool which is why we'll be using it.  Here are some
-more resources to learn more:
+It's an extremely powerful tool which is why we'll be using it.  Webpack is one
+of those tools that scares the shit out of you at first, and that's okay, but
+once you start understanding how it works you feel like a God among men.  Stick
+with it and give it a chance before you judge.  
+
+Here are some more resources to learn more:
 
 1.  [Webpack Cookbook](https://christianalfoni.github.io/react-webpack-cookbook/Getting-started.html)  
 2.  [Webpack Beginner Blog Post](http://blog.madewithlove.be/post/webpack-your-bags/)  
 3.  [Pete Hunts Infamous Webpack How-to](https://github.com/petehunt/webpack-howto)  
 
 > **NOTE**: I recommend using node `v5.1.0` if you're going to follow along with
-> this tutorial.  Anything >4 should be fine though.
+> this tutorial.  Anything `>4` should be fine though.
 
 First, lets install all webpack and babel dependencies.  Babel is a JavaScript
 transpiler which allows us to write ES6 (es2015) and ES7 code and make sure it all gets
@@ -33,7 +50,8 @@ npm init # follow along with normal npm init to set up project
 
 npm i babel-loader babel-core webpack --save-dev
 ```
-`npm i` is an alias for npm install
+
+> `npm i` is an alias for npm install.  
 
 Next lets set up our project directory and create a `webpack.config.js` file:
 
@@ -48,9 +66,9 @@ touch webpack.config.js    # our webpack configuration file
 Our initial webpack config will be super minimal.  Read through comments to
 understand what's going on:  
 
-```javascript
+```javascript  
 var webpack = require('webpack'); 
-var path = require('path'); // a useful node path helper library
+var path = require('path');                // a useful node path helper library
 
 var config = {
   entry: ['./src/main.js'],                // the entry point for our app
@@ -80,6 +98,7 @@ npm i babel-preset-react babel-preset-es2015 --save-dev
 
 Now we have a couple options.  Some people will tell babel to use the presets in
 the loader file like this:  
+
 ```javascript
 loaders: [
   { 
@@ -110,14 +129,15 @@ Paste in the presets:
 ```
 
 To confirm it works lets put some react code in `main.js` and see if it bundles
-everything properly.  First we need to install react:  
+everything properly.  Install React and React DOM:  
 
 ```javascript
 npm i react react-dom -S
 ```
 
-Using the `-S` flag is an alias for `--save`.  Now for creating our first React
-component:  
+> Using the `-S` flag is an alias for `--save`.  
+
+Now for creating our first React component:  
 
 ```javascript
 # src/main.js
@@ -160,7 +180,8 @@ worked properly.  If you don't have webpack installed globally (`npm i webpack
 ./node_modules/.bin/webpack
 ```
 
-Webpack will by default look for your `webpack.config.js`.
+Webpack will by default look for a config with the name `webpack.config.js`.
+You could also pass in a different webpack config as an argument.  
 
 Let's create an alias for doing the build inside our package.json:  
 
@@ -222,10 +243,10 @@ scripts: {
 
 The script uses the `--content-base` flag to tell webpack we want to serve our
 `/dist` folder.  We're also explicitly using port 3000 to provide a more
-familiar rails dev experience.
+familiar Rails experience.
 
-Finally, lets add a resolve flag to webpack to make development life a little
-bit more enjoyable... here is the final config with comments explaining:  
+Finally, lets add a resolve flag to webpack to make importing files a little
+easier.  Here is the final config with comments, read through them:  
 
 ```javascript
 var webpack = require('webpack');
@@ -278,7 +299,7 @@ use RSpec like syntax.
 **Enzyme**: will be used for testing our React components.  It's a beautiful
 testing library written by AirBnB.  
 
-Install deps:  
+Install packages:  
 
 ```
 npm i mocha chai sinon --save-dev
@@ -322,7 +343,7 @@ describe('hello world', () => {
 Pretty chill... almost looks like RSpec!
 
 Importing `expect` for every test is kind of a bummer though so lets create a
-`test_helper` file to save keystrokes.
+`test_helper` file to save keystrokes.  
 
 ```javascript
 # /tests/test_helper.js
@@ -355,7 +376,7 @@ npm i enzyme react-addons-test-utils --save-dev
 Enzyme has great documentation which can be [found here](http://airbnb.io/enzyme/).  I recommend reading
 through the Shallow Rendering section when you have the time.
 
-What is Shallow Rendering you ask?
+> *What is Shallow Rendering you ask?*  
 
 Well, it's a way for us to call the `render` method of our components and get
 back React elements which we can make assertions on without having to actually
@@ -405,6 +426,9 @@ If we run the tests with `npm test` they should fail.  It makes sense since we
 havn't actually created a Root component in the proper location.  So lets do
 that:  
 
+> If at any point you want to see the source for this code it is all available 
+> [on github here](https://github.com/SpencerCDixon/react-testing-starter-kit)
+
 ```javascript
 # /src/containers/Root.js
 import React, { Component } from 'react';
@@ -426,17 +450,13 @@ class Root extends Component {
 
 export default Root;
 ```  
-If you re-run the tests they should all pass now.  Stick to using `shallow` as
-much as you possibly can in your tests.  Occasionally it's not possible
-though.  For example, if you need to test the React lifecycle methods then you
-need the component to actually mount.  
+If you re-run the tests they should all pass now.  
 
 There was a lot of duplication in our tests so lets go back and do some
-refactoring.  Since we're never passing any props to the `Root` and therefore
-have no tests that are dependant on them we can just shallow render the
-component once and then make all our assertions.  Often times I find myself
+refactoring.  Since we're never passing any props to the `Root`, we can just
+shallow render it once and then make all our assertions.  Often times I find myself
 wrapping a section of tests in sub describe blocks that pass in a certain set of
-props and then make a bunch of assertions.  
+props and then make a bunch of assertions given those props.  
 
 ```javascript
 describe('(Container) Root', () => {
@@ -458,15 +478,21 @@ describe('(Container) Root', () => {
     expect(wrapper.find('.welcome-header')).to.have.length(1);
   });
 });
-```
+```  
+
+Stick to using `shallow` as
+much as you possibly can in your tests.  Occasionally it's not possible
+though.  For example, if you need to test the React lifecycle methods then you
+need the component to actually mount.  
 
 Next lets test a component mounting and calling a function when it mounts so we can
 get some exposure to `sinon` and using spys.
 
 We can pretend that the `Root` component has a child called `CommentList` which
-will call some arbitrary callback when it mounts given via props.  Let's also
+will call some arbitrary callback when it mounts.  The function it calls when it
+mounts will be given via props so we can practice testing that scenario.  Let's also
 conditionally render some styles on the comment list so we can see how to deal
-with props in shallow renders:
+with styling in shallow renders:
 
 ```javascript
 import React from 'react';
@@ -494,7 +520,7 @@ describe('(Component) CommentList', () => {
       spyLifecyle(CommentList);
 
       const props = {
-        onMount: () => {},
+        onMount: () => {},  // an anonymous function in ES6 arrow syntax
         isActive: false
       }
 
@@ -525,7 +551,7 @@ describe('(Component) CommentList', () => {
 ```
 
 There is a lot going on there.  Read through the comments to get a better
-understand.  Look at the implementation that makes the tests pass then go back
+understanding.  Look at the implementation that makes the tests pass then go back
 and look at the tests again to confirm you understand.
 
 ```javascript
@@ -555,8 +581,8 @@ CommentList.propTypes = propTypes;
 export default CommentList;
 ```
 
-Tests should now pass.  Next lets add some shallow rendered tests to make sure
-our component is applying the proper CSS classes given its prop.
+The suite should now pass.  Next lets add some shallow rendered tests to make sure
+our component is applying the proper CSS classes given its `isActive` prop.
 
 ```javascript
 ... previous tests
@@ -598,7 +624,7 @@ class CommentList extends Component {
   }
 
   render() {
-    const { isActive } = this.props;
+    const { isActive } = this.props;  // uses ES6 destructuring to get the isActive value
     const classes = isActive ? 'active-list' : 'inactive-list';
 
     return (
@@ -612,8 +638,7 @@ class CommentList extends Component {
 
 At this point you should have a good understanding on how to go about testing
 your react components.  Remember to read through the amazing Enzyme
-documentation to get inspiration and ideas on how to test your Components.
+documentation to get some inspiration.
 
 ## Setting Up Karma
 
-TODO:
