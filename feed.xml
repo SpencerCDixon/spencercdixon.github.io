@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/blog/setting-up-testing-in-react.html"/>
     <id>http://blog.url.com/blog/setting-up-testing-in-react.html</id>
     <published>2016-01-12T16:55:00-05:00</published>
-    <updated>2016-01-13T06:56:58-05:00</updated>
+    <updated>2016-01-13T07:54:00-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -73,7 +73,9 @@ this tutorial.  Anything &lt;code&gt;&amp;gt;4&lt;/code&gt; should be fine thoug
 &lt;p&gt;First, lets install all webpack and babel dependencies.  Babel is a JavaScript
 transpiler which allows us to write ES6 (es2015) and ES7 code and make sure it all gets
 compiled down to ES5 which the browser can use.  &lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;npm init # follow along with normal npm init to set up project
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;mkdir tdd_react
+cd tdd_react
+npm init        # follow along with normal npm init to set up project
 
 npm i babel-loader babel-core webpack --save-dev
 &lt;/code&gt;&lt;/pre&gt;
@@ -92,7 +94,9 @@ touch webpack.config.js    # our webpack configuration file
 
 &lt;p&gt;Our initial webpack config will be super minimal.  Read through comments to
 understand what&amp;#39;s going on:  &lt;/p&gt;
-&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;webpack&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'webpack'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="c1"&gt;// our webpack.config.js file located in project root&lt;/span&gt;
+
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;webpack&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'webpack'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'path'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;                &lt;span class="c1"&gt;// a useful node path helper library&lt;/span&gt;
 
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -120,7 +124,7 @@ going to need those:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now we have a couple options.  Some people will tell babel to use the presets in
-the loader in the webpack config file like this:  &lt;/p&gt;
+the loader directly in the webpack config file like this:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="nx"&gt;loaders&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
   &lt;span class="p"&gt;{&lt;/span&gt; 
     &lt;span class="na"&gt;test&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sr"&gt;/&lt;/span&gt;&lt;span class="se"&gt;\.&lt;/span&gt;&lt;span class="sr"&gt;js$/&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
@@ -134,8 +138,12 @@ the loader in the webpack config file like this:  &lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Another approach is to store them in a &lt;code&gt;.babelrc&lt;/code&gt; which is what I&amp;#39;m going to do
-for this project.  &lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;touch .babelrc
+for this project.  By storing our babel presets in the &lt;code&gt;.babelrc&lt;/code&gt; it makes it
+easier for future developers to find what kind of babel presets are enabled for
+this project.  Additionally, when we set up Karma to use webpack later in the tutorial we won&amp;#39;t need to 
+do any preset configuration since it will already be present in the &lt;code&gt;.babelrc&lt;/code&gt; file.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;# inside our project root
+touch .babelrc
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Paste in the presets:  &lt;/p&gt;
@@ -289,6 +297,15 @@ more intuitive.  Here is the final config with comments, read through them:  &lt
 
 &lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;exports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;config&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To confirm everything works lets go ahead and run the dev server and confirm we
+see &amp;#39;Hello World&amp;#39; on the screen.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;npm run dev
+open http://localhost:3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should see something that looks like this:
+&lt;img alt="Hello World Image" src="http://i.imgur.com/rYTjH77.png?1" /&gt;&lt;/p&gt;
 
 &lt;h2&gt;Setting Up Mocha, Chai, Sinon, and Enzyme&lt;/h2&gt;
 

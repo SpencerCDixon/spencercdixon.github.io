@@ -130,7 +130,9 @@ this tutorial.  Anything <code>&gt;4</code> should be fine though.</p>
 <p>First, lets install all webpack and babel dependencies.  Babel is a JavaScript
 transpiler which allows us to write ES6 (es2015) and ES7 code and make sure it all gets
 compiled down to ES5 which the browser can use.  </p>
-<pre class="highlight plaintext"><code>npm init # follow along with normal npm init to set up project
+<pre class="highlight plaintext"><code>mkdir tdd_react
+cd tdd_react
+npm init        # follow along with normal npm init to set up project
 
 npm i babel-loader babel-core webpack --save-dev
 </code></pre>
@@ -149,7 +151,9 @@ touch webpack.config.js    # our webpack configuration file
 
 <p>Our initial webpack config will be super minimal.  Read through comments to
 understand what&#39;s going on:  </p>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack'</span><span class="p">);</span> 
+<pre class="highlight javascript"><code><span class="c1">// our webpack.config.js file located in project root</span>
+
+<span class="kd">var</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack'</span><span class="p">);</span> 
 <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>                <span class="c1">// a useful node path helper library</span>
 
 <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
@@ -177,7 +181,7 @@ going to need those:</p>
 </code></pre>
 
 <p>Now we have a couple options.  Some people will tell babel to use the presets in
-the loader in the webpack config file like this:  </p>
+the loader directly in the webpack config file like this:  </p>
 <pre class="highlight javascript"><code><span class="nx">loaders</span><span class="err">:</span> <span class="p">[</span>
   <span class="p">{</span> 
     <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">js$/</span><span class="p">,</span> 
@@ -191,8 +195,12 @@ the loader in the webpack config file like this:  </p>
 </code></pre>
 
 <p>Another approach is to store them in a <code>.babelrc</code> which is what I&#39;m going to do
-for this project.  </p>
-<pre class="highlight plaintext"><code>touch .babelrc
+for this project.  By storing our babel presets in the <code>.babelrc</code> it makes it
+easier for future developers to find what kind of babel presets are enabled for
+this project.  Additionally, when we set up Karma to use webpack later in the tutorial we won&#39;t need to 
+do any preset configuration since it will already be present in the <code>.babelrc</code> file.</p>
+<pre class="highlight plaintext"><code># inside our project root
+touch .babelrc
 </code></pre>
 
 <p>Paste in the presets:  </p>
@@ -346,6 +354,15 @@ more intuitive.  Here is the final config with comments, read through them:  </p
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">config</span><span class="p">;</span>
 </code></pre>
+
+<p>To confirm everything works lets go ahead and run the dev server and confirm we
+see &#39;Hello World&#39; on the screen.</p>
+<pre class="highlight plaintext"><code>npm run dev
+open http://localhost:3000
+</code></pre>
+
+<p>You should see something that looks like this:
+<img alt="Hello World Image" src="http://i.imgur.com/rYTjH77.png?1" /></p>
 
 <h2>Setting Up Mocha, Chai, Sinon, and Enzyme</h2>
 
