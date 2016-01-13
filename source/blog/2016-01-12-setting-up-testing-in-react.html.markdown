@@ -460,9 +460,10 @@ If you re-run the tests they should all pass now.
 
 There was a lot of duplication in our tests so lets go back and do some
 refactoring.  Since we're never passing any props to the `Root`, we can just
-shallow render it once and then make all our assertions.  Often times I find myself
-wrapping a section of tests in sub describe blocks that pass in a certain set of
-props and then make a bunch of assertions given those props.  
+shallow render it once and then make all our assertions off that one wrapper.  Often times I find myself
+wrapping a section of tests in 'sub' describe blocks that pass in a certain set of
+props and then make a bunch of assertions given those props.  Similar to using
+'context' blocks if you've used RSpec.  
 
 ```javascript
 describe('(Container) Root', () => {
