@@ -626,7 +626,7 @@ our component is applying the proper CSS classes given its <code>isActive</code>
       <span class="o">&lt;</span><span class="nx">CommentList</span> <span class="nx">onMount</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{}}</span> <span class="nx">isActive</span> <span class="o">/&gt;</span>
     <span class="p">)</span>
     <span class="nx">it</span><span class="p">(</span><span class="s1">'should render with className active-list'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'className'</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="s1">'active-list'</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'className'</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="s1">'active-list'</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">});</span>
 
@@ -636,7 +636,7 @@ our component is applying the proper CSS classes given its <code>isActive</code>
       <span class="o">&lt;</span><span class="nx">CommentList</span> <span class="nx">onMount</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{}}</span> <span class="nx">isActive</span><span class="o">=</span><span class="p">{</span><span class="kc">false</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
 </span>    <span class="p">)</span>
     <span class="nx">it</span><span class="p">(</span><span class="s1">'should render with className inactive-list'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'className'</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="s1">'inactive-list'</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'className'</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="s1">'inactive-list'</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
@@ -649,11 +649,11 @@ our component is applying the proper CSS classes given its <code>isActive</code>
   <span class="p">}</span>
 
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="p">{</span> <span class="nx">isActive</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>  <span class="c1">// uses ES6 destructuring to get the isActive value</span>
-    <span class="kr">const</span> <span class="nx">classes</span> <span class="o">=</span> <span class="nx">isActive</span> <span class="p">?</span> <span class="s1">'active-list'</span> <span class="p">:</span> <span class="s1">'inactive-list'</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="p">{</span> <span class="nx">isActive</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">className</span> <span class="o">=</span> <span class="nx">isActive</span> <span class="p">?</span> <span class="s1">'active-list'</span> <span class="p">:</span> <span class="s1">'inactive-list'</span><span class="p">;</span>
 
     <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">ul</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">className</span><span class="p">}</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span> <span class="nx">Comment</span> <span class="nx">One</span> <span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
 </span>      <span class="o">&lt;</span><span class="sr">/ul</span><span class="err">&gt;
 </span>    <span class="p">)</span>
@@ -666,6 +666,145 @@ your react components.  Remember to read through the amazing Enzyme
 documentation to get some inspiration.</p>
 
 <h2>Setting Up Karma</h2>
+
+<p>Setting up Karma can be somewhat difficult.  I&#39;ll openly admit it was a pain for
+me to get working.  Usually when I develop production React apps I use a
+pre-built starter kit that has all the bells and whistles I know and love.
+<a href="https://github.com/davezuko/react-redux-starter-kit">This is the production ready starter kit I highly recommend</a>. </p>
+
+<p>The value in using Karma is fast test reloads, multiple browser testing, and
+most importantly webpack preprocessing.  Once we get Karma set up we will be
+able to run our tests through not just a <code>babel-loader</code> but ALSO our entire
+webpack config.  This will provide a ton of convenience and make our testing
+environment feel the same as our dev environment which is always a positive.</p>
+
+<p>Lets get down to business...</p>
+<pre class="highlight plaintext"><code>npm i karma karma-chai karma-mocha karma-webpack --save-dev
+npm i karma-sourcemap-loader karma-phantomjs-launcher --save-dev
+npm i phantomjs --save-dev
+
+# The polyfills arn't required but will help with browser support issues
+# and are easy enough to include in our karma config that I figured why not
+npm i babel-polyfill phantomjs-polyfill --save-dev 
+</code></pre>
+
+<p>A lot of packages, I know.  Trust me getting this beast tuned in is SO worth it.</p>
+
+<p>For our example we are going to be using <a href="http://phantomjs.org/">PhantomJS</a>.  No
+real reason other than it&#39;s what I&#39;m used to using in the starter kit.  Feel
+free to use a Chrome, Firefox, or Safari launcher instead or even on TOP of
+PhantomJS (one of the cool things about Karma ;-)</p>
+
+<p>Before going over the massive karma config install <code>yargs</code> to let you use
+command line arguments to customize the Karma config a bit.
+<code>
+npm i yargs -S
+</code></p>
+
+<p>Now we will be able to pass in a flag to the Karma config to make it watch
+our files for changes and re-run the suite on save SUPER fast.  Hooray productivity!</p>
+
+<p><strong>Karma Config</strong>:
+<code>
+touch karma.config.js
+</code></p>
+<pre class="highlight javascript"><code><span class="c1">// ./karma.config.js</span>
+
+<span class="kd">var</span> <span class="nx">argv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'yargs'</span><span class="p">).</span><span class="nx">argv</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">config</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
+    <span class="c1">// only use PhantomJS for our 'test' browser</span>
+    <span class="na">browsers</span><span class="p">:</span> <span class="p">[</span><span class="s1">'PhantomJS'</span><span class="p">],</span>
+
+    <span class="c1">// just run once by default unless --watch flag is passed</span>
+    <span class="na">singleRun</span><span class="p">:</span> <span class="o">!</span><span class="nx">argv</span><span class="p">.</span><span class="nx">watch</span><span class="p">,</span>      
+
+    <span class="c1">// which karma frameworks do we want integrated</span>
+    <span class="na">frameworks</span><span class="p">:</span> <span class="p">[</span><span class="s1">'mocha'</span><span class="p">,</span> <span class="s1">'chai'</span><span class="p">],</span>
+
+    <span class="c1">// displays tests in a nice readable format</span>
+    <span class="na">reporters</span><span class="p">:</span> <span class="p">[</span><span class="s1">'spec'</span><span class="p">],</span>
+
+    <span class="c1">// include some polyfills for babel and phantomjs</span>
+    <span class="na">files</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s1">'node_modules/babel-polyfill/dist/polyfill.js'</span><span class="p">,</span>
+      <span class="s1">'./node_modules/phantomjs-polyfill/bind-polyfill.js'</span><span class="p">,</span>
+      <span class="s1">'./test/**/*.js'</span> <span class="c1">// specify files to watch for tests</span>
+    <span class="p">],</span>
+    <span class="na">preprocessors</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// these files we want to be precompiled with webpack</span>
+      <span class="c1">// also run tests throug sourcemap for easier debugging</span>
+      <span class="p">[</span><span class="s1">'./test/**/*.js'</span><span class="p">]:</span> <span class="p">[</span><span class="s1">'webpack'</span><span class="p">,</span> <span class="s1">'sourcemap'</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="c1">// A lot of people will reuse the same webpack config that they use</span>
+    <span class="c1">// in development for karma but remove any productive plugins like UglifyJS etc.</span>
+    <span class="c1">// I choose to just re-write the config so readers can see what it needs to have</span>
+    <span class="na">webpack</span><span class="p">:</span> <span class="p">{</span>
+       <span class="na">devtool</span><span class="p">:</span> <span class="s1">'inline-source-map'</span><span class="p">,</span>
+       <span class="na">resolve</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">// allow us to import components in tests like:</span>
+        <span class="c1">// import Example from 'components/Example';</span>
+        <span class="na">root</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'./src'</span><span class="p">),</span>
+
+        <span class="c1">// allow us to avoid including extension name</span>
+        <span class="na">extensions</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'.js'</span><span class="p">,</span> <span class="s1">'.jsx'</span><span class="p">],</span>
+
+        <span class="c1">// required for enzyme to work properly</span>
+        <span class="na">alias</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s1">'sinon'</span><span class="p">:</span> <span class="s1">'sinon/pkg/sinon'</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">// don't run babel-loader through the sinon module</span>
+        <span class="na">noParse</span><span class="p">:</span> <span class="p">[</span>
+          <span class="sr">/node_modules</span><span class="se">\/</span><span class="sr">sinon</span><span class="se">\/</span><span class="sr">/</span>
+        <span class="p">],</span>
+        <span class="c1">// run babel loader for our tests</span>
+        <span class="na">loaders</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span> <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">js</span><span class="se">?</span><span class="sr">$/</span><span class="p">,</span> <span class="na">exclude</span><span class="p">:</span> <span class="sr">/node_modules/</span><span class="p">,</span> <span class="na">loader</span><span class="p">:</span> <span class="s1">'babel'</span> <span class="p">},</span>
+        <span class="p">],</span>
+      <span class="p">},</span>
+      <span class="c1">// required for enzyme to work properly</span>
+      <span class="na">externals</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'jsdom'</span><span class="p">:</span> <span class="s1">'window'</span><span class="p">,</span>
+        <span class="s1">'cheerio'</span><span class="p">:</span> <span class="s1">'window'</span><span class="p">,</span>
+        <span class="s1">'react/lib/ExecutionEnvironment'</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'react/lib/ReactContext'</span><span class="p">:</span> <span class="s1">'window'</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="na">webpackMiddleware</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">noInfo</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="c1">// tell karma all the plugins we're going to be using to prevent warnings</span>
+    <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s1">'karma-mocha'</span><span class="p">,</span>
+      <span class="s1">'karma-chai'</span><span class="p">,</span>
+      <span class="s1">'karma-webpack'</span><span class="p">,</span>
+      <span class="s1">'karma-phantomjs-launcher'</span><span class="p">,</span>
+      <span class="s1">'karma-spec-reporter'</span><span class="p">,</span>
+      <span class="s1">'karma-sourcemap-loader'</span>
+    <span class="p">]</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre>
+
+<p>Read through all the comments once or twice to get a better idea of what this
+config is doing.  One of the beautiful things about Webpack is because it&#39;s all
+just normal JavaScript code we could &#39;refactor&#39; our config files.  In fact,
+that&#39;s what most starter kits end up doing!  </p>
+
+<p>With Karma set up the last thing we have to do is update our package.json with
+new scripts to run the tests:</p>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
+  <span class="s2">"test"</span><span class="err">:</span> <span class="s2">"node_modules/.bin/karma start karma.config.js"</span><span class="p">,</span>
+  <span class="s2">"test:dev"</span><span class="err">:</span> <span class="s2">"npm run test -- --watch"</span><span class="p">,</span>
+  <span class="s2">"old_test"</span><span class="err">:</span> <span class="s2">"mocha --compilers js:babel-register --require ./test/test_helper.js --recursive"</span><span class="p">,</span>
+  <span class="s2">"old_test:watch"</span><span class="err">:</span> <span class="s2">"npm test -- --watch"</span>
+</code></pre>
+
+<p>I renamed the old test scripts to have a prefix of &#39;old_&#39;.</p>
 
 
   <a href="#" id="hide_comments">Hide Comments<a>
