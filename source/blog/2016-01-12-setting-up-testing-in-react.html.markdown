@@ -54,7 +54,9 @@ transpiler which allows us to write ES6 (es2015) and ES7 code and make sure it a
 compiled down to ES5 which the browser can use.  
 
 ```
-npm init # follow along with normal npm init to set up project
+mkdir tdd_react
+cd tdd_react
+npm init        # follow along with normal npm init to set up project
 
 npm i babel-loader babel-core webpack --save-dev
 ```
@@ -75,6 +77,8 @@ Our initial webpack config will be super minimal.  Read through comments to
 understand what's going on:  
 
 ```javascript  
+// our webpack.config.js file located in project root
+
 var webpack = require('webpack'); 
 var path = require('path');                // a useful node path helper library
 
@@ -105,7 +109,7 @@ npm i babel-preset-react babel-preset-es2015 --save-dev
 ```
 
 Now we have a couple options.  Some people will tell babel to use the presets in
-the loader in the webpack config file like this:  
+the loader directly in the webpack config file like this:  
 
 ```javascript
 loaders: [
@@ -121,9 +125,13 @@ loaders: [
 ```
 
 Another approach is to store them in a `.babelrc` which is what I'm going to do
-for this project.  
+for this project.  By storing our babel presets in the `.babelrc` it makes it
+easier for future developers to find what kind of babel presets are enabled for
+this project.  Additionally, when we set up Karma to use webpack later in the tutorial we won't need to 
+do any preset configuration since it will already be present in the `.babelrc` file.
 
 ```  
+# inside our project root
 touch .babelrc
 ```  
 
@@ -298,6 +306,17 @@ var config = {
 
 module.exports = config;
 ```
+
+To confirm everything works lets go ahead and run the dev server and confirm we
+see 'Hello World' on the screen.
+
+```
+npm run dev
+open http://localhost:3000
+```
+
+You should see something that looks like this:
+![Hello World Image](http://i.imgur.com/rYTjH77.png?1)
 
 ## Setting Up Mocha, Chai, Sinon, and Enzyme
 
