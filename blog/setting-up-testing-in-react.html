@@ -196,8 +196,8 @@ the loader directly in the webpack config file like this:  </p>
 
 <p>Another approach is to store them in a <code>.babelrc</code> which is what I&#39;m going to do
 for this project.  By storing our babel presets in the <code>.babelrc</code> it makes it
-easier for future developers to find what kind of babel presets are enabled for
-this project.  Additionally, when we set up Karma to use webpack later in the tutorial we won&#39;t need to 
+easier for future developers to find what kind of babel presets are enabled.
+Additionally, when we set up Karma to use webpack later in the tutorial we won&#39;t need to 
 do any preset configuration since it will already be present in the <code>.babelrc</code> file.</p>
 <pre class="highlight plaintext"><code># inside our project root
 touch .babelrc
@@ -361,8 +361,9 @@ see &#39;Hello World&#39; on the screen.</p>
 open http://localhost:3000
 </code></pre>
 
-<p>You should see something that looks like this:
-<img alt="Hello World Image" src="http://i.imgur.com/rYTjH77.png?1" /></p>
+<p>You should see something that looks like this:  </p>
+
+<p><img alt="Hello World Image" src="http://i.imgur.com/rYTjH77.png?1" /></p>
 
 <h2>Setting Up Mocha, Chai, Sinon, and Enzyme</h2>
 
@@ -398,7 +399,7 @@ before running.  To do that we can use babel-register:  </p>
 recursively through our <code>/test</code> directory.</p>
 
 <p>Eventually we&#39;re going to set up Karma so these npm scripts will be useless but
-if Karma isn&#39;t your thing then those should work fine.  <code>test:watch</code> will watch
+if Karma isn&#39;t your thing then those should work fine.  <code>npm run test:watch</code> will watch
 for file changes and re-run your suite.  Hooray productivity!</p>
 
 <p>To confirm it works lets create a hello world test in <code>/tests/helloWorld.spec.js</code>  </p>
@@ -424,7 +425,7 @@ for file changes and re-run your suite.  Hooray productivity!</p>
 <span class="nx">global</span><span class="p">.</span><span class="nx">sinon</span> <span class="o">=</span> <span class="nx">sinon</span><span class="p">;</span>
 </code></pre>
 
-<p>Then include it in the npm script that runs the suite:  </p>
+<p>Then include it in the npm script that runs the suite via the <code>--require ./test/test_helper.js</code> statement:  </p>
 <pre class="highlight javascript"><code><span class="err">#</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span> <span class="nx">script</span> <span class="nx">section</span>
   <span class="s2">"test"</span><span class="err">:</span> <span class="s2">"mocha --compilers js:babel-register --require ./test/test_helper.js --recursive"</span><span class="p">,</span>
 </code></pre>
@@ -908,6 +909,31 @@ new scripts to run the tests:</p>
 <span class="p">}</span>
 </code></pre>
 
+<p>With the addition of webpack preprocessing in our test suite we can now remove
+those annoying relative path declarations inside our tests:</p>
+<pre class="highlight javascript"><code><span class="c1">// test/containers/Root.spec.js</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">shallow</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'enzyme'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Root</span> <span class="nx">from</span> <span class="s1">'containers/Root'</span><span class="p">;</span>               <span class="c1">// new import statement</span>
+<span class="c1">// import Root from '../../src/containers/Root';  // old import statement</span>
+
+<span class="c1">// test/components/CommentList.spec.js</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+
+<span class="c1">// Once we set up Karma to run our tests through webpack</span>
+<span class="c1">// we will no longer need to have these long relative paths</span>
+<span class="kr">import</span> <span class="nx">CommentList</span> <span class="nx">from</span> <span class="s1">'components/CommentList'</span><span class="p">;</span>               <span class="c1">// new import statement</span>
+<span class="c1">// import CommentList from '../../src/components/CommentList';  // old import statement</span>
+
+<span class="kr">import</span> <span class="p">{</span>
+  <span class="nx">describeWithDOM</span><span class="p">,</span>
+  <span class="nx">mount</span><span class="p">,</span>
+  <span class="nx">shallow</span><span class="p">,</span>
+  <span class="nx">spyLifecycle</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">'enzyme'</span><span class="p">;</span>
+
+</code></pre>
+
 <p>To use this starter kit in development now all you need to do is run:  </p>
 <pre class="highlight javascript"><code><span class="nx">npm</span> <span class="nx">run</span> <span class="nx">dev</span>         <span class="err">#</span> <span class="nx">note</span> <span class="nx">the</span> <span class="nx">addition</span> <span class="nx">of</span> <span class="nx">run</span>
 <span class="nx">npm</span> <span class="nx">run</span> <span class="nx">test</span><span class="err">:</span><span class="nx">dev</span>    <span class="err">#</span> <span class="nx">note</span> <span class="nx">the</span> <span class="nx">addition</span> <span class="nx">of</span> <span class="nx">run</span>
@@ -917,9 +943,13 @@ new scripts to run the tests:</p>
 
 <h3>Conclusion</h3>
 
+<p>We have no set up a solid testing environment that can grow and evolve to your
+project specific needs.  In the next blog post I will spend more time going
+over specific testing scenarios and how to test Redux.  </p>
+
 <p>I&#39;ve only been programming in React for a few months but I&#39;m already in love.  I
 hope this tutorial has helped you to get a deeper understanding of some React
-Testing best practices.  Feel free to reach out to me with any
+testing best practices.  Feel free to reach out to me with any
 questions/comments.  Test on my friends!</p>
 
 

@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/blog/setting-up-testing-in-react.html"/>
     <id>http://blog.url.com/blog/setting-up-testing-in-react.html</id>
     <published>2016-01-12T16:55:00-05:00</published>
-    <updated>2016-01-13T07:54:00-05:00</updated>
+    <updated>2016-01-13T08:06:16-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -139,8 +139,8 @@ the loader directly in the webpack config file like this:  &lt;/p&gt;
 
 &lt;p&gt;Another approach is to store them in a &lt;code&gt;.babelrc&lt;/code&gt; which is what I&amp;#39;m going to do
 for this project.  By storing our babel presets in the &lt;code&gt;.babelrc&lt;/code&gt; it makes it
-easier for future developers to find what kind of babel presets are enabled for
-this project.  Additionally, when we set up Karma to use webpack later in the tutorial we won&amp;#39;t need to 
+easier for future developers to find what kind of babel presets are enabled.
+Additionally, when we set up Karma to use webpack later in the tutorial we won&amp;#39;t need to 
 do any preset configuration since it will already be present in the &lt;code&gt;.babelrc&lt;/code&gt; file.&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;# inside our project root
 touch .babelrc
@@ -304,8 +304,9 @@ see &amp;#39;Hello World&amp;#39; on the screen.&lt;/p&gt;
 open http://localhost:3000
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You should see something that looks like this:
-&lt;img alt="Hello World Image" src="http://i.imgur.com/rYTjH77.png?1" /&gt;&lt;/p&gt;
+&lt;p&gt;You should see something that looks like this:  &lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Hello World Image" src="http://i.imgur.com/rYTjH77.png?1" /&gt;&lt;/p&gt;
 
 &lt;h2&gt;Setting Up Mocha, Chai, Sinon, and Enzyme&lt;/h2&gt;
 
@@ -341,7 +342,7 @@ before running.  To do that we can use babel-register:  &lt;/p&gt;
 recursively through our &lt;code&gt;/test&lt;/code&gt; directory.&lt;/p&gt;
 
 &lt;p&gt;Eventually we&amp;#39;re going to set up Karma so these npm scripts will be useless but
-if Karma isn&amp;#39;t your thing then those should work fine.  &lt;code&gt;test:watch&lt;/code&gt; will watch
+if Karma isn&amp;#39;t your thing then those should work fine.  &lt;code&gt;npm run test:watch&lt;/code&gt; will watch
 for file changes and re-run your suite.  Hooray productivity!&lt;/p&gt;
 
 &lt;p&gt;To confirm it works lets create a hello world test in &lt;code&gt;/tests/helloWorld.spec.js&lt;/code&gt;  &lt;/p&gt;
@@ -367,7 +368,7 @@ for file changes and re-run your suite.  Hooray productivity!&lt;/p&gt;
 &lt;span class="nx"&gt;global&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;sinon&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;sinon&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Then include it in the npm script that runs the suite:  &lt;/p&gt;
+&lt;p&gt;Then include it in the npm script that runs the suite via the &lt;code&gt;--require ./test/test_helper.js&lt;/code&gt; statement:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="kr"&gt;package&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;json&lt;/span&gt; &lt;span class="nx"&gt;script&lt;/span&gt; &lt;span class="nx"&gt;section&lt;/span&gt;
   &lt;span class="s2"&gt;"test"&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"mocha --compilers js:babel-register --require ./test/test_helper.js --recursive"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -851,6 +852,31 @@ new scripts to run the tests:&lt;/p&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;With the addition of webpack preprocessing in our test suite we can now remove
+those annoying relative path declarations inside our tests:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="c1"&gt;// test/containers/Root.spec.js&lt;/span&gt;
+&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'react'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;shallow&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'enzyme'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;Root&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'containers/Root'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;               &lt;span class="c1"&gt;// new import statement&lt;/span&gt;
+&lt;span class="c1"&gt;// import Root from '../../src/containers/Root';  // old import statement&lt;/span&gt;
+
+&lt;span class="c1"&gt;// test/components/CommentList.spec.js&lt;/span&gt;
+&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'react'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Once we set up Karma to run our tests through webpack&lt;/span&gt;
+&lt;span class="c1"&gt;// we will no longer need to have these long relative paths&lt;/span&gt;
+&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;CommentList&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'components/CommentList'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;               &lt;span class="c1"&gt;// new import statement&lt;/span&gt;
+&lt;span class="c1"&gt;// import CommentList from '../../src/components/CommentList';  // old import statement&lt;/span&gt;
+
+&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;describeWithDOM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nx"&gt;mount&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nx"&gt;shallow&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nx"&gt;spyLifecycle&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'enzyme'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;To use this starter kit in development now all you need to do is run:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="nx"&gt;npm&lt;/span&gt; &lt;span class="nx"&gt;run&lt;/span&gt; &lt;span class="nx"&gt;dev&lt;/span&gt;         &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;note&lt;/span&gt; &lt;span class="nx"&gt;the&lt;/span&gt; &lt;span class="nx"&gt;addition&lt;/span&gt; &lt;span class="nx"&gt;of&lt;/span&gt; &lt;span class="nx"&gt;run&lt;/span&gt;
 &lt;span class="nx"&gt;npm&lt;/span&gt; &lt;span class="nx"&gt;run&lt;/span&gt; &lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="nx"&gt;dev&lt;/span&gt;    &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;note&lt;/span&gt; &lt;span class="nx"&gt;the&lt;/span&gt; &lt;span class="nx"&gt;addition&lt;/span&gt; &lt;span class="nx"&gt;of&lt;/span&gt; &lt;span class="nx"&gt;run&lt;/span&gt;
@@ -860,9 +886,13 @@ new scripts to run the tests:&lt;/p&gt;
 
 &lt;h3&gt;Conclusion&lt;/h3&gt;
 
+&lt;p&gt;We have no set up a solid testing environment that can grow and evolve to your
+project specific needs.  In the next blog post I will spend more time going
+over specific testing scenarios and how to test Redux.  &lt;/p&gt;
+
 &lt;p&gt;I&amp;#39;ve only been programming in React for a few months but I&amp;#39;m already in love.  I
 hope this tutorial has helped you to get a deeper understanding of some React
-Testing best practices.  Feel free to reach out to me with any
+testing best practices.  Feel free to reach out to me with any
 questions/comments.  Test on my friends!&lt;/p&gt;
 </content>
   </entry>
