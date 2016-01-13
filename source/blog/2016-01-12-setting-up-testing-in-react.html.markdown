@@ -7,9 +7,12 @@ tags: tutorial, testing, react, javascript
 Testing is an important part of the development cycle.  There is a name for code
 without tests: legacy code.  When I first started learning React and JavaScript
 it was overwhelming to say the least.  If you're new to the JS/React community you're 
-probably feeling super overwhelmed as well.  Thinking things like: which build tool should I use?
-Which testing framework is right?  What flux pattern should I be learning?  Do I even need to
-use flux?
+probably feeling super overwhelmed as well.  Thinking things like: 
+
+* Which build tool should I use?
+* Which testing framework is right?  
+* What flux pattern should I be learning?  
+* Do I even need to use flux?
 
 That's why I decided to write this post.  After hours of reading blog posts,
 looking through source code of respected JS developers, and one JSConf in
@@ -19,7 +22,7 @@ developer ever needs to feel that way.  It's just not right.
 
 All the code for this tutorial is available on my [github located here.](https://github.com/SpencerCDixon/react-testing-starter-kit)
 
-Enjoy... 
+Let's get started!
 
 ## Setting Up Webpack
 This isn't a tutorial on how to use webpack so I won't go into great detail but
@@ -194,7 +197,7 @@ Let's create an alias for doing the build inside our package.json:
 ```javascript
 # package.json
 ... other stuff
-scripts: {
+"scripts": {
   "build": "webpack"
 }
 ```
@@ -318,12 +321,18 @@ before running.  To do that we can use babel-register:
 npm i babel-register --save-dev
 ```
 
-Some npm scripts to make testing life easier:  
+Let's add some npm scripts in `package.json` to make testing life easier:
 
 ```
-# inside package.json script section
-  "test": "mocha --compilers js:babel-register --recursive",
-  "test:watch": "npm test -- --watch",
+# ./package.json 
+... rest of package.json
+  "scripts": {
+    "test": "mocha --compilers js:babel-register --recursive",
+    "test:watch": "npm test -- --watch",
+    "build": "webpack",
+    "dev": "webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist",
+  },
+  
 ```
 
 Our test script says to run mocha using the `babel-register` compiler and look
@@ -336,7 +345,7 @@ for file changes and re-run your suite.  Hooray productivity!
 To confirm it works lets create a hello world test in `/tests/helloWorld.spec.js`  
 
 ```javascript
-# /tests/helloWorld.spec.js
+# /test/helloWorld.spec.js
 import { expect } from 'chai';
 
 describe('hello world', () => {
@@ -352,7 +361,7 @@ Importing `expect` for every test is kind of a bummer though so lets create a
 `test_helper` file to save keystrokes.  
 
 ```javascript
-# /tests/test_helper.js
+# /test/test_helper.js
 import { expect } from 'chai';
 import sinon from 'sinon';
 
@@ -367,7 +376,9 @@ Then include it in the npm script that runs the suite:
   "test": "mocha --compilers js:babel-register --require ./test/test_helper.js --recursive",
 ```
 
-I also added sinon so it would be available globally.
+I also added sinon so it would be available globally.  Now whenever we write new
+tests `expect` and `sinon` will be available to use and we won't need to import
+them manually.
 
 
 ### Enzyme
@@ -499,7 +510,9 @@ We can pretend that the `Root` component has a child called `CommentList` which
 will call some arbitrary callback when it mounts.  The function it calls when it
 mounts will be given via props so we can practice testing that scenario.  Let's also
 conditionally render some styles on the comment list so we can see how to deal
-with styling in shallow renders:
+with styling in shallow renders.  `CommentList` will go in a components folder
+located at `/src/components/CommentList.js`.  Since it won't be in charge of handling data 
+, thus working entirely off of props, the component will be a _pure_ (aka _dumb_) component:
 
 ```javascript
 import React from 'react';
@@ -588,7 +601,9 @@ CommentList.propTypes = propTypes;
 export default CommentList;
 ```
 
-The suite should now pass.  Next lets add some shallow rendered tests to make sure
+Run `npm test` and the suite should now pass.  
+
+Next lets add some shallow rendered tests to make sure
 our component is applying the proper CSS classes given its `isActive` prop.
 
 ```javascript
@@ -664,6 +679,7 @@ Lets get down to business...
 ```unix
 npm i karma karma-chai karma-mocha karma-webpack --save-dev
 npm i karma-sourcemap-loader karma-phantomjs-launcher --save-dev
+npm i karma-spec-reporter --save-dev
 npm i phantomjs --save-dev
 
 # The polyfills arn't required but will help with browser support issues
@@ -786,19 +802,81 @@ new scripts to run the tests:
 
 ```javascript
 # package.json
-  "test": "node_modules/.bin/karma start karma.config.js",
-  "test:dev": "npm run test -- --watch",
-  "old_test": "mocha --compilers js:babel-register --require ./test/test_helper.js --recursive",
-  "old_test:watch": "npm test -- --watch"
+  "scripts" {
+    "test": "node_modules/.bin/karma start karma.config.js",
+    "test:dev": "npm run test -- --watch",
+    "old_test": "mocha --compilers js:babel-register --require ./test/test_helper.js --recursive",
+    "old_test:watch": "npm test -- --watch"
+  }
 ```
 
 I renamed the old test scripts to have a prefix of 'old_'.
 
+The final `package.json` looks like this:
+
+```javascript
+{
+  "name": "react-testing-starter-kit",
+  "version": "0.1.0",
+  "description": "React starter kit with nice testing environment set up.",
+  "main": "src/main.js",
+  "directories": {
+    "test": "tests",
+    "src": "src",
+    "dist": "dist"
+  },
+  "dependencies": {
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "yargs": "^3.31.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.1",
+    "babel-polyfill": "^6.3.14",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-register": "^6.3.13",
+    "chai": "^3.4.1",
+    "enzyme": "^1.2.0",
+    "json-loader": "^0.5.4",
+    "karma": "^0.13.19",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^0.2.1",
+    "karma-phantomjs-launcher": "^0.2.3",
+    "karma-sourcemap-loader": "^0.3.6",
+    "karma-spec-reporter": "0.0.23",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.3.4",
+    "phantomjs": "^1.9.19",
+    "phantomjs-polyfill": "0.0.1",
+    "react-addons-test-utils": "^0.14.6",
+    "sinon": "^1.17.2",
+    "webpack": "^1.12.11",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/karma start karma.config.js",
+    "test:dev": "npm run test -- --watch",
+    "build": "webpack",
+    "dev": "webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist",
+    "old_test": "mocha --compilers js:babel-register --require ./test/test_helper.js --recursive",
+    "old_test:watch": "npm test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "tbd"
+  },
+  "author": "Spencer Dixon",
+  "license": "ISC"
+}
+```
+
 To use this starter kit in development now all you need to do is run:  
 
 ```javascript
-npm run dev
-npm run test:dev
+npm run dev         # note the addition of run
+npm run test:dev    # note the addition of run
 ```
 
 [Make sure to check out the original source code on github if anything was unclear.](https://github.com/SpencerCDixon/react-testing-starter-kit)
