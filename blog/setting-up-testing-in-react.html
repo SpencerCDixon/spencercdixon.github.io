@@ -746,8 +746,8 @@ touch karma.config.js
       <span class="p">[</span><span class="s1">'./test/**/*.js'</span><span class="p">]:</span> <span class="p">[</span><span class="s1">'webpack'</span><span class="p">,</span> <span class="s1">'sourcemap'</span><span class="p">]</span>
     <span class="p">},</span>
     <span class="c1">// A lot of people will reuse the same webpack config that they use</span>
-    <span class="c1">// in development for karma but remove any productive plugins like UglifyJS etc.</span>
-    <span class="c1">// I choose to just re-write the config so readers can see what it needs to have</span>
+    <span class="c1">// in development for karma but remove any production plugins like UglifyJS etc.</span>
+    <span class="c1">// I chose to just re-write the config so readers can see what it needs to have</span>
     <span class="na">webpack</span><span class="p">:</span> <span class="p">{</span>
        <span class="na">devtool</span><span class="p">:</span> <span class="s1">'inline-source-map'</span><span class="p">,</span>
        <span class="na">resolve</span><span class="p">:</span> <span class="p">{</span>

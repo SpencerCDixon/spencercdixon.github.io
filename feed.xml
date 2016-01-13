@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/blog/setting-up-testing-in-react.html"/>
     <id>http://blog.url.com/blog/setting-up-testing-in-react.html</id>
     <published>2016-01-12T16:55:00-05:00</published>
-    <updated>2016-01-12T21:10:25-05:00</updated>
+    <updated>2016-01-12T21:18:46-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -689,8 +689,8 @@ touch karma.config.js
       &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'./test/**/*.js'&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'webpack'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'sourcemap'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="p"&gt;},&lt;/span&gt;
     &lt;span class="c1"&gt;// A lot of people will reuse the same webpack config that they use&lt;/span&gt;
-    &lt;span class="c1"&gt;// in development for karma but remove any productive plugins like UglifyJS etc.&lt;/span&gt;
-    &lt;span class="c1"&gt;// I choose to just re-write the config so readers can see what it needs to have&lt;/span&gt;
+    &lt;span class="c1"&gt;// in development for karma but remove any production plugins like UglifyJS etc.&lt;/span&gt;
+    &lt;span class="c1"&gt;// I chose to just re-write the config so readers can see what it needs to have&lt;/span&gt;
     &lt;span class="na"&gt;webpack&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
        &lt;span class="na"&gt;devtool&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'inline-source-map'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
        &lt;span class="na"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
