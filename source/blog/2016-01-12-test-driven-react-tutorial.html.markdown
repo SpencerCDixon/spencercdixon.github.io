@@ -929,9 +929,10 @@ npm run test:dev    # note the addition of run
 [Make sure to check out the original source code on github if anything was unclear.](https://github.com/SpencerCDixon/react-testing-starter-kit)
 
 ### Conclusion
-We have no set up a solid testing environment that can grow and evolve to your
-project specific needs.  In the next blog post I will spend more time going
-over specific testing scenarios and how to test Redux.  
+We have now set up a solid testing environment that can grow and evolve to your
+projects specific needs.  In the next blog post I will spend more time going
+over specific testing scenarios and how to test Redux, my preferred flux
+implementation.  
 
 I've only been programming in React for a few months but I'm already in love.  I
 hope this tutorial has helped you to get a deeper understanding of some React
