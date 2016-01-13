@@ -78,9 +78,14 @@
   <p>Testing is an important part of the development cycle.  There is a name for code
 without tests: legacy code.  When I first started learning React and JavaScript
 it was overwhelming to say the least.  If you&#39;re new to the JS/React community you&#39;re 
-probably feeling super overwhelmed as well.  Thinking things like: which build tool should I use?
-Which testing framework is right?  What flux pattern should I be learning?  Do I even need to
-use flux?</p>
+probably feeling super overwhelmed as well.  Thinking things like: </p>
+
+<ul>
+<li>Which build tool should I use?</li>
+<li>Which testing framework is right?<br></li>
+<li>What flux pattern should I be learning?<br></li>
+<li>Do I even need to use flux?</li>
+</ul>
 
 <p>That&#39;s why I decided to write this post.  After hours of reading blog posts,
 looking through source code of respected JS developers, and one JSConf in
@@ -90,7 +95,7 @@ developer ever needs to feel that way.  It&#39;s just not right.  </p>
 
 <p>All the code for this tutorial is available on my <a href="https://github.com/SpencerCDixon/react-testing-starter-kit">github located here.</a></p>
 
-<p>Enjoy... </p>
+<p>Let&#39;s get started!</p>
 
 <h2>Setting Up Webpack</h2>
 
@@ -250,7 +255,7 @@ pleased.  </p>
 <p>Let&#39;s create an alias for doing the build inside our package.json:  </p>
 <pre class="highlight javascript"><code><span class="err">#</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
 <span class="p">...</span> <span class="nx">other</span> <span class="nx">stuff</span>
-<span class="nl">scripts</span><span class="p">:</span> <span class="p">{</span>
+<span class="s2">"scripts"</span><span class="err">:</span> <span class="p">{</span>
   <span class="s2">"build"</span><span class="err">:</span> <span class="s2">"webpack"</span>
 <span class="p">}</span>
 </code></pre>
@@ -360,10 +365,16 @@ before running.  To do that we can use babel-register:  </p>
 <pre class="highlight plaintext"><code>npm i babel-register --save-dev
 </code></pre>
 
-<p>Some npm scripts to make testing life easier:  </p>
-<pre class="highlight plaintext"><code># inside package.json script section
-  "test": "mocha --compilers js:babel-register --recursive",
-  "test:watch": "npm test -- --watch",
+<p>Let&#39;s add some npm scripts in <code>package.json</code> to make testing life easier:</p>
+<pre class="highlight plaintext"><code># ./package.json 
+... rest of package.json
+  "scripts": {
+    "test": "mocha --compilers js:babel-register --recursive",
+    "test:watch": "npm test -- --watch",
+    "build": "webpack",
+    "dev": "webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist",
+  },
+
 </code></pre>
 
 <p>Our test script says to run mocha using the <code>babel-register</code> compiler and look
@@ -374,7 +385,7 @@ if Karma isn&#39;t your thing then those should work fine.  <code>test:watch</co
 for file changes and re-run your suite.  Hooray productivity!</p>
 
 <p>To confirm it works lets create a hello world test in <code>/tests/helloWorld.spec.js</code>  </p>
-<pre class="highlight javascript"><code><span class="err">#</span> <span class="o">/</span><span class="nx">tests</span><span class="o">/</span><span class="nx">helloWorld</span><span class="p">.</span><span class="nx">spec</span><span class="p">.</span><span class="nx">js</span>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="o">/</span><span class="nx">test</span><span class="o">/</span><span class="nx">helloWorld</span><span class="p">.</span><span class="nx">spec</span><span class="p">.</span><span class="nx">js</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">expect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'chai'</span><span class="p">;</span>
 
 <span class="nx">describe</span><span class="p">(</span><span class="s1">'hello world'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -388,7 +399,7 @@ for file changes and re-run your suite.  Hooray productivity!</p>
 
 <p>Importing <code>expect</code> for every test is kind of a bummer though so lets create a
 <code>test_helper</code> file to save keystrokes.  </p>
-<pre class="highlight javascript"><code><span class="err">#</span> <span class="o">/</span><span class="nx">tests</span><span class="o">/</span><span class="nx">test_helper</span><span class="p">.</span><span class="nx">js</span>
+<pre class="highlight javascript"><code><span class="err">#</span> <span class="o">/</span><span class="nx">test</span><span class="o">/</span><span class="nx">test_helper</span><span class="p">.</span><span class="nx">js</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">expect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'chai'</span><span class="p">;</span>
 <span class="kr">import</span> <span class="nx">sinon</span> <span class="nx">from</span> <span class="s1">'sinon'</span><span class="p">;</span>
 
@@ -401,7 +412,9 @@ for file changes and re-run your suite.  Hooray productivity!</p>
   <span class="s2">"test"</span><span class="err">:</span> <span class="s2">"mocha --compilers js:babel-register --require ./test/test_helper.js --recursive"</span><span class="p">,</span>
 </code></pre>
 
-<p>I also added sinon so it would be available globally.</p>
+<p>I also added sinon so it would be available globally.  Now whenever we write new
+tests <code>expect</code> and <code>sinon</code> will be available to use and we won&#39;t need to import
+them manually.</p>
 
 <h3>Enzyme</h3>
 
@@ -532,7 +545,9 @@ get some exposure to <code>sinon</code> and using spys.</p>
 will call some arbitrary callback when it mounts.  The function it calls when it
 mounts will be given via props so we can practice testing that scenario.  Let&#39;s also
 conditionally render some styles on the comment list so we can see how to deal
-with styling in shallow renders:</p>
+with styling in shallow renders.  <code>CommentList</code> will go in a components folder
+located at <code>/src/components/CommentList.js</code>.  Since it won&#39;t be in charge of handling data 
+, thus working entirely off of props, the component will be a <em>pure</em> (aka <em>dumb</em>) component:</p>
 <pre class="highlight javascript"><code><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
 
 <span class="c1">// Once we set up Karma to run our tests through webpack</span>
@@ -617,7 +632,9 @@ and look at the tests again to confirm you understand.</p>
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">CommentList</span><span class="p">;</span>
 </code></pre>
 
-<p>The suite should now pass.  Next lets add some shallow rendered tests to make sure
+<p>Run <code>npm test</code> and the suite should now pass.  </p>
+
+<p>Next lets add some shallow rendered tests to make sure
 our component is applying the proper CSS classes given its <code>isActive</code> prop.</p>
 <pre class="highlight javascript"><code><span class="p">...</span> <span class="nx">previous</span> <span class="nx">tests</span>
 
@@ -688,6 +705,7 @@ environment feel the same as our dev environment which is always a positive.</p>
 <p>Lets get down to business...</p>
 <pre class="highlight plaintext"><code>npm i karma karma-chai karma-mocha karma-webpack --save-dev
 npm i karma-sourcemap-loader karma-phantomjs-launcher --save-dev
+npm i karma-spec-reporter --save-dev
 npm i phantomjs --save-dev
 
 # The polyfills arn't required but will help with browser support issues
@@ -805,17 +823,77 @@ that&#39;s what most starter kits end up doing!  </p>
 <p>With Karma set up the last thing we have to do is update our package.json with
 new scripts to run the tests:</p>
 <pre class="highlight javascript"><code><span class="err">#</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
-  <span class="s2">"test"</span><span class="err">:</span> <span class="s2">"node_modules/.bin/karma start karma.config.js"</span><span class="p">,</span>
-  <span class="s2">"test:dev"</span><span class="err">:</span> <span class="s2">"npm run test -- --watch"</span><span class="p">,</span>
-  <span class="s2">"old_test"</span><span class="err">:</span> <span class="s2">"mocha --compilers js:babel-register --require ./test/test_helper.js --recursive"</span><span class="p">,</span>
-  <span class="s2">"old_test:watch"</span><span class="err">:</span> <span class="s2">"npm test -- --watch"</span>
+  <span class="s2">"scripts"</span> <span class="p">{</span>
+    <span class="s2">"test"</span><span class="err">:</span> <span class="s2">"node_modules/.bin/karma start karma.config.js"</span><span class="p">,</span>
+    <span class="s2">"test:dev"</span><span class="err">:</span> <span class="s2">"npm run test -- --watch"</span><span class="p">,</span>
+    <span class="s2">"old_test"</span><span class="err">:</span> <span class="s2">"mocha --compilers js:babel-register --require ./test/test_helper.js --recursive"</span><span class="p">,</span>
+    <span class="s2">"old_test:watch"</span><span class="err">:</span> <span class="s2">"npm test -- --watch"</span>
+  <span class="p">}</span>
 </code></pre>
 
 <p>I renamed the old test scripts to have a prefix of &#39;old_&#39;.</p>
 
+<p>The final <code>package.json</code> looks like this:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"name"</span><span class="err">:</span> <span class="s2">"react-testing-starter-kit"</span><span class="p">,</span>
+  <span class="s2">"version"</span><span class="err">:</span> <span class="s2">"0.1.0"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="err">:</span> <span class="s2">"React starter kit with nice testing environment set up."</span><span class="p">,</span>
+  <span class="s2">"main"</span><span class="err">:</span> <span class="s2">"src/main.js"</span><span class="p">,</span>
+  <span class="s2">"directories"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"test"</span><span class="err">:</span> <span class="s2">"tests"</span><span class="p">,</span>
+    <span class="s2">"src"</span><span class="err">:</span> <span class="s2">"src"</span><span class="p">,</span>
+    <span class="s2">"dist"</span><span class="err">:</span> <span class="s2">"dist"</span>
+  <span class="p">},</span>
+  <span class="s2">"dependencies"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"react"</span><span class="err">:</span> <span class="s2">"^0.14.6"</span><span class="p">,</span>
+    <span class="s2">"react-dom"</span><span class="err">:</span> <span class="s2">"^0.14.6"</span><span class="p">,</span>
+    <span class="s2">"yargs"</span><span class="err">:</span> <span class="s2">"^3.31.0"</span>
+  <span class="p">},</span>
+  <span class="s2">"devDependencies"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"babel-core"</span><span class="err">:</span> <span class="s2">"^6.4.0"</span><span class="p">,</span>
+    <span class="s2">"babel-loader"</span><span class="err">:</span> <span class="s2">"^6.2.1"</span><span class="p">,</span>
+    <span class="s2">"babel-polyfill"</span><span class="err">:</span> <span class="s2">"^6.3.14"</span><span class="p">,</span>
+    <span class="s2">"babel-preset-es2015"</span><span class="err">:</span> <span class="s2">"^6.3.13"</span><span class="p">,</span>
+    <span class="s2">"babel-preset-react"</span><span class="err">:</span> <span class="s2">"^6.3.13"</span><span class="p">,</span>
+    <span class="s2">"babel-register"</span><span class="err">:</span> <span class="s2">"^6.3.13"</span><span class="p">,</span>
+    <span class="s2">"chai"</span><span class="err">:</span> <span class="s2">"^3.4.1"</span><span class="p">,</span>
+    <span class="s2">"enzyme"</span><span class="err">:</span> <span class="s2">"^1.2.0"</span><span class="p">,</span>
+    <span class="s2">"json-loader"</span><span class="err">:</span> <span class="s2">"^0.5.4"</span><span class="p">,</span>
+    <span class="s2">"karma"</span><span class="err">:</span> <span class="s2">"^0.13.19"</span><span class="p">,</span>
+    <span class="s2">"karma-chai"</span><span class="err">:</span> <span class="s2">"^0.1.0"</span><span class="p">,</span>
+    <span class="s2">"karma-mocha"</span><span class="err">:</span> <span class="s2">"^0.2.1"</span><span class="p">,</span>
+    <span class="s2">"karma-phantomjs-launcher"</span><span class="err">:</span> <span class="s2">"^0.2.3"</span><span class="p">,</span>
+    <span class="s2">"karma-sourcemap-loader"</span><span class="err">:</span> <span class="s2">"^0.3.6"</span><span class="p">,</span>
+    <span class="s2">"karma-spec-reporter"</span><span class="err">:</span> <span class="s2">"0.0.23"</span><span class="p">,</span>
+    <span class="s2">"karma-webpack"</span><span class="err">:</span> <span class="s2">"^1.7.0"</span><span class="p">,</span>
+    <span class="s2">"mocha"</span><span class="err">:</span> <span class="s2">"^2.3.4"</span><span class="p">,</span>
+    <span class="s2">"phantomjs"</span><span class="err">:</span> <span class="s2">"^1.9.19"</span><span class="p">,</span>
+    <span class="s2">"phantomjs-polyfill"</span><span class="err">:</span> <span class="s2">"0.0.1"</span><span class="p">,</span>
+    <span class="s2">"react-addons-test-utils"</span><span class="err">:</span> <span class="s2">"^0.14.6"</span><span class="p">,</span>
+    <span class="s2">"sinon"</span><span class="err">:</span> <span class="s2">"^1.17.2"</span><span class="p">,</span>
+    <span class="s2">"webpack"</span><span class="err">:</span> <span class="s2">"^1.12.11"</span><span class="p">,</span>
+    <span class="s2">"webpack-dev-server"</span><span class="err">:</span> <span class="s2">"^1.14.1"</span>
+  <span class="p">},</span>
+  <span class="s2">"scripts"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"test"</span><span class="err">:</span> <span class="s2">"node_modules/.bin/karma start karma.config.js"</span><span class="p">,</span>
+    <span class="s2">"test:dev"</span><span class="err">:</span> <span class="s2">"npm run test -- --watch"</span><span class="p">,</span>
+    <span class="s2">"build"</span><span class="err">:</span> <span class="s2">"webpack"</span><span class="p">,</span>
+    <span class="s2">"dev"</span><span class="err">:</span> <span class="s2">"webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist"</span><span class="p">,</span>
+    <span class="s2">"old_test"</span><span class="err">:</span> <span class="s2">"mocha --compilers js:babel-register --require ./test/test_helper.js --recursive"</span><span class="p">,</span>
+    <span class="s2">"old_test:watch"</span><span class="err">:</span> <span class="s2">"npm test -- --watch"</span>
+  <span class="p">},</span>
+  <span class="s2">"repository"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"git"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="err">:</span> <span class="s2">"tbd"</span>
+  <span class="p">},</span>
+  <span class="s2">"author"</span><span class="err">:</span> <span class="s2">"Spencer Dixon"</span><span class="p">,</span>
+  <span class="s2">"license"</span><span class="err">:</span> <span class="s2">"ISC"</span>
+<span class="p">}</span>
+</code></pre>
+
 <p>To use this starter kit in development now all you need to do is run:  </p>
-<pre class="highlight javascript"><code><span class="nx">npm</span> <span class="nx">run</span> <span class="nx">dev</span>
-<span class="nx">npm</span> <span class="nx">run</span> <span class="nx">test</span><span class="err">:</span><span class="nx">dev</span>
+<pre class="highlight javascript"><code><span class="nx">npm</span> <span class="nx">run</span> <span class="nx">dev</span>         <span class="err">#</span> <span class="nx">note</span> <span class="nx">the</span> <span class="nx">addition</span> <span class="nx">of</span> <span class="nx">run</span>
+<span class="nx">npm</span> <span class="nx">run</span> <span class="nx">test</span><span class="err">:</span><span class="nx">dev</span>    <span class="err">#</span> <span class="nx">note</span> <span class="nx">the</span> <span class="nx">addition</span> <span class="nx">of</span> <span class="nx">run</span>
 </code></pre>
 
 <p><a href="https://github.com/SpencerCDixon/react-testing-starter-kit">Make sure to check out the original source code on github if anything was unclear.</a></p>
