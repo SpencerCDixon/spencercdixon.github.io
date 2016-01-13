@@ -10,27 +10,44 @@
     <name>Blog Author</name>
   </author>
   <entry>
-    <title>Setting Up Testing In React</title>
+    <title>Test Driven React Tutorial</title>
     <link rel="alternate" href="http://blog.url.com/blog/setting-up-testing-in-react.html"/>
     <id>http://blog.url.com/blog/setting-up-testing-in-react.html</id>
     <published>2016-01-12T16:55:00-05:00</published>
-    <updated>2016-01-12T18:39:13-05:00</updated>
+    <updated>2016-01-12T20:16:33-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;p&gt;Coming from the Rails world testing is extremely important to me.  I had a hard
-time figuring out how to get everything set up when I first started out in
-react.  Here is a guide to help newcomers:&lt;/p&gt;
+    <content type="html">&lt;p&gt;Testing is an important part of the development cycle.  There is a name for code
+without tests: legacy code.  When I first started learning React and JavaScript
+it was overwhelming to say the least.  If you&amp;#39;re new to the JS/React community you&amp;#39;re 
+probably feeling super overwhelmed as well.  Thinking things like: which build tool should I use?&lt;br&gt;
+Which testing framework is right?  What flux pattern should I be learning?  Do I even need to
+use flux?&lt;/p&gt;
+
+&lt;p&gt;That&amp;#39;s why I decided to write this post.  After hours of reading blog posts,
+looking through source of good JS developers, and one JSConf in Florida I&amp;#39;ve
+finally found my testing &amp;#39;groove&amp;#39;.  In the beginning I felt so naked and dirty for
+programming React code without tests.  I want to live in a world where no
+developer ever needs to feel that way.  It&amp;#39;s just not right.  &lt;/p&gt;
+
+&lt;p&gt;All the code for this tutorial is available on my &lt;a href="https://github.com/SpencerCDixon/react-testing-starter-kit"&gt;github located here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Enjoy... &lt;/p&gt;
 
 &lt;h2&gt;Setting Up Webpack&lt;/h2&gt;
 
 &lt;p&gt;This isn&amp;#39;t a tutorial on how to use webpack so I won&amp;#39;t go into great detail but
-it&amp;#39;s important to understand the basics.  Webpack is a lot like Rails Asset
+it&amp;#39;s important to understand the basics.  Webpack is like the Rails Asset
 pipeline on crack.  On a basic level it lets you pre/post process all your code
 and serve just one &lt;code&gt;bundle.js&lt;/code&gt; to the client which will run your react app.&lt;/p&gt;
 
-&lt;p&gt;It&amp;#39;s an extremely powerful tool which is why we&amp;#39;ll be using it.  Here are some
-more resources to learn more:&lt;/p&gt;
+&lt;p&gt;It&amp;#39;s an extremely powerful tool which is why we&amp;#39;ll be using it.  Webpack is one
+of those tools that scares the shit out of you at first, and that&amp;#39;s okay, but
+once you start understanding how it works you feel like a God among men.  Stick
+with it and give it a chance before you judge.  &lt;/p&gt;
+
+&lt;p&gt;Here are some more resources to learn more:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt; &lt;a href="https://christianalfoni.github.io/react-webpack-cookbook/Getting-started.html"&gt;Webpack Cookbook&lt;/a&gt;&lt;br&gt;&lt;/li&gt;
@@ -40,7 +57,7 @@ more resources to learn more:&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: I recommend using node &lt;code&gt;v5.1.0&lt;/code&gt; if you&amp;#39;re going to follow along with
-this tutorial.  Anything &amp;gt;4 should be fine though.&lt;/p&gt;
+this tutorial.  Anything &lt;code&gt;&amp;gt;4&lt;/code&gt; should be fine though.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;First, lets install all webpack and babel dependencies.  Babel is a JavaScript
@@ -51,7 +68,9 @@ compiled down to ES5 which the browser can use.&lt;/p&gt;
 npm i babel-loader babel-core webpack --save-dev
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;npm i&lt;/code&gt; is an alias for npm install&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;npm i&lt;/code&gt; is an alias for npm install.  &lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;Next lets set up our project directory and create a &lt;code&gt;webpack.config.js&lt;/code&gt; file:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;mkdir src                  # where all our source code will live
@@ -64,7 +83,7 @@ touch webpack.config.js    # our webpack configuration file
 &lt;p&gt;Our initial webpack config will be super minimal.  Read through comments to
 understand what&amp;#39;s going on:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;webpack&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'webpack'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
-&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'path'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// a useful node path helper library&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'path'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;                &lt;span class="c1"&gt;// a useful node path helper library&lt;/span&gt;
 
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="na"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'./src/main.js'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;                &lt;span class="c1"&gt;// the entry point for our app&lt;/span&gt;
@@ -91,19 +110,18 @@ going to need those:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now we have a couple options.  Some people will tell babel to use the presets in
-the loader file like this:&lt;br&gt;
-&lt;code&gt;javascript
-loaders: [
-  { 
-    test: /\.js$/, 
-    loaders: [&amp;#39;babel&amp;#39;], 
-    exclude: /node_modules/,
-    query: {
-      presets: [&amp;#39;react&amp;#39;, &amp;#39;es2015&amp;#39;] 
-    }
-  }   
-]
-&lt;/code&gt;&lt;/p&gt;
+the loader file like this:  &lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="nx"&gt;loaders&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt; 
+    &lt;span class="na"&gt;test&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sr"&gt;/&lt;/span&gt;&lt;span class="se"&gt;\.&lt;/span&gt;&lt;span class="sr"&gt;js$/&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+    &lt;span class="na"&gt;loaders&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'babel'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; 
+    &lt;span class="na"&gt;exclude&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sr"&gt;/node_modules/&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="na"&gt;query&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="na"&gt;presets&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'react'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'es2015'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;   
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Another approach is to store them in a &lt;code&gt;.babelrc&lt;/code&gt; which is what I&amp;#39;m going to do
 for this project.  &lt;/p&gt;
@@ -118,12 +136,15 @@ for this project.  &lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;To confirm it works lets put some react code in &lt;code&gt;main.js&lt;/code&gt; and see if it bundles
-everything properly.  First we need to install react:  &lt;/p&gt;
+everything properly.  Install React and React DOM:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="nx"&gt;npm&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt; &lt;span class="nx"&gt;react&lt;/span&gt; &lt;span class="nx"&gt;react&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;dom&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;S&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Using the &lt;code&gt;-S&lt;/code&gt; flag is an alias for &lt;code&gt;--save&lt;/code&gt;.  Now for creating our first React
-component:  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Using the &lt;code&gt;-S&lt;/code&gt; flag is an alias for &lt;code&gt;--save&lt;/code&gt;.  &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now for creating our first React component:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;js&lt;/span&gt;
 &lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;Component&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'react'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;render&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'react-dom'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -160,7 +181,8 @@ worked properly.  If you don&amp;#39;t have webpack installed globally (&lt;code
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;node_modules&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;webpack&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Webpack will by default look for your &lt;code&gt;webpack.config.js&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Webpack will by default look for a config with the name &lt;code&gt;webpack.config.js&lt;/code&gt;.
+You could also pass in a different webpack config as an argument.  &lt;/p&gt;
 
 &lt;p&gt;Let&amp;#39;s create an alias for doing the build inside our package.json:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="kr"&gt;package&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;json&lt;/span&gt;
@@ -212,10 +234,10 @@ scripts: {
 
 &lt;p&gt;The script uses the &lt;code&gt;--content-base&lt;/code&gt; flag to tell webpack we want to serve our
 &lt;code&gt;/dist&lt;/code&gt; folder.  We&amp;#39;re also explicitly using port 3000 to provide a more
-familiar rails dev experience.&lt;/p&gt;
+familiar Rails experience.&lt;/p&gt;
 
-&lt;p&gt;Finally, lets add a resolve flag to webpack to make development life a little
-bit more enjoyable... here is the final config with comments explaining:  &lt;/p&gt;
+&lt;p&gt;Finally, lets add a resolve flag to webpack to make importing files a little
+easier.  Here is the final config with comments, read through them:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;webpack&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'webpack'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'path'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
@@ -266,7 +288,7 @@ use RSpec like syntax.&lt;br&gt;
 &lt;strong&gt;Enzyme&lt;/strong&gt;: will be used for testing our React components.  It&amp;#39;s a beautiful
 testing library written by AirBnB.  &lt;/p&gt;
 
-&lt;p&gt;Install deps:  &lt;/p&gt;
+&lt;p&gt;Install packages:  &lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;npm i mocha chai sinon --save-dev
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -302,7 +324,7 @@ for file changes and re-run your suite.  Hooray productivity!&lt;/p&gt;
 &lt;p&gt;Pretty chill... almost looks like RSpec!&lt;/p&gt;
 
 &lt;p&gt;Importing &lt;code&gt;expect&lt;/code&gt; for every test is kind of a bummer though so lets create a
-&lt;code&gt;test_helper&lt;/code&gt; file to save keystrokes.&lt;/p&gt;
+&lt;code&gt;test_helper&lt;/code&gt; file to save keystrokes.  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;tests&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;test_helper&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;js&lt;/span&gt;
 &lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;expect&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'chai'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;sinon&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'sinon'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -331,7 +353,9 @@ npm i enzyme react-addons-test-utils --save-dev
 &lt;p&gt;Enzyme has great documentation which can be &lt;a href="http://airbnb.io/enzyme/"&gt;found here&lt;/a&gt;.  I recommend reading
 through the Shallow Rendering section when you have the time.&lt;/p&gt;
 
-&lt;p&gt;What is Shallow Rendering you ask?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;What is Shallow Rendering you ask?&lt;/em&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;Well, it&amp;#39;s a way for us to call the &lt;code&gt;render&lt;/code&gt; method of our components and get
 back React elements which we can make assertions on without having to actually
@@ -378,6 +402,11 @@ architecture.  &lt;a href="https://medium.com/@dan_abramov/smart-and-dumb-compon
 &lt;p&gt;If we run the tests with &lt;code&gt;npm test&lt;/code&gt; they should fail.  It makes sense since we
 havn&amp;#39;t actually created a Root component in the proper location.  So lets do
 that:  &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;If at any point you want to see the source for this code it is all available 
+&lt;a href="https://github.com/SpencerCDixon/react-testing-starter-kit"&gt;on github here&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;containers&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;Root&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;js&lt;/span&gt;
 &lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;Component&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'react'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
@@ -399,17 +428,13 @@ that:  &lt;/p&gt;
 &lt;span class="kr"&gt;export&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="nx"&gt;Root&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;If you re-run the tests they should all pass now.  Stick to using &lt;code&gt;shallow&lt;/code&gt; as
-much as you possibly can in your tests.  Occasionally it&amp;#39;s not possible
-though.  For example, if you need to test the React lifecycle methods then you
-need the component to actually mount.  &lt;/p&gt;
+&lt;p&gt;If you re-run the tests they should all pass now.  &lt;/p&gt;
 
 &lt;p&gt;There was a lot of duplication in our tests so lets go back and do some
-refactoring.  Since we&amp;#39;re never passing any props to the &lt;code&gt;Root&lt;/code&gt; and therefore
-have no tests that are dependant on them we can just shallow render the
-component once and then make all our assertions.  Often times I find myself
+refactoring.  Since we&amp;#39;re never passing any props to the &lt;code&gt;Root&lt;/code&gt;, we can just
+shallow render it once and then make all our assertions.  Often times I find myself
 wrapping a section of tests in sub describe blocks that pass in a certain set of
-props and then make a bunch of assertions.  &lt;/p&gt;
+props and then make a bunch of assertions given those props.  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="nx"&gt;describe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'(Container) Root'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;wrapper&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;shallow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Root&lt;/span&gt; &lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
@@ -431,13 +456,19 @@ props and then make a bunch of assertions.  &lt;/p&gt;
 &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;Stick to using &lt;code&gt;shallow&lt;/code&gt; as
+much as you possibly can in your tests.  Occasionally it&amp;#39;s not possible
+though.  For example, if you need to test the React lifecycle methods then you
+need the component to actually mount.  &lt;/p&gt;
+
 &lt;p&gt;Next lets test a component mounting and calling a function when it mounts so we can
 get some exposure to &lt;code&gt;sinon&lt;/code&gt; and using spys.&lt;/p&gt;
 
 &lt;p&gt;We can pretend that the &lt;code&gt;Root&lt;/code&gt; component has a child called &lt;code&gt;CommentList&lt;/code&gt; which
-will call some arbitrary callback when it mounts given via props.  Let&amp;#39;s also
+will call some arbitrary callback when it mounts.  The function it calls when it
+mounts will be given via props so we can practice testing that scenario.  Let&amp;#39;s also
 conditionally render some styles on the comment list so we can see how to deal
-with props in shallow renders:&lt;/p&gt;
+with styling in shallow renders:&lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'react'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="c1"&gt;// Once we set up Karma to run our tests through webpack&lt;/span&gt;
@@ -463,7 +494,7 @@ with props in shallow renders:&lt;/p&gt;
       &lt;span class="nx"&gt;spyLifecyle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;CommentList&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
       &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;props&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="na"&gt;onMount&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{},&lt;/span&gt;
+        &lt;span class="na"&gt;onMount&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{},&lt;/span&gt;  &lt;span class="c1"&gt;// an anonymous function in ES6 arrow syntax&lt;/span&gt;
         &lt;span class="na"&gt;isActive&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
       &lt;span class="p"&gt;}&lt;/span&gt;
 
@@ -494,7 +525,7 @@ with props in shallow renders:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;There is a lot going on there.  Read through the comments to get a better
-understand.  Look at the implementation that makes the tests pass then go back
+understanding.  Look at the implementation that makes the tests pass then go back
 and look at the tests again to confirm you understand.&lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;components&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;CommentList&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;js&lt;/span&gt;
 &lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;Component&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;PropTypes&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'react'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -522,8 +553,8 @@ and look at the tests again to confirm you understand.&lt;/p&gt;
 &lt;span class="kr"&gt;export&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="nx"&gt;CommentList&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Tests should now pass.  Next lets add some shallow rendered tests to make sure
-our component is applying the proper CSS classes given its prop.&lt;/p&gt;
+&lt;p&gt;The suite should now pass.  Next lets add some shallow rendered tests to make sure
+our component is applying the proper CSS classes given its &lt;code&gt;isActive&lt;/code&gt; prop.&lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="nx"&gt;previous&lt;/span&gt; &lt;span class="nx"&gt;tests&lt;/span&gt;
 
   &lt;span class="nx"&gt;it&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'should render as a &amp;lt;ul&amp;gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -561,7 +592,7 @@ our component is applying the proper CSS classes given its prop.&lt;/p&gt;
   &lt;span class="p"&gt;}&lt;/span&gt;
 
   &lt;span class="nx"&gt;render&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;isActive&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;isActive&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// uses ES6 destructuring to get the isActive value&lt;/span&gt;
     &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;classes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;isActive&lt;/span&gt; &lt;span class="p"&gt;?&lt;/span&gt; &lt;span class="s1"&gt;'active-list'&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'inactive-list'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
@@ -575,11 +606,9 @@ our component is applying the proper CSS classes given its prop.&lt;/p&gt;
 
 &lt;p&gt;At this point you should have a good understanding on how to go about testing
 your react components.  Remember to read through the amazing Enzyme
-documentation to get inspiration and ideas on how to test your Components.&lt;/p&gt;
+documentation to get some inspiration.&lt;/p&gt;
 
 &lt;h2&gt;Setting Up Karma&lt;/h2&gt;
-
-&lt;p&gt;TODO:&lt;/p&gt;
 </content>
   </entry>
   <entry>
