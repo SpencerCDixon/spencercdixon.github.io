@@ -647,7 +647,6 @@ our component is applying the proper CSS classes given its `isActive` prop.
 
   describe('when inactive...', () => {
     const wrapper = shallow(
-      // just passing isActive is an alias for true
       <CommentList onMount={() => {}} isActive={false} />
     )
     it('should render with className inactive-list', () => {
@@ -903,9 +902,6 @@ import Root from 'containers/Root';               // new import statement
 
 // test/components/CommentList.spec.js
 import React from 'react';
-
-// Once we set up Karma to run our tests through webpack
-// we will no longer need to have these long relative paths
 import CommentList from 'components/CommentList';               // new import statement
 // import CommentList from '../../src/components/CommentList';  // old import statement
 
