@@ -674,7 +674,6 @@ our component is applying the proper CSS classes given its <code>isActive</code>
 
   <span class="nx">describe</span><span class="p">(</span><span class="s1">'when inactive...'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(</span>
-      <span class="c1">// just passing isActive is an alias for true</span>
       <span class="o">&lt;</span><span class="nx">CommentList</span> <span class="nx">onMount</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{}}</span> <span class="nx">isActive</span><span class="o">=</span><span class="p">{</span><span class="kc">false</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
 </span>    <span class="p">)</span>
     <span class="nx">it</span><span class="p">(</span><span class="s1">'should render with className inactive-list'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -919,9 +918,6 @@ those annoying relative path declarations inside our tests:</p>
 
 <span class="c1">// test/components/CommentList.spec.js</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
-
-<span class="c1">// Once we set up Karma to run our tests through webpack</span>
-<span class="c1">// we will no longer need to have these long relative paths</span>
 <span class="kr">import</span> <span class="nx">CommentList</span> <span class="nx">from</span> <span class="s1">'components/CommentList'</span><span class="p">;</span>               <span class="c1">// new import statement</span>
 <span class="c1">// import CommentList from '../../src/components/CommentList';  // old import statement</span>
 

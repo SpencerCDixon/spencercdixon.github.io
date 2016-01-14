@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/blog/test-driven-react-tutorial.html"/>
     <id>http://blog.url.com/blog/test-driven-react-tutorial.html</id>
     <published>2016-01-12T16:55:00-05:00</published>
-    <updated>2016-01-13T15:12:32-05:00</updated>
+    <updated>2016-01-13T22:34:43-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -617,7 +617,6 @@ our component is applying the proper CSS classes given its &lt;code&gt;isActive&
 
   &lt;span class="nx"&gt;describe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'when inactive...'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;wrapper&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;shallow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-      &lt;span class="c1"&gt;// just passing isActive is an alias for true&lt;/span&gt;
       &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;CommentList&lt;/span&gt; &lt;span class="nx"&gt;onMount&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{}}&lt;/span&gt; &lt;span class="nx"&gt;isActive&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="sr"&gt;/&lt;/span&gt;&lt;span class="err"&gt;&amp;gt;
 &lt;/span&gt;    &lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="nx"&gt;it&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'should render with className inactive-list'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -862,9 +861,6 @@ those annoying relative path declarations inside our tests:&lt;/p&gt;
 
 &lt;span class="c1"&gt;// test/components/CommentList.spec.js&lt;/span&gt;
 &lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'react'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-&lt;span class="c1"&gt;// Once we set up Karma to run our tests through webpack&lt;/span&gt;
-&lt;span class="c1"&gt;// we will no longer need to have these long relative paths&lt;/span&gt;
 &lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;CommentList&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'components/CommentList'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;               &lt;span class="c1"&gt;// new import statement&lt;/span&gt;
 &lt;span class="c1"&gt;// import CommentList from '../../src/components/CommentList';  // old import statement&lt;/span&gt;
 
