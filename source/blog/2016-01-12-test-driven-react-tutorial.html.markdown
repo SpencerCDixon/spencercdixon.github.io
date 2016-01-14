@@ -182,7 +182,7 @@ where our `bundle.js` will get compiled to:
     <meta charset="UTF-8"/>
   </head>
   <body>
-    <div id='root'></div>
+    <div id="root"></div>
     <script src="bundle.js"></script>
   </body>
 </html>
@@ -227,7 +227,7 @@ Add a script to our `index.html` inside the dist folder:
     <meta charset="UTF-8"/>
   </head>
   <body>
-    <div id='root'></div>
+    <div id="root"></div>
 
     <script src="http://localhost:3000/webpack-dev-server.js"></script>
     <script src="bundle.js"></script>
