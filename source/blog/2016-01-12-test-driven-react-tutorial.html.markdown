@@ -216,25 +216,6 @@ Next lets wire up `webpack-dev-server` for a more enjoyable dev experience:
 npm i webpack-dev-server --save-dev
 ```
 
-Add a script to our `index.html` inside the dist folder:  
-
-```html
-# /dist/index.html
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8"/>
-  </head>
-  <body>
-    <div id="root"></div>
-
-    <script src="http://localhost:3000/webpack-dev-server.js"></script>
-    <script src="bundle.js"></script>
-  </body>
-</html>
-```
-
 Add webpack dev server entry points to our `webpack.config.js`  
 
 ```javascript
