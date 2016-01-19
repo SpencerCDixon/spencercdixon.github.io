@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/blog/test-driven-react-tutorial.html"/>
     <id>http://blog.url.com/blog/test-driven-react-tutorial.html</id>
     <published>2016-01-12T16:55:00-05:00</published>
-    <updated>2016-01-14T12:26:50-05:00</updated>
+    <updated>2016-01-19T10:11:31-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -213,23 +213,6 @@ pleased.  &lt;/p&gt;
 
 &lt;p&gt;Next lets wire up &lt;code&gt;webpack-dev-server&lt;/code&gt; for a more enjoyable dev experience:  &lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="nx"&gt;npm&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt; &lt;span class="nx"&gt;webpack&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;server&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nx"&gt;save&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;dev&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add a script to our &lt;code&gt;index.html&lt;/code&gt; inside the dist folder:  &lt;/p&gt;
-&lt;pre class="highlight html"&gt;&lt;code&gt;# /dist/index.html
-
-&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;charset=&lt;/span&gt;&lt;span class="s"&gt;"UTF-8"&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;"root"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-
-    &lt;span class="nt"&gt;&amp;lt;script &lt;/span&gt;&lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;"http://localhost:3000/webpack-dev-server.js"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;script &lt;/span&gt;&lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;"bundle.js"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Add webpack dev server entry points to our &lt;code&gt;webpack.config.js&lt;/code&gt;  &lt;/p&gt;

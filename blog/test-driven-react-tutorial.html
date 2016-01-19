@@ -272,23 +272,6 @@ pleased.  </p>
 <pre class="highlight javascript"><code><span class="nx">npm</span> <span class="nx">i</span> <span class="nx">webpack</span><span class="o">-</span><span class="nx">dev</span><span class="o">-</span><span class="nx">server</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span>
 </code></pre>
 
-<p>Add a script to our <code>index.html</code> inside the dist folder:  </p>
-<pre class="highlight html"><code># /dist/index.html
-
-<span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-  <span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/head&gt;</span>
-  <span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"root"</span><span class="nt">&gt;&lt;/div&gt;</span>
-
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://localhost:3000/webpack-dev-server.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"bundle.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-  <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre>
-
 <p>Add webpack dev server entry points to our <code>webpack.config.js</code>  </p>
 <pre class="highlight javascript"><code><span class="p">...</span> <span class="nx">rest</span> <span class="nx">of</span> <span class="nx">config</span>
   <span class="nl">entry</span><span class="p">:</span> <span class="p">[</span>
