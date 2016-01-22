@@ -144,6 +144,12 @@ Paste in the presets:
 }
 ```
 
+> NOTE: due to the nature of how quickly npm packages get upgraded in the
+> React/JS community.  If at any point in the tutorial you're getting errors try
+> installing exact package versions using the package-name@version-number-here
+> syntax.  The completed package.json can be found at the end of the tutorial for
+> reference
+
 To confirm it works lets put some react code in `main.js` and see if it bundles
 everything properly.  Install React and React DOM:  
 
@@ -387,8 +393,11 @@ Now that our more 'universal' testing tools are set up (mocha, chai, sinon)
 let's install Enzyme and start testing some React components!
 
 Install packages:
+> **Note** it's important to install version 1.2.0 of enzyme since in 2.0 
+> there are some breaking changes that affect the tutorial
+
 ```
-npm i enzyme react-addons-test-utils --save-dev
+npm i enzyme@1.2.0 react-addons-test-utils --save-dev
 ```
 
 Enzyme has great documentation which can be [found here](http://airbnb.io/enzyme/).  I recommend reading
